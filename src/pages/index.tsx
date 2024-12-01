@@ -1,8 +1,7 @@
-import Independent from "@/components/Independent";
 import React from "react";
 
 const Home = () => {
-  return <Independent />;
+  return <div>Home</div>;
 };
 
 export default Home;
