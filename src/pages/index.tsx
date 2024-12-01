@@ -1,7 +1,5 @@
 import Independent from "@/components/Independent";
-import { theme } from "antd";
-import React, { useEffect } from "react";
-import { useMediaQuery } from "react-responsive";
+import React from "react";
 
 const Home = () => {
   return <Independent />;

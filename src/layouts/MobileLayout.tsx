@@ -8,7 +8,7 @@ type MobileLayoutProps = {
 
 export default function MobileLayout({ children }: MobileLayoutProps) {
   const {
-    token: { colorBgContainer, colorBorder, colorInfoBg, colorBgLayout },
+    token: { colorBgContainer, colorBorder, colorBgLayout },
   } = theme.useToken();
   const [activeKey, setActiveKey] = useState("chat");
 

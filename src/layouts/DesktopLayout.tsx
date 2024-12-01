@@ -1,7 +1,7 @@
 import { Layout, Menu, MenuProps, theme } from "antd";
 import { Content } from "antd/es/layout/layout";
 import Sider from "antd/es/layout/Sider";
-import React, { useState } from "react";
+import React from "react";
 import { CalendarFilled, OpenAIFilled, SettingFilled } from "@ant-design/icons";
 
 const siderItems: MenuProps["items"] = [
