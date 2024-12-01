@@ -33,7 +33,18 @@ export default function MobileLayout({ children }: MobileLayoutProps) {
   const currentTab = tabs.find((tab) => tab.key === activeKey);
 
   return (
-    <div style={{ height: "100vh", display: "flex", flexDirection: "column", backgroundColor: colorBgContainer }}>
+    <div style={{ 
+      height: '100vh',
+      maxHeight: '-webkit-fill-available',
+      display: "flex", 
+      flexDirection: "column", 
+      backgroundColor: colorBgContainer,
+      position: 'fixed',
+      width: '100%',
+      top: 0,
+      left: 0,
+      overflow: 'hidden'
+    }}>
       <header
         style={{
           height: "60px",
