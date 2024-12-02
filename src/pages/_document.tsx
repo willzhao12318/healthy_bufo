@@ -5,7 +5,7 @@ import type { DocumentContext } from "next/document";
 
 const MyDocument = () => {
   return (
-    <Html lang="en">
+    <Html lang="en-US">
       <Head />
       <body>
         <Main />
