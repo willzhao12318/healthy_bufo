@@ -1,10 +1,10 @@
 import OrderTable from "@/components/OrderTable";
 import SettingForm from "@/components/Setting";
+import ChatBot from "@/components/Chatbot";
 import { AppCurrentPage } from "@/hooks/appStore";
 import { useAppStore } from "@/hooks/appStore";
 import { useConfigStore } from "@/hooks/configStore";
 import React from "react";
-import Independent from "../components/Independent";
 
 const Home = () => {
   const { currentPage } = useAppStore();
@@ -13,7 +13,7 @@ const Home = () => {
 
   switch (currentPage) {
     case AppCurrentPage.Chat:
-      return <div style={{height: "100%"}}><Independent /></div>;
+      return <ChatBot />;
     case AppCurrentPage.Orders:
       return <OrderTable />;
     case AppCurrentPage.Setting:

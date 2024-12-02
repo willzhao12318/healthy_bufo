@@ -9,5 +9,12 @@
   "save": "保存",
   "confirm": "确认",
   "cancel": "取消",
-  "testConnection": "测试连接"
+  "testConnection": "测试连接",
+  "chatbotTitle": "健康蛙蛙",
+  "chatbotDescription": "健康蛙蛙让你更健康！",
+  "recommend": "随便试试",
+  "recommendDescription": "是你感兴趣的吗?",
+  "analyzeDishes": "分析我的订单",
+  "weeklyDishes": "查看本周食谱",
+  "recommendDishes": "为我推荐食谱"
 }

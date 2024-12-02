@@ -9,5 +9,12 @@
   "save": "Save",
   "confirm": "Confirm",
   "cancel": "Cancel",
-  "testConnection": "Test Connection"
+  "testConnection": "Test Connection",
+  "chatbotTitle": "Healthy Bufo",
+  "chatbotDescription": "Health Bufo helps you to become healthier!",
+  "recommend": "Recommend Prompts",
+  "recommendDescription": "Are you interested in it?",
+  "analyzeDishes": "Analyze my orders",
+  "weeklyDishes": "Dishes for this Week",
+  "recommendDishes": "Recommend Dishes for me"
 }

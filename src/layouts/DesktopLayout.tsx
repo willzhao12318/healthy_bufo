@@ -1,4 +1,5 @@
-import { Layout, Menu, MenuProps, theme, Button, Space } from "antd";
+import bufo from "@/assets/bufo-juice.png";
+import { Layout, Menu, MenuProps, theme, Button, Space, Typography } from "antd";
 import { Content } from "antd/es/layout/layout";
 import Sider from "antd/es/layout/Sider";
 import React, { useMemo } from "react";
@@ -6,6 +7,7 @@ import { CalendarFilled, MessageFilled, SettingFilled, TranslationOutlined, Bulb
 import { AppCurrentPage, useAppStore } from "@/hooks/appStore";
 import { useTranslation } from "react-i18next";
 import { useConfigStore } from "@/hooks/configStore";
+import Image from "next/image";
 
 type DesktopLayoutProps = {
   children: React.ReactNode;
@@ -63,7 +65,12 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
           flexDirection: "column",
         }}
       >
-        <div style={{ margin: "16px", height: "32px", borderRadius: "6px", background: "#1677ff" }} />
+        <Space style={{ paddingLeft: "8px", paddingTop: "16px" }}>
+          <Image src={bufo.src} alt="logo" width={48} height={48} />
+          <Typography.Title level={4} style={{ margin: 0 }}>
+            {t("chatbotTitle")}
+          </Typography.Title>
+        </Space>
         <Menu
           defaultSelectedKeys={[AppCurrentPage.Chat]}
           defaultOpenKeys={[AppCurrentPage.Chat]}
