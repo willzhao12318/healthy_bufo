@@ -60,7 +60,7 @@ export default function MobileLayout({ children }: MobileLayoutProps) {
       >
         {currentTab?.title}
       </Header>
-      <Content style={{ flex: 1, overflowY: "auto", padding: "16px" }}>{children}</Content>
+      <Content style={{ flex: 1, overflowY: "auto", padding: "8px" }}>{children}</Content>
       <Footer
         style={{
           height: "60px",
