@@ -1,6 +1,8 @@
 import { Order, OrderTab, TabType } from "@/utils/type";
-import ItemCard from "@/components/ItemCard";
-import { Space } from "antd";
+import dish from "@/assets/dish.jpg";
+import { Card, Col, Modal, Row, Space } from "antd";
+import { compareTabType } from "@/utils/utils";
+import { useState } from "react";
 
 const mockData: Order[] = [
   {
@@ -78,6 +80,20 @@ const mockData: Order[] = [
 ];
 
 export default function OrderTable() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
   const data = mockData.reduce((acc, order) => {
     const { time } = order;
     if (!acc[time]) {
@@ -88,10 +104,30 @@ export default function OrderTable() {
   }, {} as Record<string, OrderTab[]>);
 
   return (
-    <Space direction="vertical" size="middle" style={{ width: "100%", alignItems: "center" }}>
-      {Object.entries(data).map(([time, tabs]) => (
-        <ItemCard key={time} time={time} tabs={tabs} />
-      ))}
-    </Space>
+    <>
+      <Space direction="vertical" size="middle" style={{ width: "100%", alignItems: "center" }}>
+        {Object.entries(data).map(([time, tabs]) => (
+          <Card title={time} style={{ maxWidth: "600px" }} key={time}>
+            <Row gutter={16}>
+              {tabs.sort(compareTabType).map((tab) => (
+                <Col span={8} key={tab.id}>
+                  <Card
+                    hoverable
+                    // eslint-disable-next-line @next/next/no-img-element
+                    cover={<img src={dish.src} alt="dish" />}
+                    onClick={showModal}
+                  >
+                    <Card.Meta title={tab.orderedDish?.chineseName} description={tab.type} />
+                  </Card>
+                </Col>
+              ))}
+            </Row>
+          </Card>
+        ))}
+      </Space>
+      <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel} centered>
+        <p>Some contents...</p>
+      </Modal>
+    </>
   );
 }
