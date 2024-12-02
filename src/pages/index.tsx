@@ -1,3 +1,4 @@
+import OrderTable from "@/components/OrderTable";
 import SettingForm from "@/components/Setting";
 import { AppCurrentPage } from "@/hooks/appStore";
 import { useAppStore } from "@/hooks/appStore";
@@ -13,7 +14,7 @@ const Home = () => {
     case AppCurrentPage.Chat:
       return <div>Chat</div>;
     case AppCurrentPage.Orders:
-      return <div>Orders</div>;
+      return <OrderTable />;
     case AppCurrentPage.Setting:
       return <SettingForm initialValues={configStore} />;
   }
