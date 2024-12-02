@@ -1,8 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import axios from "axios";
-import preDefinedHeaders from "util/types";
-import { axiosInstance } from "./utils/const_type";
-import { cookies, headers } from "next/headers";
 
 export default async function restaurantDishList(req: NextApiRequest, res: NextApiResponse) {
   const dataJson = req.query;
