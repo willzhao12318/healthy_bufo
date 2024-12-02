@@ -30,3 +30,18 @@ export type Order = {
   readonly time: string;
   readonly tab: OrderTab;
 }
+
+// Define an enum for the categories
+export enum Category {
+  CategoryRequestMenuRecommendation = 1,
+  CategoryRequestNutritionAnalyze,
+  CategoryUnrelated,
+  CategoryMaliciousInput,
+}
+
+export enum HttpMethods {
+  GET = "GET",
+  POST = "POST",
+  PUT = "PUT",
+  DELETE = "DELETE",
+}
