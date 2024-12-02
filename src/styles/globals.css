@@ -30,3 +30,8 @@
 html {
   height: -webkit-fill-available;
 }
+
+.ant-layout-sider-children {
+  display: flex;
+  flex-direction: column;
+}

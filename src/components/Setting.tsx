@@ -1,7 +1,8 @@
-import { configStoreProps } from "@/hooks/configStore";
-import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { configStoreProps, useConfigStore } from "@/hooks/configStore";
+import { BulbOutlined, LockOutlined, TranslationOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Flex, Form, Input, Tooltip } from "antd";
 import { useTranslation } from "react-i18next";
+import { useMediaQuery } from "react-responsive";
 
 export type SettingFormProps = {
   initialValues: configStoreProps;
@@ -12,7 +13,10 @@ export default function SettingForm({ initialValues }: SettingFormProps) {
     console.log(values);
   };
 
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const isMobile = useMediaQuery({ maxWidth: 767 });
+  const { getConfig, setLocale, setTheme } = useConfigStore();
+  const config = getConfig();
 
   return (
     <Form layout={"vertical"} initialValues={initialValues} onFinish={onFinish} autoComplete="off">
@@ -33,6 +37,25 @@ export default function SettingForm({ initialValues }: SettingFormProps) {
       </Form.Item>
       <Form.Item>
         <Flex gap={12} align="center" justify="flex-end">
+          {isMobile && (
+            <>
+              <Button
+                icon={<TranslationOutlined />}
+                onClick={() => {
+                  const newLocale = i18n.language === "zh-CN" ? "en-US" : "zh-CN";
+                  i18n.changeLanguage(newLocale);
+                  setLocale(newLocale);
+                }}
+              />
+              <Button
+                icon={<BulbOutlined />}
+                onClick={() => {
+                  const newTheme = config.theme === "light" ? "dark" : "light";
+                  setTheme(newTheme);
+                }}
+              />
+            </>
+          )}
           <Tooltip title="test connection with meican">
             <Button type="default" htmlType="button">
               {t("testConnection")}

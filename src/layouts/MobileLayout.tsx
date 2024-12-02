@@ -1,6 +1,7 @@
 import { AppCurrentPage, useAppStore } from "@/hooks/appStore";
 import { CalendarFilled, MessageFilled, SettingFilled } from "@ant-design/icons";
 import { Layout, theme } from "antd";
+import { Content, Footer, Header } from "antd/es/layout/layout";
 import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
 
@@ -48,7 +49,7 @@ export default function MobileLayout({ children }: MobileLayoutProps) {
       left: 0,
       overflow: 'hidden'
     }}>
-      <header
+      <Header
         style={{
           height: "60px",
           lineHeight: "60px",
@@ -58,9 +59,9 @@ export default function MobileLayout({ children }: MobileLayoutProps) {
         }}
       >
         {currentTab?.title}
-      </header>
-      <main style={{ flex: 1, overflowY: "auto", padding: "16px" }}>{children}</main>
-      <footer
+      </Header>
+      <Content style={{ flex: 1, overflowY: "auto", padding: "16px" }}>{children}</Content>
+      <Footer
         style={{
           height: "60px",
           display: "flex",
@@ -86,7 +87,7 @@ export default function MobileLayout({ children }: MobileLayoutProps) {
             <span style={{ fontSize: "12px", marginTop: "4px" }}>{item.title}</span>
           </div>
         ))}
-      </footer>
+      </Footer>
     </Layout>
   );
 }

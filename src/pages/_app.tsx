@@ -2,18 +2,25 @@ import "@/styles/globals.css";
 import "@/i18n/i18n";
 
 import React from "react";
-import { ConfigProvider } from "antd";
+import { ConfigProvider, theme as antTheme } from "antd";
 import type { AppProps } from "next/app";
 import dynamic from "next/dynamic";
-import theme from "@/theme/themeConfig";
 import MobileLayout from "@/layouts/MobileLayout";
 import DesktopLayout from "@/layouts/DesktopLayout";
+import { useConfigStore } from "@/hooks/configStore";
 const MediaQuery = dynamic(() => import("react-responsive"), {
   ssr: false,
 });
 
-const App = ({ Component, pageProps }: AppProps) => (
-  <ConfigProvider theme={theme}>
+const App = ({ Component, pageProps }: AppProps) => {
+  const { theme } = useConfigStore();
+  return (
+    <ConfigProvider theme={{
+      token: {
+      fontSize: 16,
+    },
+    algorithm: theme === "light" ? antTheme.defaultAlgorithm : antTheme.darkAlgorithm,
+  }}>
     <MediaQuery maxWidth={767}>
       <MobileLayout>
         <Component {...pageProps} />
@@ -23,8 +30,9 @@ const App = ({ Component, pageProps }: AppProps) => (
       <DesktopLayout>
         <Component {...pageProps} />
       </DesktopLayout>
-    </MediaQuery>
-  </ConfigProvider>
-);
+      </MediaQuery>
+    </ConfigProvider>
+  );
+};
 
 export default App;

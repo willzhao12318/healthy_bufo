@@ -24,7 +24,7 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
 
   const { setCurrentPage } = useAppStore();
   const { t, i18n } = useTranslation();
-  const { getConfig, setConfig } = useConfigStore();
+  const { getConfig, setLocale, setTheme } = useConfigStore();
   const config = getConfig();
 
   const siderItems: MenuProps["items"] = useMemo(() => [
@@ -92,14 +92,14 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
             onClick={() => {
               const newLocale = i18n.language === 'zh-CN' ? 'en-US' : 'zh-CN';
               i18n.changeLanguage(newLocale);
-              setConfig({ ...config, locale: newLocale });
+              setLocale(newLocale);
             }}
           />
           <Button
             icon={<BulbOutlined />}
             onClick={() => {
               const newTheme = config.theme === 'light' ? 'dark' : 'light';
-              setConfig({ ...config, theme: newTheme });
+              setTheme(newTheme);
             }}
           />
         </Space>
