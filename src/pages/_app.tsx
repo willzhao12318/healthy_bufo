@@ -23,9 +23,9 @@ const AppContainer = ({ Component, pageProps }: AppProps) => {
         },
         components: {
           Menu: {
-            collapsedIconSize: 30,
+            collapsedIconSize: 24,
             collapsedWidth: 100,
-            iconSize: 24,
+            iconSize: 16,
           },
         },
         algorithm: theme === "dark" ? antTheme.darkAlgorithm : antTheme.defaultAlgorithm,
