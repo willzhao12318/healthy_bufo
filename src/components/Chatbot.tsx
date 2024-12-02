@@ -28,7 +28,7 @@ const roles: GetProp<typeof Bubble.List, "roles"> = {
 export default function ChatBot() {
   const { t } = useTranslation();
   const {
-    token: { boxShadow, colorBgContainer, paddingLG, colorPrimary },
+    token: { boxShadow, colorBgContainer, colorPrimary, sizeMS },
   } = theme.useToken();
   const [content, setContent] = React.useState("");
 
@@ -67,7 +67,7 @@ export default function ChatBot() {
 
   // ==================== Nodes ====================
   const placeholderNode = (
-    <Space direction="vertical" size={16}>
+    <Space direction="vertical" size={sizeMS}>
       <Welcome
         variant="borderless"
         icon={<Image src={bufo.src} alt="bufo" width={64} height={64} />}
@@ -131,8 +131,7 @@ export default function ChatBot() {
           flex: 1,
           display: "flex",
           flexDirection: "column",
-          gap: 16,
-          padding: `${paddingLG}px`,
+          gap: sizeMS
         }}
       >
         <Bubble.List

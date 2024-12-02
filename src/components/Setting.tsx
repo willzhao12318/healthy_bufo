@@ -1,6 +1,6 @@
 import { configStoreProps, useConfigStore } from "@/hooks/configStore";
 import { BulbOutlined, LockOutlined, TranslationOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Flex, Form, Input, Tooltip } from "antd";
+import { Button, Flex, Form, Input, Tooltip, theme } from "antd";
 import { useTranslation } from "react-i18next";
 import { useMediaQuery } from "react-responsive";
 
@@ -16,6 +16,9 @@ export default function SettingForm({ initialValues }: SettingFormProps) {
   const { t, i18n } = useTranslation();
   const isMobile = useMediaQuery({ maxWidth: 767 });
   const { getConfig, setLocale, setTheme } = useConfigStore();
+  const {
+    token: { sizeMS },
+  } = theme.useToken();
   const config = getConfig();
 
   return (
@@ -36,7 +39,7 @@ export default function SettingForm({ initialValues }: SettingFormProps) {
         <Input prefix={<LockOutlined />} placeholder="Password" />
       </Form.Item>
       <Form.Item>
-        <Flex gap={12} align="center" justify="flex-end">
+        <Flex gap={sizeMS} align="center" justify="flex-end">
           {isMobile && (
             <>
               <Button

@@ -40,7 +40,7 @@ const AppContainer = ({ Component, pageProps }: AppProps) => {
 
 const App = (props: AppProps) => {
   return (
-    <Suspense fallback={<Spin />}>
+    <Suspense fallback={<Spin fullscreen size="large"/>}>
       <AppContainer {...props} />
     </Suspense>
   );

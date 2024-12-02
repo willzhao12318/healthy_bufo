@@ -1,6 +1,6 @@
 import { AppCurrentPage, useAppStore } from "@/hooks/appStore";
 import { CalendarFilled, MessageFilled, SettingFilled } from "@ant-design/icons";
-import { Layout, theme } from "antd";
+import { Layout, theme, Typography } from "antd";
 import { Content, Footer, Header } from "antd/es/layout/layout";
 import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
@@ -11,7 +11,7 @@ type MobileLayoutProps = {
 
 export default function MobileLayout({ children }: MobileLayoutProps) {
   const {
-    token: { colorBgContainer, colorBorder, colorBgLayout },
+    token: { colorBgContainer, colorBorder, colorBgLayout, fontSizeHeading3, fontSizeSM, paddingSM },
   } = theme.useToken();
 
   const { currentPage, setCurrentPage } = useAppStore();
@@ -20,28 +20,28 @@ export default function MobileLayout({ children }: MobileLayoutProps) {
     {
       key: AppCurrentPage.Chat,
       title: t("chat"),
-      icon: <MessageFilled style={{ fontSize: "24px" }} />,
+      icon: <MessageFilled style={{ fontSize: `${fontSizeHeading3}px` }} />,
     },
     {
       key: AppCurrentPage.Orders,
       title: t("order"),
-      icon: <CalendarFilled style={{ fontSize: "24px" }} />,
+      icon: <CalendarFilled style={{ fontSize: `${fontSizeHeading3}px` }} />,
     },
     {
       key: AppCurrentPage.Setting,
       title: t("setting"),
-      icon: <SettingFilled style={{ fontSize: "24px" }} />,
+      icon: <SettingFilled style={{ fontSize: `${fontSizeHeading3}px` }} />,
     },
   ], [t]);
 
   const currentTab = tabs.find((tab) => tab.key === currentPage);
 
   return (
-    <Layout style={{ 
+    <Layout style={{
       height: '100vh',
       maxHeight: '-webkit-fill-available',
-      display: "flex", 
-      flexDirection: "column", 
+      display: "flex",
+      flexDirection: "column",
       backgroundColor: colorBgContainer,
       position: 'fixed',
       width: '100%',
@@ -56,17 +56,23 @@ export default function MobileLayout({ children }: MobileLayoutProps) {
           textAlign: "center",
           borderBottom: `1px solid ${colorBorder}`,
           backgroundColor: colorBgLayout,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center"
         }}
       >
-        {currentTab?.title}
+        <Typography.Title level={4} style={{ margin: "0px" }}>
+          {currentTab?.title}
+        </Typography.Title>
       </Header>
-      <Content style={{ flex: 1, overflowY: "auto", padding: "16px" }}>{children}</Content>
+      <Content style={{ flex: 1, overflowY: "auto", padding: `${paddingSM}px` }}>{children}</Content>
       <Footer
         style={{
           height: "60px",
           display: "flex",
           borderTop: `1px solid ${colorBorder}`,
           backgroundColor: colorBgLayout,
+          padding: "0px"
         }}
       >
         {tabs.map((item) => (
@@ -84,7 +90,7 @@ export default function MobileLayout({ children }: MobileLayoutProps) {
             onClick={() => setCurrentPage(item.key)}
           >
             {item.icon}
-            <span style={{ fontSize: "12px", marginTop: "4px" }}>{item.title}</span>
+            <Typography.Text style={{ marginTop: "4px", fontSize: `${fontSizeSM}px` }}>{item.title}</Typography.Text>
           </div>
         ))}
       </Footer>

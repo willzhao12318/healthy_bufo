@@ -15,7 +15,7 @@ type DesktopLayoutProps = {
 
 export default function DesktopLayout({ children }: DesktopLayoutProps) {
   const {
-    token: { colorBgContainer, colorInfoBg },
+    token: { colorBgContainer, colorInfoBg, fontSizeHeading3, paddingSM, sizeMS },
   } = theme.useToken();
 
   const { setCurrentPage } = useAppStore();
@@ -28,17 +28,17 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
     () => [
       {
         key: AppCurrentPage.Chat,
-        icon: <MessageFilled style={{ fontSize: "24px" }} />,
+        icon: <MessageFilled style={{ fontSize: `${fontSizeHeading3}px` }} />,
         label: t("chat"),
       },
       {
         key: AppCurrentPage.Orders,
-        icon: <CalendarFilled style={{ fontSize: "24px" }} />,
+        icon: <CalendarFilled style={{ fontSize: `${fontSizeHeading3}px` }} />,
         label: t("order"),
       },
       {
         key: AppCurrentPage.Setting,
-        icon: <SettingFilled style={{ fontSize: "24px" }} />,
+        icon: <SettingFilled style={{ fontSize: `${fontSizeHeading3}px` }} />,
         label: t("setting"),
       },
     ],
@@ -81,7 +81,7 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            gap: "12px",
+            gap: `${sizeMS}px`,
           }}
           items={siderItems}
           onClick={(item) => {
@@ -91,10 +91,10 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
 
         <Space
           style={{
-            padding: "16px",
+            padding: `${paddingSM}px`,
             display: "flex",
             justifyContent: "center",
-            gap: "8px",
+            gap: `${sizeMS}px`,
           }}
         >
           <Button
