@@ -15,21 +15,23 @@ const MediaQuery = dynamic(() => import("react-responsive"), {
 const App = ({ Component, pageProps }: AppProps) => {
   const { theme } = useConfigStore();
   return (
-    <ConfigProvider theme={{
-      token: {
-      fontSize: 16,
-    },
-    algorithm: theme === "light" ? antTheme.defaultAlgorithm : antTheme.darkAlgorithm,
-  }}>
-    <MediaQuery maxWidth={767}>
-      <MobileLayout>
-        <Component {...pageProps} />
-      </MobileLayout>
-    </MediaQuery>
-    <MediaQuery minWidth={768}>
-      <DesktopLayout>
-        <Component {...pageProps} />
-      </DesktopLayout>
+    <ConfigProvider
+      theme={{
+        token: {
+          fontSize: 16,
+        },
+        algorithm: theme !== undefined && theme === "dark" ? antTheme.darkAlgorithm : antTheme.defaultAlgorithm,
+      }}
+    >
+      <MediaQuery maxWidth={767}>
+        <MobileLayout>
+          <Component {...pageProps} />
+        </MobileLayout>
+      </MediaQuery>
+      <MediaQuery minWidth={768}>
+        <DesktopLayout>
+          <Component {...pageProps} />
+        </DesktopLayout>
       </MediaQuery>
     </ConfigProvider>
   );

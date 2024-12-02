@@ -1,4 +1,4 @@
-import { Layout, Menu, MenuProps, theme, Button, Space } from "antd";
+import { Layout, Menu, MenuProps, theme, Button, Space, ConfigProvider } from "antd";
 import { Content } from "antd/es/layout/layout";
 import Sider from "antd/es/layout/Sider";
 import React, { useMemo } from "react";
@@ -23,8 +23,9 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
   } = theme.useToken();
 
   const { setCurrentPage } = useAppStore();
+  
   const { t, i18n } = useTranslation();
-  const { getConfig, setLocale, setTheme } = useConfigStore();
+  const { getConfig, setLocale, setTheme, theme: configTheme } = useConfigStore();
   const config = getConfig();
 
   const siderItems: MenuProps["items"] = useMemo(() => [
@@ -46,8 +47,14 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
   ], [t]);
 
   return (
-    <Layout
-      style={{
+    <ConfigProvider theme={{
+      token: {
+      fontSize: 16,
+    },
+      algorithm: configTheme === "light" ? theme.defaultAlgorithm : theme.darkAlgorithm,
+    }}>
+      <Layout
+        style={{
         height: "90vh",
         width: "90vw",
         borderRadius: "20px",
@@ -108,7 +115,8 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
         <Content style={{ backgroundColor: colorBgContainer, padding: "16px" }}>
           {children}
         </Content>
+        </Layout>
       </Layout>
-    </Layout>
+    </ConfigProvider>
   );
 }
