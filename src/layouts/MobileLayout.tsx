@@ -72,6 +72,7 @@ export default function MobileLayout({ children }: MobileLayoutProps) {
           display: "flex",
           borderTop: `1px solid ${colorBorder}`,
           backgroundColor: colorBgLayout,
+          padding: "0px"
         }}
       >
         {tabs.map((item) => (
