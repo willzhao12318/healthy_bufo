@@ -26,7 +26,7 @@ import {
   SmileOutlined,
 } from '@ant-design/icons';
 import { Badge, Button, type GetProp, Space } from 'antd';
-import {categorizeInput} from "@/pages/api/request_categorization";
+// import {categorizeInput} from "@/pages/api/request_categorization";
 
 const renderTitle = (icon: React.ReactElement, title: string) => (
   <Space align="start">
@@ -178,7 +178,8 @@ const Independent: React.FC = () => {
         return;
       }
       try{
-        const result = await categorizeInput(message);
+        const result = {category: 1};
+        // const result = await categorizeInput(message);
         onSuccess(result.category.toString());
       }catch(e){
         onSuccess("Something went wrong");

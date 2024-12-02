@@ -1,3 +1,4 @@
+"use client";
 import "@/styles/globals.css";
 import "@/i18n/i18n";
 
@@ -12,29 +13,35 @@ const MediaQuery = dynamic(() => import("react-responsive"), {
   ssr: false,
 });
 
-const App = ({ Component, pageProps }: AppProps) => {
+const AppContainer = ({ Component, pageProps }: AppProps) => {
   const { theme } = useConfigStore();
   return (
+    <ConfigProvider
+      theme={{
+        token: {
+          fontSize: 16,
+        },
+        algorithm: theme === "dark" ? antTheme.darkAlgorithm : antTheme.defaultAlgorithm,
+      }}
+    >
+      <MediaQuery maxWidth={767}>
+        <MobileLayout>
+          <Component {...pageProps} />
+        </MobileLayout>
+      </MediaQuery>
+      <MediaQuery minWidth={768}>
+        <DesktopLayout>
+          <Component {...pageProps} />
+        </DesktopLayout>
+      </MediaQuery>
+    </ConfigProvider>
+  );
+};
+
+const App = (props: AppProps) => {
+  return (
     <Suspense fallback={<Spin />}>
-      <ConfigProvider
-        theme={{
-          token: {
-            fontSize: 16,
-          },
-          algorithm: theme !== undefined && theme === "dark" ? antTheme.darkAlgorithm : antTheme.defaultAlgorithm,
-        }}
-      >
-        <MediaQuery maxWidth={767}>
-          <MobileLayout>
-            <Component {...pageProps} />
-          </MobileLayout>
-        </MediaQuery>
-        <MediaQuery minWidth={768}>
-          <DesktopLayout>
-            <Component {...pageProps} />
-          </DesktopLayout>
-        </MediaQuery>
-      </ConfigProvider>
+      <AppContainer {...props} />
     </Suspense>
   );
 };

@@ -1,3 +1,5 @@
+"use server"
+
 import OpenAI from 'openai';
 
 // Define an enum for the categories
@@ -7,11 +9,13 @@ enum Category {
   CategoryUnrelated,
   CategoryMaliciousInput,
 }
+console.log(process.env.OPENAI_API_KEY);
+const API_KEY = process.env.OPENAI_API_KEY;
 // Initialize OpenAI client
 const client = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
   dangerouslyAllowBrowser: true,
-},);
+  apiKey: API_KEY,
+});
 
 const categorizationPrompt = "\n" +
   "Based on the user input, can you reply with a json struct like this {category:1} only to indicate which of the following category the request belongs to?\n" +
