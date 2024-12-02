@@ -1,6 +1,6 @@
 import { AppCurrentPage, useAppStore } from "@/hooks/appStore";
 import { CalendarFilled, MessageFilled, SettingFilled } from "@ant-design/icons";
-import { Layout, theme } from "antd";
+import { Layout, theme, Text, Typography } from "antd";
 import { Content, Footer, Header } from "antd/es/layout/layout";
 import React, { useMemo } from "react";
 import { useTranslation } from "react-i18next";
@@ -86,7 +86,7 @@ export default function MobileLayout({ children }: MobileLayoutProps) {
             onClick={() => setCurrentPage(item.key)}
           >
             {item.icon}
-            <span style={{ fontSize: "12px", marginTop: "4px" }}>{item.title}</span>
+            <Text style={{ marginTop: "4px" }}>{item.title}</Text>
           </div>
         ))}
       </Footer>
