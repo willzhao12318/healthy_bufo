@@ -58,7 +58,9 @@ export default function MobileLayout({ children }: MobileLayoutProps) {
           backgroundColor: colorBgLayout,
         }}
       >
-        {currentTab?.title}
+        <Typography.Title level={4}>
+          {currentTab?.title}
+        </Typography.Title>
       </Header>
       <Content style={{ flex: 1, overflowY: "auto", padding: "8px" }}>{children}</Content>
       <Footer
