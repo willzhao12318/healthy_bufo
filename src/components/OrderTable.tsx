@@ -121,7 +121,7 @@ export default function OrderTable() {
                     onClick={showModal}
                   >
                     <Card.Meta
-                      title={{tab.type}}
+                      title={tab.type}
                       description={
                         i18n.language === "zh-CN" ? tab.orderedDish?.chineseName : tab.orderedDish?.englishName
                       }
