@@ -79,7 +79,6 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
         <Menu
           defaultSelectedKeys={[AppCurrentPage.Chat]}
           defaultOpenKeys={[AppCurrentPage.Chat]}
-          mode="inline"
           style={{
             flex: 1,
             backgroundColor: colorInfoBg,
