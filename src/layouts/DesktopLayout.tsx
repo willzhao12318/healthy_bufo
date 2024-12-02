@@ -2,8 +2,8 @@ import bufo from "@/assets/bufo-juice.png";
 import { Layout, Menu, MenuProps, theme, Button, Space, Typography } from "antd";
 import { Content } from "antd/es/layout/layout";
 import Sider from "antd/es/layout/Sider";
-import React, { useMemo } from "react";
-import { CalendarFilled, MessageFilled, SettingFilled, TranslationOutlined, BulbOutlined } from "@ant-design/icons";
+import React, { useMemo, useState } from "react";
+import { CalendarFilled, MessageFilled, SettingFilled, TranslationOutlined, BulbOutlined, MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
 import { AppCurrentPage, useAppStore } from "@/hooks/appStore";
 import { useTranslation } from "react-i18next";
 import { useConfigStore } from "@/hooks/configStore";
@@ -23,6 +23,7 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
   const { t, i18n } = useTranslation();
   const { getConfig, setLocale, setTheme } = useConfigStore();
   const config = getConfig();
+  const [collapsed, setCollapsed] = useState(false);
 
   const siderItems: MenuProps["items"] = useMemo(
     () => [
@@ -60,6 +61,8 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
     >
       <Sider
         width={200}
+        collapsible
+        collapsed={collapsed}
         style={{
           backgroundColor: colorInfoBg,
           display: "flex",
@@ -112,6 +115,10 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
               const newTheme = config.theme === "light" ? "dark" : "light";
               setTheme(newTheme);
             }}
+          />
+          <Button
+            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            onClick={() => setCollapsed(!collapsed)}
           />
         </Space>
       </Sider>
