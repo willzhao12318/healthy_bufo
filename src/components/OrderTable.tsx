@@ -1,6 +1,6 @@
 import { Order, OrderTab, TabType } from "@/utils/type";
 import dish from "@/assets/dish.jpg";
-import { Card, Col, Modal, Row, Space } from "antd";
+import { Card, Col, Modal, Row, Space, Typography, theme } from "antd";
 import { compareTabType } from "@/utils/utils";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -14,7 +14,7 @@ const mockData: Order[] = [
       type: TabType.Breakfast,
       orderedDish: {
         id: "1",
-        chineseName: "test",
+        chineseName: "测试",
         englishName: "test",
         restaurant: {
           id: "1",
@@ -32,7 +32,7 @@ const mockData: Order[] = [
       type: TabType.Lunch,
       orderedDish: {
         id: "2",
-        chineseName: "test2",
+        chineseName: "测试2",
         englishName: "test2",
         restaurant: {
           id: "2",
@@ -50,7 +50,7 @@ const mockData: Order[] = [
       type: TabType.AfternoonTea,
       orderedDish: {
         id: "3",
-        chineseName: "test3",
+        chineseName: "测试3",
         englishName: "test3",
         restaurant: {
           id: "3",
@@ -68,7 +68,7 @@ const mockData: Order[] = [
       type: TabType.Breakfast,
       orderedDish: {
         id: "4",
-        chineseName: "test4",
+        chineseName: "测试4",
         englishName: "test4",
         restaurant: {
           id: "4",
@@ -81,8 +81,11 @@ const mockData: Order[] = [
 ];
 
 export default function OrderTable() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const {
+    token: { sizeMS },
+  } = theme.useToken();
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -120,7 +123,14 @@ export default function OrderTable() {
                     cover={<img src={dish.src} alt="dish" />}
                     onClick={showModal}
                   >
-                    <Card.Meta title={tab.orderedDish?.chineseName} description={tab.type} />
+                    <Card.Meta
+                      title={<Typography.Title level={5}>{tab.type}</Typography.Title>}
+                      description={
+                        <Typography.Title style={{ fontSize: `${fontSizeSM}px` }}>
+                          {i18n.language === "zh-CN" ? tab.orderedDish?.chineseName : tab.orderedDish?.englishName}
+                        </Typography.Title>
+                      }
+                    />
                   </Card>
                 </Col>
               ))}
