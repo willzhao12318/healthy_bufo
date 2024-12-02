@@ -1,6 +1,7 @@
-import { CalendarFilled, OpenAIFilled, SettingFilled } from "@ant-design/icons";
+import { AppCurrentPage, useAppStore } from "@/hooks/appStore";
+import { CalendarFilled, MessageFilled, SettingFilled } from "@ant-design/icons";
 import { theme } from "antd";
-import React, { useState } from "react";
+import React from "react";
 
 type MobileLayoutProps = {
   children: React.ReactNode;
@@ -10,27 +11,28 @@ export default function MobileLayout({ children }: MobileLayoutProps) {
   const {
     token: { colorBgContainer, colorBorder, colorBgLayout },
   } = theme.useToken();
-  const [activeKey, setActiveKey] = useState("chat");
 
+  const { currentPage, setCurrentPage } = useAppStore();
+  
   const tabs = [
     {
-      key: "chat",
+      key: AppCurrentPage.Chat,
       title: "聊天",
-      icon: <OpenAIFilled style={{ fontSize: "24px" }} />,
+      icon: <MessageFilled style={{ fontSize: "24px" }} />,
     },
     {
-      key: "calendar",
+      key: AppCurrentPage.Orders,
       title: "我的预订",
       icon: <CalendarFilled style={{ fontSize: "24px" }} />,
     },
     {
-      key: "settings",
+      key: AppCurrentPage.Setting,
       title: "设置",
       icon: <SettingFilled style={{ fontSize: "24px" }} />,
     },
   ];
 
-  const currentTab = tabs.find((tab) => tab.key === activeKey);
+  const currentTab = tabs.find((tab) => tab.key === currentPage);
 
   return (
     <div style={{ 
@@ -74,10 +76,10 @@ export default function MobileLayout({ children }: MobileLayoutProps) {
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
-              color: item.key === activeKey ? "#1677ff" : "inherit",
+              color: item.key === currentPage ? "#1677ff" : "inherit",
               cursor: "pointer",
             }}
-            onClick={() => setActiveKey(item.key)}
+            onClick={() => setCurrentPage(item.key)}
           >
             {item.icon}
             <span style={{ fontSize: "12px", marginTop: "4px" }}>{item.title}</span>
