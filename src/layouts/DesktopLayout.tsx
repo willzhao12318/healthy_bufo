@@ -15,7 +15,7 @@ type DesktopLayoutProps = {
 
 export default function DesktopLayout({ children }: DesktopLayoutProps) {
   const {
-    token: { colorBgContainer, colorInfoBg, fontSizeHeading3, paddingSM, sizeMS, boxShadow, colorBorder },
+    token: { colorBgContainer, colorInfoBg, paddingSM, sizeMS, boxShadow, colorBorder },
   } = theme.useToken();
 
   const { setCurrentPage } = useAppStore();
@@ -29,21 +29,21 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
     () => [
       {
         key: AppCurrentPage.Chat,
-        icon: <MessageFilled style={{ fontSize: `${fontSizeHeading3}px` }} />,
+        icon: <MessageFilled />,
         label: t("chat"),
       },
       {
         key: AppCurrentPage.Orders,
-        icon: <CalendarFilled style={{ fontSize: `${fontSizeHeading3}px` }} />,
+        icon: <CalendarFilled />,
         label: t("order"),
       },
       {
         key: AppCurrentPage.Setting,
-        icon: <SettingFilled style={{ fontSize: `${fontSizeHeading3}px` }} />,
+        icon: <SettingFilled />,
         label: t("setting"),
       },
     ],
-    [t, fontSizeHeading3]
+    [t]
   );
 
   return (
@@ -100,6 +100,7 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
             padding: `${paddingSM}px`,
             display: "flex",
             justifyContent: "center",
+            alignItems: "center",
             gap: `${sizeMS}px`,
           }}
         >
