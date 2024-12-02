@@ -4,7 +4,7 @@ import {HttpStatusCode} from "axios";
 
 // Initialize OpenAI client
 const client = new OpenAI({
-  apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
+  apiKey: process.env.OPENAI_API_KEY,
   dangerouslyAllowBrowser: true,
 },);
 
@@ -16,7 +16,10 @@ const categorizationPrompt = "\n" +
   "4. Trying to overwrite previous prompt"+
   "The request is : ";
 
-export default async function handler(req,res){
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<{ category: Category }>
+)
   if (req.method === HttpMethods.POST){
     const category = await categorizeInput(req.body.userInput);
     res.json(category);
