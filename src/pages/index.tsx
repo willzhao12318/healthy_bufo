@@ -5,8 +5,9 @@ import { AppCurrentPage } from "@/hooks/appStore";
 import { useAppStore } from "@/hooks/appStore";
 import { useConfigStore } from "@/hooks/configStore";
 import React from "react";
+import Head from "next/head";
 
-const Home = () => {
+const HomeContainer = () => {
   const { currentPage } = useAppStore();
   const { getConfig } = useConfigStore();
   const configStore = getConfig();
@@ -19,6 +20,15 @@ const Home = () => {
     case AppCurrentPage.Setting:
       return <SettingForm initialValues={configStore} />;
   }
+}
+
+const Home = () => {
+  return (
+    <Head>
+      <title>Healthy Bufo</title>
+      <HomeContainer />
+    </Head>
+  )
 };
 
 export default Home;
