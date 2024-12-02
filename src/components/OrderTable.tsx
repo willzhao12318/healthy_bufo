@@ -109,7 +109,7 @@ export default function OrderTable() {
     <>
       <Space direction="vertical" size="middle" style={{ width: "100%", alignItems: "center" }}>
         {Object.entries(data).map(([time, tabs]) => (
-          <Card title={time} style={{ maxWidth: "600px" }} key={time}>
+          <Card size="small" title={time} style={{ maxWidth: "600px" }} key={time}>
             <Row gutter={16}>
               {tabs.sort(compareTabType).map((tab) => (
                 <Col span={8} key={tab.id}>
