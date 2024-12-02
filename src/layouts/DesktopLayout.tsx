@@ -31,7 +31,7 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
     if (!collapsed) {
       timer = setTimeout(() => {
         setShowTitle(true);
-      }, 300);
+      }, 185);
     } else {
       setShowTitle(false);
     }
