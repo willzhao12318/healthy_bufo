@@ -63,6 +63,7 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
         width={200}
         collapsible
         collapsed={collapsed}
+        collapsedWidth={100}
         trigger={null}
         style={{
           backgroundColor: colorInfoBg,
