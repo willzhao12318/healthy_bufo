@@ -56,9 +56,12 @@ export default function MobileLayout({ children }: MobileLayoutProps) {
           textAlign: "center",
           borderBottom: `1px solid ${colorBorder}`,
           backgroundColor: colorBgLayout,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center"
         }}
       >
-        <Typography.Title level={4}>
+        <Typography.Title level={4} style={{ margin: "0px" }}>
           {currentTab?.title}
         </Typography.Title>
       </Header>
@@ -86,7 +89,7 @@ export default function MobileLayout({ children }: MobileLayoutProps) {
             onClick={() => setCurrentPage(item.key)}
           >
             {item.icon}
-            <Typography.Text style={{ marginTop: "4px" }}>{item.title}</Typography.Text>
+            <Typography.Text style={{ marginTop: "4px", fontSize: "12px" }}>{item.title}</Typography.Text>
           </div>
         ))}
       </Footer>
