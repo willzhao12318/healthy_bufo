@@ -67,7 +67,7 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
         />
       </Sider>
       <Layout>
-        <Content style={{ backgroundColor: colorBgContainer }}>{children}</Content>
+        <Content style={{ backgroundColor: colorBgContainer, padding: "16px" }}>{children}</Content>
       </Layout>
     </Layout>
   );
