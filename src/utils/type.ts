@@ -4,6 +4,16 @@ export enum TabType {
   AfternoonTea = "afternoonTea",
 }
 
+export enum WeekDay {
+  Monday = "monday",
+  Tuesday = "tuesday",
+  Wednesday = "wednesday",
+  Thursday = "thursday",
+  Friday = "friday",
+  Saturday = "saturday",
+  Sunday = "sunday",
+}
+
 export type Tab  = {
   readonly id: string;
   readonly dishes: Dish[];
@@ -39,12 +49,69 @@ export enum Category {
   CategoryMaliciousInput,
 }
 
+export type Recommendation = {
+  recommendationsPerDay: RecommendationPerDay[];
+}
+
+export type RecommendationPerDay = {
+  workDay: WeekDay;
+  recommendations: MenuOptions[];
+}
+
+export type MenuOptions = {
+  restaurant: Restaurant;
+  dish: Dish,
+  tabType: TabType;
+}
+
 export enum HttpMethods {
   GET = "GET",
   POST = "POST",
   PUT = "PUT",
   DELETE = "DELETE",
 }
+
+export type RecommendInput = {
+  userInput: string,
+  mealPlan: MealPlan,
+}
+
+export type RecommendResult = {
+  breakfast:MealInfo[],
+  lunch: MealInfo[],
+  afternoonTea: MealInfo[],
+}
+
+export type MealInfo = {
+  weekDay: WeekDay,
+  restaurantName: string,
+  restaurantId: string,
+  dishName: string,
+  dishId: string,
+  emoji: string,
+}
+
+export type DayMealPlan = {
+  weekDay: WeekDay;
+  breakfast: Dish[];
+  lunch: Dish[];
+  afternoonTea: Dish[];
+};
+
+export type PreviousRecommendationDish = Dish & {
+  weekDay: WeekDay;
+};
+
+export type PreviousRecommendations = {
+  breakfast: PreviousRecommendationDish[];
+  lunch: PreviousRecommendationDish[];
+  afternoonTea: PreviousRecommendationDish[];
+};
+
+export type MealPlan = {
+  dateList: DayMealPlan[];
+  previousRecommendation?: PreviousRecommendations;
+};
 
 type context = {
   readonly cookies: string;
@@ -55,8 +122,8 @@ export type AddOrderResponse = {
 }
 
 export type AddOrderRequest = {
-  readonly tabUid: string, 
-  readonly targetTime: string, 
+  readonly tabUid: string,
+  readonly targetTime: string,
   readonly dishId: string,
   readonly context?: context
 }

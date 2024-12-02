@@ -22,5 +22,21 @@
   "noAnalysisResult": "Bufo says: No related information found",
   "invalidCategory": "Bufo says: I can't answer this question yet",
   "error": "Bufo says: My brain is not working properly, please try again later",
-  "working": "Bufo says: I'm working hard, please wait a moment"
+  "working": "Bufo says: I'm working hard, please wait a moment",
+  "noRecommendResult": "Bufo says：They all look so delicious, hard to decide.",
+  "noAfternoonTeaOptions": "No Afternoon Tea Available",
+  "afternoonTeaRecommend": "Delicious Afternoon Tea Recommended",
+  "noLunchOptions": "No Lunch Available",
+  "lunchRecommend": "Delicious Lunch Recommended",
+  "noBreakfastOptions": "No Breakfast Available",
+  "breakfastRecommend": "Delicious Breakfast Recommended",
+  "monday": "Monday",
+  "tuesday": "Tuesday",
+  "wednesday": "Wednesday",
+  "thursday": "Thursday",
+  "friday": "Friday",
+  "saturday": "Saturday",
+  "sunday": "Sunday"
+
+
 }
