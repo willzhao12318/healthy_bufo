@@ -2,7 +2,7 @@ import bufo from "@/assets/bufo-juice.png";
 import { Layout, Menu, MenuProps, theme, Button, Space, Typography } from "antd";
 import { Content } from "antd/es/layout/layout";
 import Sider from "antd/es/layout/Sider";
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { CalendarFilled, MessageFilled, SettingFilled, TranslationOutlined, BulbOutlined, MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
 import { AppCurrentPage, useAppStore } from "@/hooks/appStore";
 import { useTranslation } from "react-i18next";
@@ -24,6 +24,20 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
   const { getConfig, setLocale, setTheme } = useConfigStore();
   const config = getConfig();
   const [collapsed, setCollapsed] = useState(false);
+  const [showTitle, setShowTitle] = useState(true);
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (!collapsed) {
+      timer = setTimeout(() => {
+        setShowTitle(true);
+        // motionDurationMid = 0.2s
+      }, 185);
+    } else {
+      setShowTitle(false);
+    }
+    return () => clearTimeout(timer);
+  }, [collapsed]);
 
   const siderItems: MenuProps["items"] = useMemo(
     () => [
@@ -72,7 +86,7 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
       >
         <Space style={{ paddingLeft: "8px", paddingTop: "16px" }}>
           <Image src={bufo.src} alt="logo" width={48} height={48} />
-          {!collapsed && <Typography.Title level={4} style={{ margin: 0 }}>
+          {showTitle && <Typography.Title level={4} style={{ margin: 0 }}>
             {t("chatbotTitle")}
           </Typography.Title>}
         </Space>
