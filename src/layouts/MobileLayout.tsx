@@ -32,7 +32,7 @@ export default function MobileLayout({ children }: MobileLayoutProps) {
       title: t("setting"),
       icon: <SettingFilled style={{ fontSize: `${fontSizeHeading3}px` }} />,
     },
-  ], [t]);
+  ], [t, fontSizeHeading3]);
 
   const currentTab = tabs.find((tab) => tab.key === currentPage);
 

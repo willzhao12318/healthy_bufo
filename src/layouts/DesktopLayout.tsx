@@ -42,7 +42,7 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
         label: t("setting"),
       },
     ],
-    [t]
+    [t, fontSizeHeading3]
   );
 
   return (
