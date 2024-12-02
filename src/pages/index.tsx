@@ -24,12 +24,12 @@ const HomeContainer = () => {
 
 const Home = () => {
   return (
-    <div>
+    <>
       <Head>
         <title>Healthy Bufo</title>
       </Head>
       <HomeContainer />
-    </div>
+    </>
   )
 };
 
