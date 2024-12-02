@@ -11,7 +11,7 @@ type MobileLayoutProps = {
 
 export default function MobileLayout({ children }: MobileLayoutProps) {
   const {
-    token: { colorBgContainer, colorBorder, colorBgLayout },
+    token: { colorBgContainer, colorBorder, colorBgLayout, fontSizeHeading3, fontSizeSM, paddingSM },
   } = theme.useToken();
 
   const { currentPage, setCurrentPage } = useAppStore();
@@ -20,28 +20,28 @@ export default function MobileLayout({ children }: MobileLayoutProps) {
     {
       key: AppCurrentPage.Chat,
       title: t("chat"),
-      icon: <MessageFilled style={{ fontSize: "24px" }} />,
+      icon: <MessageFilled style={{ fontSize: `${fontSizeHeading3}px` }} />,
     },
     {
       key: AppCurrentPage.Orders,
       title: t("order"),
-      icon: <CalendarFilled style={{ fontSize: "24px" }} />,
+      icon: <CalendarFilled style={{ fontSize: `${fontSizeHeading3}px` }} />,
     },
     {
       key: AppCurrentPage.Setting,
       title: t("setting"),
-      icon: <SettingFilled style={{ fontSize: "24px" }} />,
+      icon: <SettingFilled style={{ fontSize: `${fontSizeHeading3}px` }} />,
     },
   ], [t]);
 
   const currentTab = tabs.find((tab) => tab.key === currentPage);
 
   return (
-    <Layout style={{ 
+    <Layout style={{
       height: '100vh',
       maxHeight: '-webkit-fill-available',
-      display: "flex", 
-      flexDirection: "column", 
+      display: "flex",
+      flexDirection: "column",
       backgroundColor: colorBgContainer,
       position: 'fixed',
       width: '100%',
@@ -65,7 +65,7 @@ export default function MobileLayout({ children }: MobileLayoutProps) {
           {currentTab?.title}
         </Typography.Title>
       </Header>
-      <Content style={{ flex: 1, overflowY: "auto", padding: "8px" }}>{children}</Content>
+      <Content style={{ flex: 1, overflowY: "auto", padding: `${paddingSM}px` }}>{children}</Content>
       <Footer
         style={{
           height: "60px",
@@ -90,7 +90,7 @@ export default function MobileLayout({ children }: MobileLayoutProps) {
             onClick={() => setCurrentPage(item.key)}
           >
             {item.icon}
-            <Typography.Text style={{ marginTop: "4px", fontSize: "12px" }}>{item.title}</Typography.Text>
+            <Typography.Text style={{ marginTop: "4px", fontSize: `${fontSizeSM}px` }}>{item.title}</Typography.Text>
           </div>
         ))}
       </Footer>
