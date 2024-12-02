@@ -21,6 +21,13 @@ const AppContainer = ({ Component, pageProps }: AppProps) => {
         token: {
           fontSize: 16,
         },
+        components: {
+          Menu: {
+            collapsedIconSize: 24,
+            fontSizeLG: 24,
+            iconSize: 16,
+          },
+        },
         algorithm: theme === "dark" ? antTheme.darkAlgorithm : antTheme.defaultAlgorithm,
       }}
     >

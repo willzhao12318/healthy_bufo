@@ -2,8 +2,8 @@ import bufo from "@/assets/bufo-juice.png";
 import { Layout, Menu, MenuProps, theme, Button, Space, Typography } from "antd";
 import { Content } from "antd/es/layout/layout";
 import Sider from "antd/es/layout/Sider";
-import React, { useMemo } from "react";
-import { CalendarFilled, MessageFilled, SettingFilled, TranslationOutlined, BulbOutlined } from "@ant-design/icons";
+import React, { useMemo, useState } from "react";
+import { CalendarFilled, MessageFilled, SettingFilled, TranslationOutlined, BulbOutlined, MenuUnfoldOutlined, MenuFoldOutlined } from "@ant-design/icons";
 import { AppCurrentPage, useAppStore } from "@/hooks/appStore";
 import { useTranslation } from "react-i18next";
 import { useConfigStore } from "@/hooks/configStore";
@@ -15,7 +15,7 @@ type DesktopLayoutProps = {
 
 export default function DesktopLayout({ children }: DesktopLayoutProps) {
   const {
-    token: { colorBgContainer, colorInfoBg, fontSizeHeading3, paddingSM, sizeMS },
+    token: { colorBgContainer, colorInfoBg, paddingSM, sizeMS, boxShadow, colorBorder },
   } = theme.useToken();
 
   const { setCurrentPage } = useAppStore();
@@ -23,26 +23,27 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
   const { t, i18n } = useTranslation();
   const { getConfig, setLocale, setTheme } = useConfigStore();
   const config = getConfig();
+  const [collapsed, setCollapsed] = useState(false);
 
   const siderItems: MenuProps["items"] = useMemo(
     () => [
       {
         key: AppCurrentPage.Chat,
-        icon: <MessageFilled style={{ fontSize: `${fontSizeHeading3}px` }} />,
+        icon: <MessageFilled />,
         label: t("chat"),
       },
       {
         key: AppCurrentPage.Orders,
-        icon: <CalendarFilled style={{ fontSize: `${fontSizeHeading3}px` }} />,
+        icon: <CalendarFilled />,
         label: t("order"),
       },
       {
         key: AppCurrentPage.Setting,
-        icon: <SettingFilled style={{ fontSize: `${fontSizeHeading3}px` }} />,
+        icon: <SettingFilled />,
         label: t("setting"),
       },
     ],
-    [t, fontSizeHeading3]
+    [t]
   );
 
   return (
@@ -53,12 +54,16 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
         borderRadius: "20px",
         backgroundColor: colorBgContainer,
         overflow: "hidden",
-        border: `1px solid ${colorInfoBg}`,
+        border: `1px solid ${colorBorder}`,
+        boxShadow: boxShadow,
       }}
       hasSider
     >
       <Sider
         width={200}
+        collapsible
+        collapsed={collapsed}
+        trigger={null}
         style={{
           backgroundColor: colorInfoBg,
           display: "flex",
@@ -67,14 +72,13 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
       >
         <Space style={{ paddingLeft: "8px", paddingTop: "16px" }}>
           <Image src={bufo.src} alt="logo" width={48} height={48} />
-          <Typography.Title level={4} style={{ margin: 0 }}>
+          {!collapsed && <Typography.Title level={4} style={{ margin: 0 }}>
             {t("chatbotTitle")}
-          </Typography.Title>
+          </Typography.Title>}
         </Space>
         <Menu
           defaultSelectedKeys={[AppCurrentPage.Chat]}
           defaultOpenKeys={[AppCurrentPage.Chat]}
-          mode="inline"
           style={{
             flex: 1,
             backgroundColor: colorInfoBg,
@@ -90,10 +94,12 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
         />
 
         <Space
+          direction={collapsed ? "vertical" : "horizontal"}
           style={{
             padding: `${paddingSM}px`,
             display: "flex",
             justifyContent: "center",
+            alignItems: "center",
             gap: `${sizeMS}px`,
           }}
         >
@@ -111,6 +117,10 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
               const newTheme = config.theme === "light" ? "dark" : "light";
               setTheme(newTheme);
             }}
+          />
+          <Button
+            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            onClick={() => setCollapsed(!collapsed)}
           />
         </Space>
       </Sider>
