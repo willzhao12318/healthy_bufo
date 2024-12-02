@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { createJSONStorage, devtools, persist } from "zustand/middleware";
+import { startTransition } from 'react';
 
 export const CONFIG_STORE_NAME = "meican_config";
 
@@ -40,7 +41,11 @@ export const useConfigStore = create<ConfigStoreProps>()(
         setPassword: (password) => set({ password }),
         setCookie: (cookie) => set({ cookie }),
         setLocale: (locale) => set({ locale }),
-        setTheme: (theme) => set({ theme }),
+        setTheme: (theme) => {
+          startTransition(() => {
+            set({ theme });
+          });
+        },
         reset: () => set(initialState),
         getConfig: () => get(),
       }),
