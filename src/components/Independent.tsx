@@ -45,8 +45,7 @@ const useStyle = createStyles(({ token, css }) => {
   return {
     layout: css`
       width: 100%;
-      min-width: 1000px;
-      height: 722px;
+      height: 100%;
       border-radius: ${token.borderRadius}px;
       display: flex;
       background: ${token.colorBgContainer};
@@ -110,42 +109,20 @@ const useStyle = createStyles(({ token, css }) => {
 const placeholderPromptsItems: GetProp<typeof Prompts, 'items'> = [
   {
     key: '1',
-    label: renderTitle(<FireOutlined style={{ color: '#FF4D4F' }} />, 'Hot Topics'),
-    description: 'What are you interested in?',
+    label: renderTitle(<FireOutlined style={{ color: '#FF4D4F' }} />, '热门话题'),
+    description: '是你感兴趣的吗?',
     children: [
       {
         key: '1-1',
-        description: `What's new in X?`,
+        description: `食谱分析?`,
       },
       {
         key: '1-2',
-        description: `What's AGI?`,
+        description: `一周食谱?`,
       },
       {
         key: '1-3',
-        description: `Where is the doc?`,
-      },
-    ],
-  },
-  {
-    key: '2',
-    label: renderTitle(<ReadOutlined style={{ color: '#1890FF' }} />, 'Design Guide'),
-    description: 'How to design a good product?',
-    children: [
-      {
-        key: '2-1',
-        icon: <HeartOutlined />,
-        description: `Know the well`,
-      },
-      {
-        key: '2-2',
-        icon: <SmileOutlined />,
-        description: `Set the AI role`,
-      },
-      {
-        key: '2-3',
-        icon: <CommentOutlined />,
-        description: `Express the feeling`,
+        description: `帮我推荐?`,
       },
     ],
   },
@@ -154,13 +131,8 @@ const placeholderPromptsItems: GetProp<typeof Prompts, 'items'> = [
 const senderPromptsItems: GetProp<typeof Prompts, 'items'> = [
   {
     key: '1',
-    description: 'Hot Topics',
+    description: '帮我分析',
     icon: <FireOutlined style={{ color: '#FF4D4F' }} />,
-  },
-  {
-    key: '2',
-    description: 'Design Guide',
-    icon: <ReadOutlined style={{ color: '#1890FF' }} />,
   },
 ];
 
@@ -249,8 +221,8 @@ const Independent: React.FC = () => {
       <Welcome
         variant="borderless"
         icon="https://mdn.alipayobjects.com/huamei_iwk9zp/afts/img/A*s5sNRo5LjfQAAAAAAAAAAAAADgCCAQ/fmt.webp"
-        title="Hello, I'm Ant Design X"
-        description="Base on Ant Design, AGI product interface solution, create a better intelligent vision~"
+        title="健康蛙蛙，你的Healty Bufo"
+        description="Health Bufo help you healthier，健康蛙蛙让你更健康！"
         extra={
           <Space>
             <Button icon={<ShareAltOutlined />} />
@@ -259,7 +231,7 @@ const Independent: React.FC = () => {
         }
       />
       <Prompts
-        title="Do you want?"
+        title="猜你想要?"
         items={placeholderPromptsItems}
         styles={{
           list: {
