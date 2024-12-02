@@ -24,13 +24,14 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
   const { getConfig, setLocale, setTheme } = useConfigStore();
   const config = getConfig();
   const [collapsed, setCollapsed] = useState(false);
-  const [showTitle, setShowTitle] = useState(false);
+  const [showTitle, setShowTitle] = useState(true);
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
     if (!collapsed) {
       timer = setTimeout(() => {
         setShowTitle(true);
+        // motionDurationMid = 0.2s
       }, 185);
     } else {
       setShowTitle(false);
