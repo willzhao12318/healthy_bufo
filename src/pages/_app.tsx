@@ -24,7 +24,7 @@ const AppContainer = ({ Component, pageProps }: AppProps) => {
         components: {
           Menu: {
             collapsedIconSize: 24,
-            collapsedWidth: 100,
+            fontSizeLG: 24,
             iconSize: 16,
           },
         },
