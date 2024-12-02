@@ -84,7 +84,7 @@ export default function OrderTable() {
   const { t, i18n } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const {
-    token: { sizeMS },
+    token: { fontSizeMS },
   } = theme.useToken();
 
   const showModal = () => {
@@ -126,7 +126,7 @@ export default function OrderTable() {
                     <Card.Meta
                       title={<Typography.Title level={5}>{tab.type}</Typography.Title>}
                       description={
-                        <Typography.Title style={{ fontSize: `${sizeMS}px` }}>
+                        <Typography.Title style={{ fontSize: `${fontSizeMS}px` }}>
                           {i18n.language === "zh-CN" ? tab.orderedDish?.chineseName : tab.orderedDish?.englishName}
                         </Typography.Title>
                       }
