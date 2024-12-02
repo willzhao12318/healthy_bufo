@@ -43,7 +43,7 @@ export default function ChatBot() {
         const result = { category: 1 };
         // const result = await categorizeInput(message);
         onSuccess(result.category.toString());
-      } catch (e) {
+      } catch {
         onSuccess("Something went wrong");
       }
     },
