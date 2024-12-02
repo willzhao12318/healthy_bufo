@@ -1,10 +1,17 @@
-import { Layout, Menu, MenuProps, theme } from "antd";
+import { Layout, Menu, MenuProps, theme, Button, Space } from "antd";
 import { Content } from "antd/es/layout/layout";
 import Sider from "antd/es/layout/Sider";
 import React, { useMemo } from "react";
-import { CalendarFilled, MessageFilled, SettingFilled } from "@ant-design/icons";
+import { 
+  CalendarFilled, 
+  MessageFilled, 
+  SettingFilled,
+  TranslationOutlined,
+  BulbOutlined 
+} from "@ant-design/icons";
 import { AppCurrentPage, useAppStore } from "@/hooks/appStore";
 import { useTranslation } from "react-i18next";
+import { useConfigStore } from "@/hooks/configStore";
 
 type DesktopLayoutProps = {
   children: React.ReactNode;
@@ -16,7 +23,9 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
   } = theme.useToken();
 
   const { setCurrentPage } = useAppStore();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const { getConfig, setConfig } = useConfigStore();
+  const config = getConfig();
 
   const siderItems: MenuProps["items"] = useMemo(() => [
     {
@@ -48,14 +57,18 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
       }}
       hasSider
     >
-      <Sider width={200} style={{ backgroundColor: colorInfoBg, alignItems: "center" }}>
+      <Sider width={200} style={{ 
+        backgroundColor: colorInfoBg, 
+        display: 'flex',
+        flexDirection: 'column'
+      }}>
         <div style={{ margin: "16px", height: "32px", borderRadius: "6px", background: "#1677ff" }} />
         <Menu
           defaultSelectedKeys={[AppCurrentPage.Chat]}
           defaultOpenKeys={[AppCurrentPage.Chat]}
           mode="inline"
           style={{
-            height: "100%",
+            flex: 1,
             backgroundColor: colorInfoBg,
             display: "flex",
             flexDirection: "column",
@@ -67,9 +80,34 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
             setCurrentPage(item.key as AppCurrentPage);
           }}
         />
+        
+        <Space style={{ 
+          padding: '16px', 
+          display: 'flex', 
+          justifyContent: 'center',
+          gap: '8px'
+        }}>
+          <Button
+            icon={<TranslationOutlined />}
+            onClick={() => {
+              const newLocale = i18n.language === 'zh-CN' ? 'en-US' : 'zh-CN';
+              i18n.changeLanguage(newLocale);
+              setConfig({ ...config, locale: newLocale });
+            }}
+          />
+          <Button
+            icon={<BulbOutlined />}
+            onClick={() => {
+              const newTheme = config.theme === 'light' ? 'dark' : 'light';
+              setConfig({ ...config, theme: newTheme });
+            }}
+          />
+        </Space>
       </Sider>
       <Layout>
-        <Content style={{ backgroundColor: colorBgContainer, padding: "16px" }}>{children}</Content>
+        <Content style={{ backgroundColor: colorBgContainer, padding: "16px" }}>
+          {children}
+        </Content>
       </Layout>
     </Layout>
   );
