@@ -1,6 +1,6 @@
 import { Order, OrderTab, TabType } from "@/utils/type";
 import dish from "@/assets/dish.jpg";
-import { Card, Col, Modal, Row, Space, Typography, theme } from "antd";
+import { Card, Col, Modal, Row, Space } from "antd";
 import { compareTabType } from "@/utils/utils";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
@@ -83,9 +83,6 @@ const mockData: Order[] = [
 export default function OrderTable() {
   const { t, i18n } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const {
-    token: { fontSizeMS },
-  } = theme.useToken();
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -124,11 +121,9 @@ export default function OrderTable() {
                     onClick={showModal}
                   >
                     <Card.Meta
-                      title={<Typography.Title level={5}>{tab.type}</Typography.Title>}
+                      title={{tab.type}}
                       description={
-                        <Typography.Title style={{ fontSize: `${fontSizeMS}px` }}>
-                          {i18n.language === "zh-CN" ? tab.orderedDish?.chineseName : tab.orderedDish?.englishName}
-                        </Typography.Title>
+                        i18n.language === "zh-CN" ? tab.orderedDish?.chineseName : tab.orderedDish?.englishName
                       }
                     />
                   </Card>
