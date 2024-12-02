@@ -7,6 +7,7 @@ import { FireOutlined, GiftOutlined } from "@ant-design/icons";
 import { type GetProp, Layout, Space, theme } from "antd";
 import { useTranslation } from "react-i18next";
 import { Content } from "antd/es/layout/layout";
+import categorize from "@/client/endpoints/request_categorization";
 // import {categorizeInput} from "@/pages/api/request_categorization";
 
 const roles: GetProp<typeof Bubble.List, "roles"> = {
@@ -35,15 +36,15 @@ export default function ChatBot() {
   // ==================== Runtime ====================
   const [agent] = useXAgent({
     request: async ({ message }, { onSuccess }) => {
-      if (!message) {
+      if (!message){
         onSuccess("Please tell me what you need");
         return;
       }
-      try {
-        const result = { category: 1 };
-        // const result = await categorizeInput(message);
+      try{
+        const result = await categorize(message);
         onSuccess(result.category.toString());
-      } catch {
+      }catch(e){
+        console.error(e);
         onSuccess("Something went wrong");
       }
     },
