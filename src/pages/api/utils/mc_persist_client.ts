@@ -4,7 +4,7 @@ const { wrapper } = require("axios-cookiejar-support");
 
 function createClient() {
   const jar = new CookieJar();
-  const client = wrapper(axios.create({ jar, withCredentials: true }));
+  const client = wrapper(axios.create({ timeout: 5000, jar, withCredentials: true }));
   return client;
 }
 

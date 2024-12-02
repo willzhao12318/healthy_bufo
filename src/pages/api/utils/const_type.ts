@@ -4,12 +4,10 @@ export const preDefinedHeaders = {
   "Accept-Language": "zh-CN,zh;q=0.9",
   "Cache-Control": "max-age=0",
   Connection: "keep-alive",
-  "User-Agent": "Mozilla/5.0",
+  "User-Agent": "PostmanRuntime/7.43.0",
   Host: "www.meican.com",
 };
 
 declare global {
   var cookieCache: string;
 }
-
-export const axiosInstance = require("axios").create({ withCredentials: true });
