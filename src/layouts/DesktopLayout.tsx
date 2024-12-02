@@ -15,7 +15,7 @@ type DesktopLayoutProps = {
 
 export default function DesktopLayout({ children }: DesktopLayoutProps) {
   const {
-    token: { colorBgContainer, colorInfoBg, fontSizeHeading3, paddingSM },
+    token: { colorBgContainer, colorInfoBg, fontSizeHeading3, paddingSM, sizeMS },
   } = theme.useToken();
 
   const { setCurrentPage } = useAppStore();
@@ -81,7 +81,7 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            gap: "12px",
+            gap: `${sizeMS}px`,
           }}
           items={siderItems}
           onClick={(item) => {
@@ -94,7 +94,7 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
             padding: `${paddingSM}px`,
             display: "flex",
             justifyContent: "center",
-            gap: "8px",
+            gap: `${sizeMS}px`,
           }}
         >
           <Button
