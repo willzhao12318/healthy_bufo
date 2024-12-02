@@ -1,6 +1,7 @@
 import { configStoreProps } from "@/hooks/configStore";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Flex, Form, Input, Tooltip } from "antd";
+import { useTranslation } from "react-i18next";
 
 export type SettingFormProps = {
   initialValues: configStoreProps;
@@ -11,20 +12,22 @@ export default function SettingForm({ initialValues }: SettingFormProps) {
     console.log(values);
   };
 
+  const { t } = useTranslation();
+
   return (
     <Form layout={"vertical"} initialValues={initialValues} onFinish={onFinish} autoComplete="off">
       <Form.Item<configStoreProps>
-        label="Meican Username"
+        label={t("username")}
         name="username"
-        rules={[{ required: true, message: "Please input your username!" }]}
+        rules={[{ required: true, message: t("usernameWarning") }]}
       >
         <Input prefix={<UserOutlined />} placeholder="Username" />
       </Form.Item>
 
       <Form.Item<configStoreProps>
-        label="Meican Password"
+        label={t("password")}
         name="password"
-        rules={[{ required: true, message: "Please input your password!" }]}
+        rules={[{ required: true, message: t("passwordWarning") }]}
       >
         <Input prefix={<LockOutlined />} placeholder="Password" />
       </Form.Item>
@@ -32,12 +35,12 @@ export default function SettingForm({ initialValues }: SettingFormProps) {
         <Flex gap={12} align="center" justify="flex-end">
           <Tooltip title="test connection with meican">
             <Button type="default" htmlType="button">
-              Test Connection
+              {t("testConnection")}
             </Button>
           </Tooltip>
           <Tooltip title="save your config locally">
             <Button type="primary" htmlType="submit">
-              Submit
+              {t("save")}
             </Button>
           </Tooltip>
         </Flex>

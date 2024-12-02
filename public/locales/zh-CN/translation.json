@@ -1,0 +1,13 @@
+{
+  "order": "我的预订",
+  "chat": "聊天",
+  "setting": "设置",
+  "username": "美餐用户名",
+  "password": "美餐密码",
+  "usernameWarning": "请输入美餐用户名",
+  "passwordWarning": "请输入美餐密码",
+  "save": "保存",
+  "confirm": "确认",
+  "cancel": "取消",
+  "testConnection": "测试连接"
+}

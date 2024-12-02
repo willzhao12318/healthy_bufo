@@ -1,9 +1,10 @@
 import "@/styles/globals.css";
+import "@/i18n/i18n";
+
 import React from "react";
 import { ConfigProvider } from "antd";
 import type { AppProps } from "next/app";
 import dynamic from "next/dynamic";
-
 import theme from "@/theme/themeConfig";
 import MobileLayout from "@/layouts/MobileLayout";
 import DesktopLayout from "@/layouts/DesktopLayout";

@@ -1,0 +1,13 @@
+{
+  "order": "My Orders",
+  "chat": "Chat with Bufo",
+  "setting": "Settings",
+  "username": "Meican Username",
+  "password": "Meican Password",
+  "usernameWarning": "Please input your username!",
+  "passwordWarning": "Please input your password!",
+  "save": "Save",
+  "confirm": "Confirm",
+  "cancel": "Cancel",
+  "testConnection": "Test Connection"
+}

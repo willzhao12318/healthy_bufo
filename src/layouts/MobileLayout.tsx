@@ -1,7 +1,8 @@
 import { AppCurrentPage, useAppStore } from "@/hooks/appStore";
 import { CalendarFilled, MessageFilled, SettingFilled } from "@ant-design/icons";
-import { theme } from "antd";
-import React from "react";
+import { Layout, theme } from "antd";
+import React, { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 
 type MobileLayoutProps = {
   children: React.ReactNode;
@@ -13,29 +14,29 @@ export default function MobileLayout({ children }: MobileLayoutProps) {
   } = theme.useToken();
 
   const { currentPage, setCurrentPage } = useAppStore();
-  
-  const tabs = [
+  const { t } = useTranslation();
+  const tabs = useMemo(() => [
     {
       key: AppCurrentPage.Chat,
-      title: "聊天",
+      title: t("chat"),
       icon: <MessageFilled style={{ fontSize: "24px" }} />,
     },
     {
       key: AppCurrentPage.Orders,
-      title: "我的预订",
+      title: t("order"),
       icon: <CalendarFilled style={{ fontSize: "24px" }} />,
     },
     {
       key: AppCurrentPage.Setting,
-      title: "设置",
+      title: t("setting"),
       icon: <SettingFilled style={{ fontSize: "24px" }} />,
     },
-  ];
+  ], [t]);
 
   const currentTab = tabs.find((tab) => tab.key === currentPage);
 
   return (
-    <div style={{ 
+    <Layout style={{ 
       height: '100vh',
       maxHeight: '-webkit-fill-available',
       display: "flex", 
@@ -86,6 +87,6 @@ export default function MobileLayout({ children }: MobileLayoutProps) {
           </div>
         ))}
       </footer>
-    </div>
+    </Layout>
   );
 }

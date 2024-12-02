@@ -1,27 +1,10 @@
 import { Layout, Menu, MenuProps, theme } from "antd";
 import { Content } from "antd/es/layout/layout";
 import Sider from "antd/es/layout/Sider";
-import React from "react";
+import React, { useMemo } from "react";
 import { CalendarFilled, MessageFilled, SettingFilled } from "@ant-design/icons";
 import { AppCurrentPage, useAppStore } from "@/hooks/appStore";
-
-const siderItems: MenuProps["items"] = [
-  {
-    key: AppCurrentPage.Chat,
-    icon: <MessageFilled style={{ fontSize: "24px" }} />,
-    label: "聊天",
-  },
-  {
-    key: AppCurrentPage.Orders,
-    icon: <CalendarFilled style={{ fontSize: "24px" }} />,
-    label: "我的预订",
-  },
-  {
-    key: AppCurrentPage.Setting,
-    icon: <SettingFilled style={{ fontSize: "24px" }} />,
-    label: "设置",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 type DesktopLayoutProps = {
   children: React.ReactNode;
@@ -33,6 +16,25 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
   } = theme.useToken();
 
   const { setCurrentPage } = useAppStore();
+  const { t } = useTranslation();
+
+  const siderItems: MenuProps["items"] = useMemo(() => [
+    {
+      key: AppCurrentPage.Chat,
+      icon: <MessageFilled style={{ fontSize: "24px" }} />,
+      label: t("chat"),
+    },
+    {
+      key: AppCurrentPage.Orders,
+      icon: <CalendarFilled style={{ fontSize: "24px" }} />,
+      label: t("order"),
+    },
+    {
+      key: AppCurrentPage.Setting,
+      icon: <SettingFilled style={{ fontSize: "24px" }} />,
+      label: t("setting"),
+    },
+  ], [t]);
 
   return (
     <Layout

@@ -3,6 +3,7 @@ import dish from "@/assets/dish.jpg";
 import { Card, Col, Modal, Row, Space } from "antd";
 import { compareTabType } from "@/utils/utils";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const mockData: Order[] = [
   {
@@ -80,6 +81,7 @@ const mockData: Order[] = [
 ];
 
 export default function OrderTable() {
+  const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
@@ -126,7 +128,14 @@ export default function OrderTable() {
           </Card>
         ))}
       </Space>
-      <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel} centered>
+      <Modal
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        centered
+        cancelText={t("cancel")}
+        okText={t("confirm")}
+      >
         <p>Some contents...</p>
       </Modal>
     </>
