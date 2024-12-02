@@ -11,6 +11,7 @@ const nextConfig = {
     "rc-tooltip",
     "rc-tree",
     "rc-table",
+    "rc-input",
     "antd-style",
     "@ant-design/x",
   ],
