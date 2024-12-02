@@ -126,7 +126,7 @@ export default function OrderTable() {
                     <Card.Meta
                       title={<Typography.Title level={5}>{tab.type}</Typography.Title>}
                       description={
-                        <Typography.Title style={{ fontSize: `${fontSizeSM}px` }}>
+                        <Typography.Title style={{ fontSize: `${sizeMS}px` }}>
                           {i18n.language === "zh-CN" ? tab.orderedDish?.chineseName : tab.orderedDish?.englishName}
                         </Typography.Title>
                       }
