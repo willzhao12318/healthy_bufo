@@ -8,7 +8,6 @@ import { type GetProp, Layout, Space, theme } from "antd";
 import { useTranslation } from "react-i18next";
 import { Content } from "antd/es/layout/layout";
 import categorize from "@/client/endpoints/request_categorization";
-// import {categorizeInput} from "@/pages/api/request_categorization";
 
 const roles: GetProp<typeof Bubble.List, "roles"> = {
   ai: {
