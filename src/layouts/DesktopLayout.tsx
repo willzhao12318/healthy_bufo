@@ -63,6 +63,7 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
         width={200}
         collapsible
         collapsed={collapsed}
+        trigger={null}
         style={{
           backgroundColor: colorInfoBg,
           display: "flex",
@@ -71,9 +72,9 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
       >
         <Space style={{ paddingLeft: "8px", paddingTop: "16px" }}>
           <Image src={bufo.src} alt="logo" width={48} height={48} />
-          <Typography.Title level={4} style={{ margin: 0 }}>
+          {!collapsed && <Typography.Title level={4} style={{ margin: 0 }}>
             {t("chatbotTitle")}
-          </Typography.Title>
+          </Typography.Title>}
         </Space>
         <Menu
           defaultSelectedKeys={[AppCurrentPage.Chat]}
@@ -94,6 +95,7 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
         />
 
         <Space
+          direction={collapsed ? "vertical" : "horizontal"}
           style={{
             padding: `${paddingSM}px`,
             display: "flex",
