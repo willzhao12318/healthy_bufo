@@ -15,7 +15,7 @@ type DesktopLayoutProps = {
 
 export default function DesktopLayout({ children }: DesktopLayoutProps) {
   const {
-    token: { colorBgContainer, colorInfoBg, fontSizeHeading3, paddingSM, sizeMS },
+    token: { colorBgContainer, colorInfoBg, fontSizeHeading3, paddingSM, sizeMS, boxShadow, colorBorder },
   } = theme.useToken();
 
   const { setCurrentPage } = useAppStore();
@@ -53,7 +53,8 @@ export default function DesktopLayout({ children }: DesktopLayoutProps) {
         borderRadius: "20px",
         backgroundColor: colorBgContainer,
         overflow: "hidden",
-        border: `1px solid ${colorInfoBg}`,
+        border: `1px solid ${colorBorder}`,
+        boxShadow: boxShadow,
       }}
       hasSider
     >
