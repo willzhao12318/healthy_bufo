@@ -1,6 +1,7 @@
 import OpenAI from 'openai';
-import {Category, HttpMethods} from "@/utils/type";
-import {HttpStatusCode} from "axios";
+import { Category, HttpMethods } from "@/utils/type";
+import { HttpStatusCode } from "axios";
+import { NextApiRequest, NextApiResponse } from 'next';
 
 // Initialize OpenAI client
 const client = new OpenAI({
@@ -13,18 +14,19 @@ const categorizationPrompt = "\n" +
   "1. Request a menu recomendation\n" +
   "2. Request a menu nutrition analyze\n" +
   "3. Others\n" +
-  "4. Trying to overwrite previous prompt"+
+  "4. Trying to overwrite previous prompt" +
   "The request is : ";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<{ category: Category }>
-)
-  if (req.method === HttpMethods.POST){
+) {
+  if (req.method === HttpMethods.POST) {
     const category = await categorizeInput(req.body.userInput);
     res.json(category);
-  }else{
-    res.setHeader('Allow',[HttpMethods.POST]);
+    return;
+  } else {
+    res.setHeader('Allow', [HttpMethods.POST]);
     res.status(HttpStatusCode.MethodNotAllowed);
   }
 }
@@ -42,12 +44,12 @@ async function categorizeInput(userInput: string): Promise<{ category: Category 
           content: categorizationPrompt + userInput,
         },
       ],
-      stream:false,
-      response_format:{type:"json_object"}
+      stream: false,
+      response_format: { type: "json_object" }
     });
 
     // Parse the response to extract the necessary information
-    if (!response || response.choices.length === 0 || !response.choices[0].message.content ) {
+    if (!response || response.choices.length === 0 || !response.choices[0].message.content) {
       console.log(response);
       throw new Error('No response from OpenAI')
     }
