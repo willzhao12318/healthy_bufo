@@ -26,6 +26,7 @@ import {
   SmileOutlined,
 } from '@ant-design/icons';
 import { Badge, Button, type GetProp, Space } from 'antd';
+import {categorizeInput} from "@/client/request_categorization";
 
 const renderTitle = (icon: React.ReactElement, title: string) => (
   <Space align="start">
@@ -200,7 +201,16 @@ const Independent: React.FC = () => {
   // ==================== Runtime ====================
   const [agent] = useXAgent({
     request: async ({ message }, { onSuccess }) => {
-      onSuccess(`Mock success return. You said: ${message}`);
+      if (!message){
+        onSuccess("Please tell me what you need");
+        return;
+      }
+      try{
+        const result = await categorizeInput(message);
+        onSuccess(result.category.toString());
+      }catch(e){
+        onSuccess("Something went wrong");
+      }
     },
   });
 
