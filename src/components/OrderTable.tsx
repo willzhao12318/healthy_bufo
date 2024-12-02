@@ -113,6 +113,7 @@ export default function OrderTable() {
                 <Col span={8} key={tab.id}>
                   <Card
                     hoverable
+                    size="small"
                     // eslint-disable-next-line @next/next/no-img-element
                     cover={<img src={dish.src} alt="dish" />}
                     onClick={showModal}
