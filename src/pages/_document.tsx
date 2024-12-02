@@ -5,12 +5,8 @@ import type { DocumentContext } from "next/document";
 
 const MyDocument = () => {
   return (
-    <Html lang="en">
-      <Head>
-        <meta name="description" content="Healthy Bufo helps you to eat healthier" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <Html lang="en-US">
+      <Head />
       <body>
         <Main />
         <NextScript />

@@ -45,7 +45,7 @@ export default function SettingForm({ initialValues }: SettingFormProps) {
               <Button
                 icon={<TranslationOutlined />}
                 onClick={() => {
-                  const newLocale = i18n.language === "zh-CN" ? "en-US" : "zh-CN";
+                  const newLocale = i18n.language === "zh" ? "en" : "zh";
                   i18n.changeLanguage(newLocale);
                   setLocale(newLocale);
                 }}
