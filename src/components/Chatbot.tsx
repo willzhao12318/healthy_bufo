@@ -3,25 +3,53 @@ import { Bubble, Prompts, Sender, Welcome, useXAgent, useXChat } from "@ant-desi
 import React from "react";
 import Image from "next/image";
 
-import { FireOutlined, GiftOutlined } from "@ant-design/icons";
-import { type GetProp, Layout, Space, theme } from "antd";
+import {FireOutlined, GiftOutlined, UserOutlined} from "@ant-design/icons";
+import {type GetProp, Layout, Space, Spin, theme} from "antd";
 import { useTranslation } from "react-i18next";
 import { Content } from "antd/es/layout/layout";
-import categorize from "@/client/endpoints/request_categorization";
+import categorize from "../client/endpoints/request_categorization";
+import {t} from "i18next";
+import {MessageInfo} from "@ant-design/x/es/useXChat";
+import analyze from "../client/endpoints/request_analyze";
+import {RoleType} from "@ant-design/x/es/bubble/BubbleList";
 
-const roles: GetProp<typeof Bubble.List, "roles"> = {
+const roles: Record<string, RoleType> = {
   ai: {
-    placement: "start",
-    typing: { step: 5, interval: 20 },
-    styles: {
-      content: {
-        borderRadius: 16,
+    placement: 'start',
+    avatar: {
+      icon: <Image src={bufo.src} alt="bufo" width={64} height={64} />,
+      style: {
+        background: '#fde3cf',
       },
     },
+    typing: {
+      step: 5,
+      interval: 20,
+    },
+    style: {
+      maxWidth: 600,
+      marginInlineEnd: 44,
+    },
+    styles: {
+      footer: {
+        width: '100%',
+      },
+    },
+    loadingRender: () => (
+        <Space>
+          <Spin size="small" />
+          {t("working")}
+        </Space>
+    ),
   },
   local: {
-    placement: "end",
-    variant: "shadow",
+    placement: 'end',
+    avatar: {
+      icon: <UserOutlined />,
+      style: {
+        background: '#87d068',
+      },
+    },
   },
 };
 
@@ -39,17 +67,49 @@ export default function ChatBot() {
         onSuccess("Please tell me what you need");
         return;
       }
-      try{
+      const newMessage: MessageInfo<string> = {
+        id: Date.now(),
+        message: "",
+        status: 'loading',
+      };
+      setMessages(prevMessages => [...prevMessages, newMessage]);
+
+      try {
+        // const result = { category: 2 };
         const result = await categorize(message);
-        onSuccess(result.category.toString());
-      }catch(e){
-        console.error(e);
-        onSuccess("Something went wrong");
+        console.log(result);
+        if(result.category === 2) {
+          const response = await analyze(message);
+          const analyzeResult = response.analyzeResult;
+          if (analyzeResult.length === 0) {
+            setMessages(prevMessages => prevMessages.slice(0, -1));
+            onSuccess(t("noAnalysisResult"));
+          }
+          const htmlString = analyzeResult.map(item => `
+            <div>
+            <b>${item.name}</b><br/>
+            <p>蛋白质(Protein): ${item.protein}g</p>
+            <p>脂肪(Fat): ${item.fat}g</p>
+            <p>碳水(Carbohydrate): ${item.carbohydrate}g</p>
+            <p>健康指数(Health Score): ${item.healthIndex}</p>
+            <p>健康分析(Health Tips): ${item.healthAnalysis}</p>
+            <p>卡路里(Calories): ${item.calories}</p>
+            </div>`).join("");
+          setMessages(prevMessages => prevMessages.slice(0, -1));
+          onSuccess(htmlString);
+        }
+        else {
+          setMessages(prevMessages => prevMessages.slice(0, -1));
+          onSuccess(t("invalidCategory"));
+        }
+      } catch {
+        setMessages(prevMessages => prevMessages.slice(0, -1));
+        onSuccess(t("error"));
       }
     },
   });
 
-  const { onRequest, messages } = useXChat({
+  const { onRequest, messages, setMessages } = useXChat({
     agent,
   });
 
@@ -118,7 +178,7 @@ export default function ChatBot() {
     key: id,
     loading: status === "loading",
     role: status === "local" ? "local" : "ai",
-    content: message,
+    content: <div dangerouslySetInnerHTML={{__html: message}}/>,
   }));
 
   // ==================== Render =================

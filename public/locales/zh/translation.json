@@ -16,5 +16,9 @@
   "recommendDescription": "是你感兴趣的吗?",
   "analyzeDishes": "分析我的订单",
   "weeklyDishes": "查看本周食谱",
-  "recommendDishes": "为我推荐食谱"
+  "recommendDishes": "为我推荐食谱",
+  "noAnalysisResult": "蛙蛙说：没有找到相关信息，✊学习",
+  "invalidCategory": "蛙蛙说：我有点头痛，现在不能解答你这个问题",
+  "error": "蛙蛙说: 我的脑袋出问题了，等会再试试吧",
+  "working": "蛙蛙说: 我正在努力工作中，别打扰我，请稍等..."
 }

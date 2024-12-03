@@ -16,5 +16,9 @@
   "recommendDescription": "Are you interested in it?",
   "analyzeDishes": "Analyze my orders",
   "weeklyDishes": "Dishes for this Week",
-  "recommendDishes": "Recommend Dishes for me"
+  "recommendDishes": "Recommend Dishes for me",
+  "noAnalysisResult": "Bufo says: No related information found",
+  "invalidCategory": "Bufo says: I can't answer this question yet",
+  "error": "Bufo says: My brain is not working properly, please try again later",
+  "working": "Bufo says: I'm working hard, please wait a moment"
 }
