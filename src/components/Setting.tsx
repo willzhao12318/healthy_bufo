@@ -63,7 +63,7 @@ export default function SettingForm({ initialValues }: SettingFormProps) {
       autoComplete="off"
       form={form}
     >
-      {process.env.NEXT_PUBLIC_ENV === "development" && (
+      {process.env.NODE_ENV === "development" && (
         <>
           <Form.Item<configStoreProps>
             label={t("username")}
