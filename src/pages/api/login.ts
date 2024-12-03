@@ -17,9 +17,9 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
   }
   const axiosInstance = createAxios();
 
-  const cookieJar = {
-    myCookies: undefined,
-  };
+  // const cookieJar = {
+  //   myCookies: undefined,
+  // };
 
   const formData = new FormData();
     formData.append('username', 'wzhao2@flexport.com');
@@ -31,7 +31,7 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
   });
 
   // Extract the cookie from the response headers
-  const cookie = response.headers["set-cookie"]?.join("; ");
+  //const cookie = response.headers["set-cookie"]?.join("; ");
   console.log(response.status);
   console.log(response.headers);
   //mcClient.defaults.headers.cookie = cookie;

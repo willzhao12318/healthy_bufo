@@ -47,6 +47,7 @@ export enum HttpMethods {
 }
 
 export type AddOrderResponse = {
+  readonly status: number;
 }
 
 export type AddOrderRequest = {

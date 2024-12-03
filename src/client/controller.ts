@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import useSWRMutation, {SWRMutationResponse} from "swr/mutation";
 import { AddOrderRequest, AddOrderResponse } from "@/utils/type";
 import axios from "axios";
