@@ -98,6 +98,11 @@ export default function ChatBot() {
           setMessages(prevMessages => prevMessages.slice(0, -1));
           onSuccess(htmlString);
         }
+        else if(result.category === 3) {
+          setMessages(prevMessages => prevMessages.slice(0, -1));
+          onSuccess(result.text || t("invalidCategory"));
+
+        }
         else {
           setMessages(prevMessages => prevMessages.slice(0, -1));
           onSuccess(t("invalidCategory"));

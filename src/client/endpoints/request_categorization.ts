@@ -9,7 +9,7 @@ export type CategorizePayload = {
   readonly userInput: string;
 }
 
-export default async function categorize(userInput: string):Promise<{ category:Category }> {
+export default async function categorize(userInput: string):Promise<{ category:Category, text: string }> {
   const response = await fetch(categoryURL, {
     method: HttpMethods.POST,
     headers: {
