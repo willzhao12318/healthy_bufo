@@ -45,3 +45,12 @@ html {
 .ant-card-meta-description {
   font-size: 12px;
 }
+
+.ant-space-item {
+  width: inherit;
+}
+
+.dish-card-body {
+  max-width: 100%;
+  overflow-x: scroll;
+}
