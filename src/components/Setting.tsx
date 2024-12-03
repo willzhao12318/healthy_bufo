@@ -61,6 +61,7 @@ export default function SettingForm({ initialValues }: SettingFormProps) {
             setIsLogin(false);
           });
       }
+      setIsLogin(false);
     },
     [errorNotification, setCookie, setPassword, setUsername]
   );
