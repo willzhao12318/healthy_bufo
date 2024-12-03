@@ -15,15 +15,14 @@ export default function OrderTable() {
     if (!rawData) {
       return {};
     }
-    const res = rawData
-      .reduce((acc, order) => {
-        const { time } = order;
-        if (!acc[time]) {
-          acc[time] = [];
-        }
-        acc[time].push(order.tab);
-        return acc;
-      }, {} as Record<string, OrderTab[]>);
+    const res = rawData.reduce((acc, order) => {
+      const { time } = order;
+      if (!acc[time]) {
+        acc[time] = [];
+      }
+      acc[time].push(order.tab);
+      return acc;
+    }, {} as Record<string, OrderTab[]>);
     return res;
   }, [rawData]);
 
@@ -34,7 +33,13 @@ export default function OrderTable() {
       style={{ width: "100%", height: "100%", alignItems: "flex-start", overflowY: "scroll" }}
     >
       {Object.entries(data).map(([time, tabs]) => (
-        <Card size="small" title={time} key={time} style={{ width: "100%" }}>
+        <Card
+          size="small"
+          title={time}
+          key={time}
+          style={{ width: "100%", maxWidth: "100%", overflowX: "scroll" }}
+          classNames={{ body: "dish-card-body" }}
+        >
           <Space direction="horizontal" size="small" align="start">
             {tabs.sort(compareTabType).map((tab) => (
               <Card
