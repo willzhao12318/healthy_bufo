@@ -1,5 +1,5 @@
 import { OrderTab } from "@/utils/type";
-import { Card, Col, Row, Space } from "antd";
+import { Card, Space } from "antd";
 import { compareTabType } from "@/utils/utils";
 import { useMemo } from "react";
 import { useTranslation } from "react-i18next";
