@@ -36,5 +36,12 @@
   "thursday": "周四",
   "friday": "周五",
   "saturday": "周六",
-  "sunday": "周日"
+  "sunday": "周日",
+  "protein": "蛋白质",
+  "fat": "脂肪",
+  "carbohydrate": "碳水化合物",
+  "healthScore": "健康指数",
+  "healthTips": "健康小贴士",
+  "calories": "卡路里",
+  "bufoSlogan": "蛙蛙格言 🐸"
 }

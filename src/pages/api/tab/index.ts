@@ -15,6 +15,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       },
     });
     return res.status(200).json(resp.data);
+  } else if (method === "GET") {
+    res.status(200).json({ message: "add tab" });
   }
 }
 
