@@ -272,12 +272,6 @@ export default function ChatBot() {
             loading={agent.isRequesting()}
             style={{ boxShadow: boxShadow }}
         />
-        <Button onClick={() => {
-           localStorage.removeItem('chatMessages');
-           setMessages([])}
-        } icon={<DeleteOutlined />}
-        style={{alignSelf: 'end'}}
-        />
       </Content>
     </Layout>
   );
