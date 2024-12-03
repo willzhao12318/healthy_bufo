@@ -45,43 +45,36 @@ export default function SettingForm({ initialValues }: SettingFormProps) {
   const onFinish = useCallback(
     async (values: configStoreProps) => {
       setIsLogin(true);
-      await login(values.username, values.password)
-        .then((response) => {
-          setUsername(values.username);
-          setPassword(values.password);
-          setCookie(response.cookie);
-        })
-        .catch((error) => {
-          errorNotification(error.message);
-        })
-        .finally(() => {
-          setIsLogin(false);
-        });
+      if (values.cookie !== undefined) {
+        setCookie(values.cookie);
+      } else {
+        await login(values.username, values.password)
+          .then((response) => {
+            setUsername(values.username);
+            setPassword(values.password);
+            setCookie(response.cookie);
+          })
+          .catch((error) => {
+            errorNotification(error.message);
+          })
+          .finally(() => {
+            setIsLogin(false);
+          });
+      }
     },
     [errorNotification, setCookie, setPassword, setUsername]
   );
 
   return (
     <Form layout={"vertical"} name="validateOnly" initialValues={initialValues} onFinish={onFinish} autoComplete="off">
-      <Form.Item<configStoreProps>
-        label={t("username")}
-        name="username"
-        rules={[{ message: t("usernameWarning") }]}
-      >
+      <Form.Item<configStoreProps> label={t("username")} name="username" rules={[{ message: t("usernameWarning") }]}>
         <Input prefix={<UserOutlined />} placeholder="Username" />
       </Form.Item>
 
-      <Form.Item<configStoreProps>
-        label={t("password")}
-        name="password"
-        rules={[{ message: t("passwordWarning") }]}
-      >
+      <Form.Item<configStoreProps> label={t("password")} name="password" rules={[{ message: t("passwordWarning") }]}>
         <Input.Password prefix={<LockOutlined />} type="password" placeholder="Password" />
       </Form.Item>
-      <Form.Item<configStoreProps>
-        label={t("cookie")}
-        name="cookie"
-      >
+      <Form.Item<configStoreProps> label={t("cookie")} name="cookie">
         <Input prefix={<LockOutlined />} placeholder={t("cookie")} />
       </Form.Item>
       <Form.Item>
