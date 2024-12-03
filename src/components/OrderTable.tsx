@@ -28,14 +28,16 @@ export default function OrderTable() {
     if (!rawData) {
       return {};
     }
-    const res = rawData.reduce((acc, order) => {
-      const { time } = order;
-      if (!acc[time]) {
-        acc[time] = [];
-      }
-      acc[time].push(order.tab);
-      return acc;
-    }, {} as Record<string, OrderTab[]>);
+    const res = rawData
+      .filter((order) => ["2024-12-04", "2024-12-05", "2024-12-06"].includes(order.time))
+      .reduce((acc, order) => {
+        const { time } = order;
+        if (!acc[time]) {
+          acc[time] = [];
+        }
+        acc[time].push(order.tab);
+        return acc;
+      }, {} as Record<string, OrderTab[]>);
     return res;
   }, [rawData]);
 
@@ -55,7 +57,12 @@ export default function OrderTable() {
                     hoverable
                     size="small"
                     cover={
-                      <Image src={`/static/dishes/${tab.orderedDish?.id}.png`} alt="bufo" width={300} height={300} />
+                      <Image
+                        src={`/static/dishes/${tab.orderedDish?.id}.png`}
+                        alt={tab.orderedDish?.id ?? ""}
+                        width={300}
+                        height={300}
+                      />
                     }
                     style={{ width: "300px" }}
                     onClick={showModal}
