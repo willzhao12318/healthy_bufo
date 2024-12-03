@@ -13,6 +13,7 @@ export type SettingFormProps = {
 };
 
 export default function SettingForm({ initialValues }: SettingFormProps) {
+  const [form] = Form.useForm();
   const { t, i18n } = useTranslation();
   const [isLogin, setIsLogin] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 767 });
@@ -62,26 +63,22 @@ export default function SettingForm({ initialValues }: SettingFormProps) {
   );
 
   return (
-    <Form layout={"vertical"} name="validateOnly" initialValues={initialValues} onFinish={onFinish} autoComplete="off">
-      <Form.Item<configStoreProps>
-        label={t("username")}
-        name="username"
-        rules={[{ message: t("usernameWarning") }]}
-      >
+    <Form
+      layout={"vertical"}
+      name="validateOnly"
+      initialValues={initialValues}
+      onFinish={onFinish}
+      autoComplete="off"
+      form={form}
+    >
+      <Form.Item<configStoreProps> label={t("username")} name="username" rules={[{ message: t("usernameWarning") }]}>
         <Input prefix={<UserOutlined />} placeholder="Username" />
       </Form.Item>
 
-      <Form.Item<configStoreProps>
-        label={t("password")}
-        name="password"
-        rules={[{ message: t("passwordWarning") }]}
-      >
+      <Form.Item<configStoreProps> label={t("password")} name="password" rules={[{ message: t("passwordWarning") }]}>
         <Input.Password prefix={<LockOutlined />} type="password" placeholder="Password" />
       </Form.Item>
-      <Form.Item<configStoreProps>
-        label={t("cookie")}
-        name="cookie"
-      >
+      <Form.Item<configStoreProps> label={t("cookie")} name="cookie">
         <Input prefix={<LockOutlined />} placeholder={t("cookie")} />
       </Form.Item>
       <Form.Item>
@@ -111,6 +108,15 @@ export default function SettingForm({ initialValues }: SettingFormProps) {
               />
             </>
           )}
+          <Button
+            type="primary"
+            htmlType="button"
+            onClick={() => {
+              setCookie(form.getFieldValue("cookie"));
+            }}
+          >
+            {t("addCookie")}
+          </Button>
           <Tooltip title={cookie === undefined ? t("saveConfigDescription") : t("renewLoginDescription")}>
             <Button type="primary" htmlType="submit" loading={isLogin}>
               {cookie === undefined ? t("save") : t("renewLogin")}
