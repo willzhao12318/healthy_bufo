@@ -15,8 +15,6 @@ import {Category} from "@/utils/type";
 import {recommend} from "@/pages/api/recommend";
 import {humanAIMealPlan} from "@/utils/mockData";
 import i18n, {t} from "i18next";
-import getMockOrder from "../client/getMockOrder";
-import i18next from "i18next";
 import {useGetOrder} from "../client/controller";
 
 const roles: Record<string, RoleType> = {
