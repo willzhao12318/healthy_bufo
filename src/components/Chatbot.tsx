@@ -1,6 +1,6 @@
 import bufo from "@/assets/bufo.gif";
 import { Bubble, Prompts, Sender, Welcome, useXAgent, useXChat } from "@ant-design/x";
-import React from "react";
+import React, {useEffect} from "react";
 import Image from "next/image";
 
 import {FireOutlined, GiftOutlined, UserOutlined} from "@ant-design/icons";
@@ -77,7 +77,6 @@ export default function ChatBot() {
       try {
         // const result = { category: 2 };
         const result = await categorize(message);
-        console.log(result);
         if(result.category === 2) {
           const response = await analyze(message);
           const analyzeResult = response.analyzeResult;
@@ -94,6 +93,7 @@ export default function ChatBot() {
             <p>健康指数(Health Score): ${item.healthIndex}</p>
             <p>健康分析(Health Tips): ${item.healthAnalysis}</p>
             <p>卡路里(Calories): ${item.calories}</p>
+            <p>蛙蛙格言(Bufo Slogan): ${item.bufoSlogan}</p>
             </div>`).join("");
           setMessages(prevMessages => prevMessages.slice(0, -1));
           onSuccess(htmlString);
@@ -117,6 +117,20 @@ export default function ChatBot() {
   const { onRequest, messages, setMessages } = useXChat({
     agent,
   });
+
+  useEffect(() => {
+    if(messages.length > 0) {
+      localStorage.setItem('chatMessages', JSON.stringify(messages));
+    }
+  }, [messages]);
+
+  useEffect(() => {
+    const savedMessages = localStorage.getItem('chatMessages');
+    if (savedMessages) {
+      const parsedMessages: MessageInfo<string>[] = JSON.parse(savedMessages);
+      setMessages(parsedMessages);
+    }
+  }, [setMessages]);
 
   // ==================== Event ====================
   const onSubmit = (nextContent: string) => {
