@@ -99,7 +99,10 @@ const recommendPrompt = "# CONTEXT #\n" +
   "The user requirement will be provided in the # OBJECTIVE # section\n" +
   "# OBJECTIVE #\n" +
   "Based on your expertise and user requirement, recommend next week's menu option to users in the following JSON format. Return only the recommendationResult json and no any other things. " +
-  "Please populate the emoji field with the emoji that you think is most appropriate for this dish\n" +
+  "Please populate the emoji field with the emoji that you think is most appropriate for this dish\n." +
+  "Note that if certain date doesn't have afternoon tea option available, you don't need to recommend for those days.\n" +
+  "The language of the dish name you return needs to be determined " +
+  "according to the language of user requirement. If user requirement is in Chinese then please use chineseName, otherwise please use englishName.\n"+
   "{" +
   "    \"recommendationResult\":" +
   "    {" +

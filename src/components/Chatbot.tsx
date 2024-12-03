@@ -1,21 +1,22 @@
 import bufo from "@/assets/bufo.gif";
-import { Bubble, Prompts, Sender, Welcome, useXAgent, useXChat } from "@ant-design/x";
-import React, {useEffect} from "react";
+import {Bubble, Prompts, Sender, useXAgent, useXChat, Welcome} from "@ant-design/x";
+import React, {useEffect, useMemo} from "react";
 import Image from "next/image";
 
 import {FireOutlined, GiftOutlined, UserOutlined} from "@ant-design/icons";
 import {type GetProp, Layout, Space, Spin, theme} from "antd";
 import { useTranslation } from "react-i18next";
-import { Content } from "antd/es/layout/layout";
+import {Content} from "antd/es/layout/layout";
 import {MessageInfo} from "@ant-design/x/es/useXChat";
 import analyze from "../client/endpoints/request_analyze";
 import {RoleType} from "@ant-design/x/es/bubble/BubbleList";
 import categorize from "@/client/endpoints/request_categorization";
-import {Category} from "@/utils/type";
+import {AddOrderRequest, Category, RecommendResult, TabInfoForOrder, WeekDay} from "@/utils/type";
 import {recommend} from "@/pages/api/recommend";
 import {humanAIMealPlan} from "@/utils/mockData";
 import i18n, {t} from "i18next";
-import {useGetOrder} from "../client/controller";
+import {useAddOrder, useGetOrder, useGetTab} from "../client/controller";
+import {convertTimestampToDate, getTabType} from "@/utils/utils";
 
 const roles: Record<string, RoleType> = {
   ai: {
@@ -63,7 +64,41 @@ export default function ChatBot() {
     token: { boxShadow, colorBgContainer, colorPrimary, sizeMS },
   } = theme.useToken();
   const [content, setContent] = React.useState("");
+
   const { trigger: getOrder } = useGetOrder();
+  const {trigger: placeOrder} = useAddOrder();
+  const { data: tabData} = useGetTab();
+  // //hard code for now
+  const tabInfoForOrder:TabInfoForOrder[] = useMemo(() =>{
+    if (!tabData){
+      return []
+    }
+    const orderTabData:TabInfoForOrder[]  = [];
+    tabData.dateList?.forEach(
+      day => {
+      if (day.date >= '2024-12-04' && day.date <= '2024-12-06') {
+        let weekDay = WeekDay.Wednesday;
+        if (day.date === '2024-12-05'){
+          weekDay = WeekDay.Thursday;
+        }
+        if (day.date === '2024-12-06'){
+          weekDay = WeekDay.Friday;
+        }
+        day.calendarItemList.forEach(item => {
+          if (item.status === 'AVAILABLE') { // Assuming 'ORDER' means available
+            const tabType = getTabType(item.title);
+            orderTabData.push({
+              tabId: item.userTab.uniqueId,
+              tabType,
+              targetTime: item.targetTime,
+              weekDay: weekDay,
+            });
+          }
+        });
+      }
+    });
+    return orderTabData;
+  },[tabData]);
 
   // ==================== Runtime ====================
   const [agent] = useXAgent({
@@ -87,6 +122,25 @@ export default function ChatBot() {
       try {
         const result = await categorize(message);
         switch (result.category) {
+          case Category.CategoryRequestOrder:
+            setMessages(prevMessages => prevMessages.slice(0, -1));
+            const recommendHistory = localStorage.getItem("bufo-recommended-dish")
+            if (!recommendHistory) {
+              onSuccess(t("noRecommendation"))
+              break;
+            }
+            const recommendedDish: RecommendResult = JSON.parse(recommendHistory);
+            if(recommendedDish.breakfast.length === 0 && recommendedDish.lunch.length === 0 && recommendedDish.afternoonTea.length === 0) {
+              onSuccess(t("noRecommendation"))
+              break;
+            }
+            if (tabInfoForOrder.length === 0){
+              onSuccess(t("alreadyOrdered"))
+              break;
+            }
+            asyncPlaceOrder(tabInfoForOrder,recommendedDish);
+            onSuccess(t("dishOrdered"));
+            break;
           case Category.CategoryMaliciousInput:
             setMessages(prevMessages => prevMessages.slice(0, -1));
             onSuccess(result.text || t("invalidCategory"));
@@ -102,6 +156,7 @@ export default function ChatBot() {
               onSuccess(t("noRecommendResult"));
               break;
             }
+            localStorage.setItem("bufo-recommended-dish",JSON.stringify(recommendResult));
             const breakfastList =  (recommendResult.breakfast.length > 0) ? recommendResult.breakfast.map(
               mealInfo=>`
             <div>
@@ -144,7 +199,8 @@ export default function ChatBot() {
           setMessages(prevMessages => prevMessages.slice(0, -1));
           onSuccess(htmlString);
         }
-      } catch {
+      } catch (e){
+        console.error(e);
         setMessages(prevMessages => prevMessages.slice(0, -1));
         onSuccess(t("error"));
       }
@@ -180,6 +236,29 @@ export default function ChatBot() {
     onRequest(info.data.description as string);
   };
 
+  const asyncPlaceOrder = async (tabInfoForOrder:TabInfoForOrder[],recommendResult:RecommendResult)=>{
+    for (const item of tabInfoForOrder) {
+      let candidateList = recommendResult.breakfast
+      if (item.tabType === "lunch"){
+        candidateList = recommendResult.lunch;
+      }
+      if (item.tabType === "afternoonTea"){
+        candidateList = recommendResult.afternoonTea;
+      }
+      const recommendedDish = candidateList.find(dish => dish.weekDay === item.weekDay);
+      if (!recommendedDish) {
+        console.error("no recommended dish found for week", item.weekDay,"tabType:",item.weekDay);
+      }else{
+        const req:AddOrderRequest = {dishId: recommendedDish.dishId, tabUid: item.tabId, targetTime: convertTimestampToDate(item.targetTime)};
+        placeOrder(req);
+      }
+
+      await new Promise(resolve => setTimeout(resolve, 1000));
+    }
+  }
+
+
+
 
   // ==================== Nodes ====================
   const placeholderNode = (
@@ -214,6 +293,10 @@ export default function ChatBot() {
                 key: "recommend_dishes",
                 description: t("recommendDishes"),
               },
+              {
+                key:"order_dishes",
+                description: t("orderDishes")
+              }
             ],
           },
         ]}
@@ -260,6 +343,11 @@ export default function ChatBot() {
             {
               key: "analyze_dishes",
               description: t("analyzeDishes"),
+              icon: <GiftOutlined style={{ color: colorPrimary }} />,
+            },
+            {
+              key: "request_order",
+              description: t("orderDishes"),
               icon: <GiftOutlined style={{ color: colorPrimary }} />,
             },
           ]}
