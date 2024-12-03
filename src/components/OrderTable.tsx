@@ -4,6 +4,7 @@ import { Card, Col, Modal, Row, Space } from "antd";
 import { compareTabType } from "@/utils/utils";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useListOrder } from "@/client/controller";
 
 const mockData: Order[] = [
   {
@@ -96,15 +97,16 @@ export default function OrderTable() {
     setIsModalOpen(false);
   };
 
-  const data = mockData.reduce((acc, order) => {
-    const { time } = order;
-    if (!acc[time]) {
-      acc[time] = [];
-    }
-    acc[time].push(order.tab);
-    return acc;
-  }, {} as Record<string, OrderTab[]>);
+  //   const data = mockData.reduce((acc, order) => {
+  //     const { time } = order;
+  //     if (!acc[time]) {
+  //       acc[time] = [];
+  //     }
+  //     acc[time].push(order.tab);
+  //     return acc;
+  //   }, {} as Record<string, OrderTab[]>);
 
+  const [data, setData] = useState(useListOrder("2024-12-02"));
   return (
     <>
       <Space direction="vertical" size="middle" style={{ width: "100%", alignItems: "center" }}>

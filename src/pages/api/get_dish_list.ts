@@ -1,11 +1,14 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import { CalendarItem, DateItem } from "./utils/models";
 
-export default async function restaurantDishList(req: NextApiRequest, res: NextApiResponse) {
+export default async function getDishList(req: NextApiRequest, res: NextApiResponse) {
   const dataJson = req.query;
   const currDate = dataJson?.currDate;
   if (!currDate) {
     return;
   }
+  globalThis.cookieCache =
+    'PLAY_FLASH="from=null&success=%E7%99%BB%E5%BD%95%E6%88%90%E5%8A%9F"; PLAY_SESSION="217b905a20efc99ed89c4eb44b51a1b7af579b90-userId=14190276"; guestId=adb9dc76-1a2e-46fd-a565-4649fd53eeac; machineId=b6dc48d8-6efd-4e1d-b547-4a8a78f26850; mcr=042d119e970303ef4ec848f572f089e8529d964c-14190276; oci=Xqr8w0Uk4ciodqfPwjhav5rdxTaYepD; ocs=vD11O6xI9bG3kqYRu9OyPAHkRGxLh4E; remember=042d119e970303ef4ec848f572f089e8529d964c-14190276; sa=eyJzdHYiOiJ2MyIsInN0dCI6ImJlYXJlciIsInNhdCI6Ijl6eEtXTFVzdWxaOEVmSkZQTVUyYlZKTHoxV0J3VWwiLCJzcnQiOiI1ZHF6VDNwcVZPQ0Y1TDlaS2d6aVVWV3NRR2VjMHg3IiwieCI6ZmFsc2V9; sat=9zxKWLUsulZ8EfJFPMU2bVJLz1WBwUl; srt=5dqzT3pqVOCF5L9ZKgziUVWsQGec0x7; stt=bearer; stv=v3';
   const { mcClient } = require("./utils/mc_persist_client");
   console.log("------------------");
   console.log(globalThis.cookieCache);
@@ -13,8 +16,7 @@ export default async function restaurantDishList(req: NextApiRequest, res: NextA
     method: "get",
     url: get_calender_items_url(new Date(currDate.toString())),
     headers: {
-      cookie:
-        'PLAY_SESSION="217b905a20efc99ed89c4eb44b51a1b7af579b90-userId=14190276"; guestId=adb9dc76-1a2e-46fd-a565-4649fd53eeac; machineId=b6dc48d8-6efd-4e1d-b547-4a8a78f26850; mcr=042d119e970303ef4ec848f572f089e8529d964c-14190276; oci=Xqr8w0Uk4ciodqfPwjhav5rdxTaYepD; ocs=vD11O6xI9bG3kqYRu9OyPAHkRGxLh4E; remember=042d119e970303ef4ec848f572f089e8529d964c-14190276; sa=eyJzdHYiOiJ2MyIsInN0dCI6ImJlYXJlciIsInNhdCI6IkVudHhnU01KbGtoT2w5SzBHZXR3Y0RoVDVoMnNXbkoiLCJzcnQiOiJ3dERodmpOenVkUmhoaExNT1hFQ1V6dGVpMGJueExGIiwieCI6ZmFsc2V9; sat=EntxgSMJlkhOl9K0GetwcDhT5h2sWnJ; srt=wtDhvjNzudRhhhLMOXECUztei0bnxLF; stt=bearer; stv=v3',
+      cookie: globalThis.cookieCache,
     },
   })
     .then((response: { [x: string]: any }) => {
@@ -25,8 +27,14 @@ export default async function restaurantDishList(req: NextApiRequest, res: NextA
       return undefined;
     });
   console.log("-----------");
-  console.log(response._calendar_items);
-  console.log("-----------");
+  const data = response.data;
+  console.log(data.dateList);
+  var calendarItems: CalendarItem[] = data?.dateList
+    ?.flatMap((oneDateContent: DateItem) => oneDateContent.calendarItemList)
+    .filter();
+
+  console.log("calendarItems");
+  console.log(calendarItems);
   res.status(200).json({ name: response.data });
 }
 
