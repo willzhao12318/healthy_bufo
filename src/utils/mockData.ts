@@ -1,4 +1,4 @@
-import {Dish, MealPlan, WeekDay} from "@/utils/type";
+import { Dish, MealPlan, WeekDay } from "@/utils/type";
 
 const ThursdayLunch: Dish[] = [
   {
@@ -7,8 +7,8 @@ const ThursdayLunch: Dish[] = [
     englishName: "明炉烧鸭&隆江猪脚 &红烧大排&辅菜100g&五常大米180g套餐",
     restaurant: {
       id: "faee77",
-      name: "忘川李烧腊餐厅(田林路店)周四"
-    }
+      name: "忘川李烧腊餐厅(田林路店)周四",
+    },
   },
   {
     id: "281269639",
@@ -16,8 +16,8 @@ const ThursdayLunch: Dish[] = [
     englishName: "卤水牛腱100g&隆江猪脚&红烧大排&辅菜100g&五常大米180g套餐",
     restaurant: {
       id: "faee77",
-      name: "忘川李烧腊餐厅(田林路店)周四"
-    }
+      name: "忘川李烧腊餐厅(田林路店)周四",
+    },
   },
   {
     id: "281269637",
@@ -25,8 +25,8 @@ const ThursdayLunch: Dish[] = [
     englishName: "清远盐焗鸡&隆江猪脚&红烧大排&辅菜100g&五常大米180g套餐",
     restaurant: {
       id: "faee77",
-      name: "忘川李烧腊餐厅(田林路店)周四"
-    }
+      name: "忘川李烧腊餐厅(田林路店)周四",
+    },
   },
   {
     id: "281269638",
@@ -34,8 +34,8 @@ const ThursdayLunch: Dish[] = [
     englishName: "卤水肥肠&隆江猪脚&红烧大排&辅菜100g&五常大米180g套餐",
     restaurant: {
       id: "faee77",
-      name: "忘川李烧腊餐厅(田林路店)周四"
-    }
+      name: "忘川李烧腊餐厅(田林路店)周四",
+    },
   },
   {
     id: "281269628",
@@ -43,8 +43,8 @@ const ThursdayLunch: Dish[] = [
     englishName: "(Orleans chicken wings and roots with grilled squid set)",
     restaurant: {
       id: "c5c4c3",
-      name: "未我吃(中山北一路店)周四"
-    }
+      name: "未我吃(中山北一路店)周四",
+    },
   },
   {
     id: "281269625",
@@ -52,8 +52,8 @@ const ThursdayLunch: Dish[] = [
     englishName: "(Braised beef brisket with potatoes and braised steak set)",
     restaurant: {
       id: "c5c4c3",
-      name: "未我吃(中山北一路店)周四"
-    }
+      name: "未我吃(中山北一路店)周四",
+    },
   },
   {
     id: "281269627",
@@ -61,8 +61,8 @@ const ThursdayLunch: Dish[] = [
     englishName: "(Sweet and sour spare ribs with home-cooked belt fish set)",
     restaurant: {
       id: "c5c4c3",
-      name: "未我吃(中山北一路店)周四"
-    }
+      name: "未我吃(中山北一路店)周四",
+    },
   },
   {
     id: "281269626",
@@ -70,8 +70,8 @@ const ThursdayLunch: Dish[] = [
     englishName: "(Brine shrimp with rural stir-fried meat set)",
     restaurant: {
       id: "c5c4c3",
-      name: "未我吃(中山北一路店)周四"
-    }
+      name: "未我吃(中山北一路店)周四",
+    },
   },
   {
     id: "281269629",
@@ -79,8 +79,8 @@ const ThursdayLunch: Dish[] = [
     englishName: "(Vegetarian/Stir-fried Kidney Beans & Eggplant Bean Set)",
     restaurant: {
       id: "c5c4c3",
-      name: "未我吃(中山北一路店)周四"
-    }
+      name: "未我吃(中山北一路店)周四",
+    },
   },
   {
     id: "281269679",
@@ -88,8 +88,8 @@ const ThursdayLunch: Dish[] = [
     englishName: "(Korean Angus M3& Beef Health Bowl & Yunnan Grilled Fish Set)",
     restaurant: {
       id: "ea7521",
-      name: "FitBee(徐家汇店)周四"
-    }
+      name: "FitBee(徐家汇店)周四",
+    },
   },
   {
     id: "281269680",
@@ -97,8 +97,8 @@ const ThursdayLunch: Dish[] = [
     englishName: "(Coconut curry soup Beef scalding Bowl & Yunnan Grilled Fish Set)",
     restaurant: {
       id: "ea7521",
-      name: "FitBee(徐家汇店)周四"
-    }
+      name: "FitBee(徐家汇店)周四",
+    },
   },
   {
     id: "281269677",
@@ -106,8 +106,8 @@ const ThursdayLunch: Dish[] = [
     englishName: "(Yunnan Grilled Fish Health Bowl & Pan-fried Tofu Set)",
     restaurant: {
       id: "ea7521",
-      name: "FitBee(徐家汇店)周四"
-    }
+      name: "FitBee(徐家汇店)周四",
+    },
   },
   {
     id: "281269681",
@@ -115,8 +115,8 @@ const ThursdayLunch: Dish[] = [
     englishName: "(Sun Tomato Beef Braised Rice with Herb Chicken Shreds & Yunnan Grilled Fish Set)",
     restaurant: {
       id: "ea7521",
-      name: "FitBee(徐家汇店)周四"
-    }
+      name: "FitBee(徐家汇店)周四",
+    },
   },
   {
     id: "281269682",
@@ -124,9 +124,9 @@ const ThursdayLunch: Dish[] = [
     englishName: "(Vegan /Super light389 Kale Salad & Pan-Fried Tofu Set)",
     restaurant: {
       id: "ea7521",
-      name: "FitBee(徐家汇店)周四"
-    }
-  }
+      name: "FitBee(徐家汇店)周四",
+    },
+  },
 ];
 
 const ThursdayBreakfast: Dish[] = [
@@ -136,8 +136,8 @@ const ThursdayBreakfast: Dish[] = [
     englishName: "Germ ham sandwich",
     restaurant: {
       id: "1eea68",
-      name: "85℃(上海广元店)周四"
-    }
+      name: "85℃(上海广元店)周四",
+    },
   },
   {
     id: "281269728",
@@ -145,8 +145,8 @@ const ThursdayBreakfast: Dish[] = [
     englishName: "Golden cheese pack 2 in",
     restaurant: {
       id: "1eea68",
-      name: "85℃(上海广元店)周四"
-    }
+      name: "85℃(上海广元店)周四",
+    },
   },
   {
     id: "281269729",
@@ -154,8 +154,8 @@ const ThursdayBreakfast: Dish[] = [
     englishName: "Multi-grain fiber package 225g",
     restaurant: {
       id: "1eea68",
-      name: "85℃(上海广元店)周四"
-    }
+      name: "85℃(上海广元店)周四",
+    },
   },
   {
     id: "281269730",
@@ -163,9 +163,9 @@ const ThursdayBreakfast: Dish[] = [
     englishName: "Hot dog croissant",
     restaurant: {
       id: "1eea68",
-      name: "85℃(上海广元店)周四"
-    }
-  }
+      name: "85℃(上海广元店)周四",
+    },
+  },
 ];
 
 const WednesdayBreakfast: Dish[] = [
@@ -175,8 +175,8 @@ const WednesdayBreakfast: Dish[] = [
     englishName: "Xiaolongbao 6 & Tea Egg 1",
     restaurant: {
       id: "e4bb75",
-      name: "老盛兴汤包馆(虹古路店)周三"
-    }
+      name: "老盛兴汤包馆(虹古路店)周三",
+    },
   },
   {
     id: "281269702",
@@ -184,8 +184,8 @@ const WednesdayBreakfast: Dish[] = [
     englishName: "Beef Fried Bun 1 & Tea Egg 1",
     restaurant: {
       id: "e4bb75",
-      name: "老盛兴汤包馆(虹古路店)周三"
-    }
+      name: "老盛兴汤包馆(虹古路店)周三",
+    },
   },
   {
     id: "281269701",
@@ -193,9 +193,9 @@ const WednesdayBreakfast: Dish[] = [
     englishName: "Steamed corn dumplings 6 & unsweetened soybean milk",
     restaurant: {
       id: "e4bb75",
-      name: "老盛兴汤包馆(虹古路店)周三"
-    }
-  }
+      name: "老盛兴汤包馆(虹古路店)周三",
+    },
+  },
 ];
 
 const WednesdayLunch: Dish[] = [
@@ -205,8 +205,8 @@ const WednesdayLunch: Dish[] = [
     englishName: "Crispy Chicken Wings & Quail Eggs Roast Meat Set",
     restaurant: {
       id: "06ce39",
-      name: "蜀都湘菜馆周三"
-    }
+      name: "蜀都湘菜馆周三",
+    },
   },
   {
     id: "281268920",
@@ -214,8 +214,8 @@ const WednesdayLunch: Dish[] = [
     englishName: "Boiling Fish Fillet & Fried Chicken set",
     restaurant: {
       id: "06ce39",
-      name: "蜀都湘菜馆周三"
-    }
+      name: "蜀都湘菜馆周三",
+    },
   },
   {
     id: "281268918",
@@ -223,8 +223,8 @@ const WednesdayLunch: Dish[] = [
     englishName: "Marinated Beef & Chicken with edamame set",
     restaurant: {
       id: "06ce39",
-      name: "蜀都湘菜馆周三"
-    }
+      name: "蜀都湘菜馆周三",
+    },
   },
   {
     id: "281268919",
@@ -232,8 +232,8 @@ const WednesdayLunch: Dish[] = [
     englishName: "Stir-fried Pork & Duck Gizzard Set",
     restaurant: {
       id: "06ce39",
-      name: "蜀都湘菜馆周三"
-    }
+      name: "蜀都湘菜馆周三",
+    },
   },
   {
     id: "281268921",
@@ -241,44 +241,48 @@ const WednesdayLunch: Dish[] = [
     englishName: "Vegetable/Fungus Yam & Ginger Juice lotus Root Slices Set",
     restaurant: {
       id: "06ce39",
-      name: "蜀都湘菜馆周三"
-    }
+      name: "蜀都湘菜馆周三",
+    },
   },
   {
     id: "281268947",
-    chineseName: "B顺德不辣/肉质盛宴单人餐/娃娃菜50g/土豆5条&莴笋6片&花菜6朵&腐竹5条&嫩牛肉3条&鸡腿肉4条&培根3片&牛肉丸2个&鹌鹑蛋5个&香菇5片&米饭套餐",
+    chineseName:
+      "B顺德不辣/肉质盛宴单人餐/娃娃菜50g/土豆5条&莴笋6片&花菜6朵&腐竹5条&嫩牛肉3条&鸡腿肉4条&培根3片&牛肉丸2个&鹌鹑蛋5个&香菇5片&米饭套餐",
     englishName: "(B Shunde non-spicy/Meat feast Single meal/Baby Cabbage 50g set)",
     restaurant: {
       id: "82a8aa",
-      name: "椒锅锅(光启城店)周三"
-    }
+      name: "椒锅锅(光启城店)周三",
+    },
   },
   {
     id: "281268945",
-    chineseName: "A麻辣微辣/肉质盛宴单人餐/娃娃菜50g/土豆5条&莴笋6片&花菜6朵&腐竹5条&嫩牛肉3条&鸡腿肉4条&培根3片&牛肉丸2个&鹌鹑蛋5个&香菇5片&米饭套餐",
+    chineseName:
+      "A麻辣微辣/肉质盛宴单人餐/娃娃菜50g/土豆5条&莴笋6片&花菜6朵&腐竹5条&嫩牛肉3条&鸡腿肉4条&培根3片&牛肉丸2个&鹌鹑蛋5个&香菇5片&米饭套餐",
     englishName: "(A Spicy and slightly spicy/Meat Feast single meal/Baby Cabbage 50g set)",
     restaurant: {
       id: "82a8aa",
-      name: "椒锅锅(光启城店)周三"
-    }
+      name: "椒锅锅(光启城店)周三",
+    },
   },
   {
     id: "281268946",
-    chineseName: "B顺德不辣/大虾海鲜单人餐/娃娃菜50g&土豆5/&莴笋6片&花菜5朵&豆皮8条/&南美白虾2只&龙利鱼4片&鹌鹑蛋5个&鸡腿肉4条&培根3片&香菇5片&米饭套餐",
+    chineseName:
+      "B顺德不辣/大虾海鲜单人餐/娃娃菜50g&土豆5/&莴笋6片&花菜5朵&豆皮8条/&南美白虾2只&龙利鱼4片&鹌鹑蛋5个&鸡腿肉4条&培根3片&香菇5片&米饭套餐",
     englishName: "(B Shunde non-spicy/Shrimp Seafood Single meal/Baby Cabbage 50g set)",
     restaurant: {
       id: "82a8aa",
-      name: "椒锅锅(光启城店)周三"
-    }
+      name: "椒锅锅(光启城店)周三",
+    },
   },
   {
     id: "281268944",
-    chineseName: "A麻辣微辣/大虾海鲜单人餐/娃娃菜50g&土豆5/&莴笋6片&花菜5朵&豆皮8条/&南美白虾2只&龙利鱼4片&鹌鹑蛋5个&鸡腿肉4条&培根3片&香菇5片&米饭套餐",
+    chineseName:
+      "A麻辣微辣/大虾海鲜单人餐/娃娃菜50g&土豆5/&莴笋6片&花菜5朵&豆皮8条/&南美白虾2只&龙利鱼4片&鹌鹑蛋5个&鸡腿肉4条&培根3片&香菇5片&米饭套餐",
     englishName: "(A Spicy light spicy/Shrimp seafood single meal/Baby Cabbage 50g set)",
     restaurant: {
       id: "82a8aa",
-      name: "椒锅锅(光启城店)周三"
-    }
+      name: "椒锅锅(光启城店)周三",
+    },
   },
   {
     id: "281269459",
@@ -286,8 +290,8 @@ const WednesdayLunch: Dish[] = [
     englishName: "(Angus beef pasta bowl set)",
     restaurant: {
       id: "6fb36e",
-      name: "刺臂健身餐(延安西路店)代采周三"
-    }
+      name: "刺臂健身餐(延安西路店)代采周三",
+    },
   },
   {
     id: "281269456",
@@ -295,8 +299,8 @@ const WednesdayLunch: Dish[] = [
     englishName: "(Raw cut steak and seaweed grilling bowl set)",
     restaurant: {
       id: "6fb36e",
-      name: "刺臂健身餐(延安西路店)代采周三"
-    }
+      name: "刺臂健身餐(延安西路店)代采周三",
+    },
   },
   {
     id: "281269458",
@@ -304,18 +308,18 @@ const WednesdayLunch: Dish[] = [
     englishName: "(Grilled cumin chicken breast baked sweet potato bowl set)",
     restaurant: {
       id: "6fb36e",
-      name: "刺臂健身餐(延安西路店)代采周三"
-    }
+      name: "刺臂健身餐(延安西路店)代采周三",
+    },
   },
   {
-    id:"281269460",
-    chineseName:"全素/碳水时蔬拼盘套餐",
-    englishName:"(Vegetarian/carbonated seasonal vegetable platter)",
-    restaurant:{
-      id:"6fb36e",
-      name:"刺臂健身餐(延安西路店)代采周三"
-    }
-  }
+    id: "281269460",
+    chineseName: "全素/碳水时蔬拼盘套餐",
+    englishName: "(Vegetarian/carbonated seasonal vegetable platter)",
+    restaurant: {
+      id: "6fb36e",
+      name: "刺臂健身餐(延安西路店)代采周三",
+    },
+  },
 ];
 
 const FridayBreakfast: Dish[] = [
@@ -325,8 +329,8 @@ const FridayBreakfast: Dish[] = [
     englishName: "Fried bun 4 & Soy milk 1",
     restaurant: {
       id: "24b467",
-      name: "老盛兴汤包馆(虹古路店)周五"
-    }
+      name: "老盛兴汤包馆(虹古路店)周五",
+    },
   },
   {
     id: "281269704",
@@ -334,8 +338,8 @@ const FridayBreakfast: Dish[] = [
     englishName: "Roll 1 & Boiled Egg 1",
     restaurant: {
       id: "24b467",
-      name: "老盛兴汤包馆(虹古路店)周五"
-    }
+      name: "老盛兴汤包馆(虹古路店)周五",
+    },
   },
   {
     id: "281269705",
@@ -343,9 +347,9 @@ const FridayBreakfast: Dish[] = [
     englishName: "Purple potato 2 & Boiled egg 1",
     restaurant: {
       id: "24b467",
-      name: "老盛兴汤包馆(虹古路店)周五"
-    }
-  }
+      name: "老盛兴汤包馆(虹古路店)周五",
+    },
+  },
 ];
 
 const FridayLunch: Dish[] = [
@@ -355,8 +359,8 @@ const FridayLunch: Dish[] = [
     englishName: "Crispy shrimps & Sauteed Chicken set",
     restaurant: {
       id: "54a366",
-      name: "蜀都湘菜馆周五"
-    }
+      name: "蜀都湘菜馆周五",
+    },
   },
   {
     id: "281268923",
@@ -364,8 +368,8 @@ const FridayLunch: Dish[] = [
     englishName: "Braised goose & Mushroom braised meat set in iron pot",
     restaurant: {
       id: "54a366",
-      name: "蜀都湘菜馆周五"
-    }
+      name: "蜀都湘菜馆周五",
+    },
   },
   {
     id: "281268925",
@@ -373,8 +377,8 @@ const FridayLunch: Dish[] = [
     englishName: "Sauteed Frog & Spicy Wing Root Set",
     restaurant: {
       id: "54a366",
-      name: "蜀都湘菜馆周五"
-    }
+      name: "蜀都湘菜馆周五",
+    },
   },
   {
     id: "281268926",
@@ -382,8 +386,8 @@ const FridayLunch: Dish[] = [
     englishName: "Dry Pot Spicy Duck & Braised Black Fish Set",
     restaurant: {
       id: "54a366",
-      name: "蜀都湘菜馆周五"
-    }
+      name: "蜀都湘菜馆周五",
+    },
   },
   {
     id: "281268927",
@@ -391,44 +395,48 @@ const FridayLunch: Dish[] = [
     englishName: "Vegetarian/wood fungus Yam & Spring Onion Scrambled Egg Set",
     restaurant: {
       id: "54a366",
-      name: "蜀都湘菜馆周五"
-    }
+      name: "蜀都湘菜馆周五",
+    },
   },
   {
     id: "281268949",
-    chineseName: "A麻辣微辣/上脑肥牛原切单人餐/娃娃菜50g/土豆5条&莴笋6片&花菜4朵&年糕5条&上脑肥牛2片&腊肠7片&午餐肉4条&鸡腿肉4条&培根3片&香菇5片&米饭套餐",
+    chineseName:
+      "A麻辣微辣/上脑肥牛原切单人餐/娃娃菜50g/土豆5条&莴笋6片&花菜4朵&年糕5条&上脑肥牛2片&腊肠7片&午餐肉4条&鸡腿肉4条&培根3片&香菇5片&米饭套餐",
     englishName: "(A Spicy and slightly spicy/sliced Beef/Baby Cabbage 50g set)",
     restaurant: {
       id: "418e03",
-      name: "椒锅锅(光启城店)周五"
-    }
+      name: "椒锅锅(光启城店)周五",
+    },
   },
   {
     id: "281268952",
-    chineseName: "B顺德不辣/爽滑嫩牛肉单人餐&娃娃菜50g&土豆5条&莴笋6片&花菜4朵&年糕5条&南美白虾2只&&鸡腿肉4块&嫩牛肉6片&鱼豆腐6个&培根3片&香菇5片&米饭套餐",
+    chineseName:
+      "B顺德不辣/爽滑嫩牛肉单人餐&娃娃菜50g&土豆5条&莴笋6片&花菜4朵&年糕5条&南美白虾2只&&鸡腿肉4块&嫩牛肉6片&鱼豆腐6个&培根3片&香菇5片&米饭套餐",
     englishName: "(B Shunde non-spicy/smooth tender beef single meal & Baby Cabbage 50g set)",
     restaurant: {
       id: "418e03",
-      name: "椒锅锅(光启城店)周五"
-    }
+      name: "椒锅锅(光启城店)周五",
+    },
   },
   {
     id: "281268950",
-    chineseName: "A麻辣微辣/爽滑嫩牛肉单人餐&娃娃菜50g&土豆5条&莴笋6片&花菜4朵&年糕5条&南美白虾2只&&鸡腿肉4块&嫩牛肉6片&鱼豆腐6个&培根3片&香菇5片&米饭套餐",
+    chineseName:
+      "A麻辣微辣/爽滑嫩牛肉单人餐&娃娃菜50g&土豆5条&莴笋6片&花菜4朵&年糕5条&南美白虾2只&&鸡腿肉4块&嫩牛肉6片&鱼豆腐6个&培根3片&香菇5片&米饭套餐",
     englishName: "(A Spicy and slightly spicy/smooth tender beef single meal set)",
     restaurant: {
       id: "418e03",
-      name: "椒锅锅(光启城店)周五"
-    }
+      name: "椒锅锅(光启城店)周五",
+    },
   },
   {
     id: "281268951",
-    chineseName: "B顺德不辣/上脑肥牛原切单人餐/娃娃菜50g/土豆5条&莴笋6片&花菜4朵&年糕5条&上脑肥牛2片&腊肠7片&午餐肉4条&鸡腿肉4条&培根3片&香菇5片&米饭套餐",
+    chineseName:
+      "B顺德不辣/上脑肥牛原切单人餐/娃娃菜50g/土豆5条&莴笋6片&花菜4朵&年糕5条&上脑肥牛2片&腊肠7片&午餐肉4条&鸡腿肉4条&培根3片&香菇5片&米饭套餐",
     englishName: "(B Shunde Non-spicy/Shangnao Beef original cut single meal/Baby Cabbage 50g set)",
     restaurant: {
       id: "418e03",
-      name: "椒锅锅(光启城店)周五"
-    }
+      name: "椒锅锅(光启城店)周五",
+    },
   },
   {
     id: "281269465",
@@ -436,45 +444,45 @@ const FridayLunch: Dish[] = [
     englishName: "(Thai chicken and seaweed shredded soba set)",
     restaurant: {
       id: "8d6a29",
-      name: "刺臂健身餐(延安西路店)代采周五"
-    }
+      name: "刺臂健身餐(延安西路店)代采周五",
+    },
   },
   {
-    id:"281269462",
-    chineseName:"原切牛排海苔碎菌烤碗套餐",
-    englishName:"(Raw cut steak and seaweed grilling bowl set)",
-    restaurant:{
-      id:"8d6a29",
-      name:"刺臂健身餐(延安西路店)代采周五"
-    }
+    id: "281269462",
+    chineseName: "原切牛排海苔碎菌烤碗套餐",
+    englishName: "(Raw cut steak and seaweed grilling bowl set)",
+    restaurant: {
+      id: "8d6a29",
+      name: "刺臂健身餐(延安西路店)代采周五",
+    },
   },
   {
-    id:"281269463",
-    chineseName:"碳烤孜然鸡胸片紫薯卷烤菌蔬碗套餐",
-    englishName:"('Grilled cumin Chicken Breast Slices Purple potato roll Roasted mushroom and Vegetable bowl set)",
-    restaurant:{
-      id:"8d6a29",
-      name:"刺臂健身餐(延安西路店)代采周五"
-    }
+    id: "281269463",
+    chineseName: "碳烤孜然鸡胸片紫薯卷烤菌蔬碗套餐",
+    englishName: "('Grilled cumin Chicken Breast Slices Purple potato roll Roasted mushroom and Vegetable bowl set)",
+    restaurant: {
+      id: "8d6a29",
+      name: "刺臂健身餐(延安西路店)代采周五",
+    },
   },
   {
-    id:"281269466",
-    chineseName:"全素/碳水时蔬拼盘套餐",
-    englishName:"(Vegetarian/carbonated seasonal vegetable platter)",
-    restaurant:{
-      id:"8d6a29",
-      name:"刺臂健身餐(延安西路店)代采周五"
-    }
+    id: "281269466",
+    chineseName: "全素/碳水时蔬拼盘套餐",
+    englishName: "(Vegetarian/carbonated seasonal vegetable platter)",
+    restaurant: {
+      id: "8d6a29",
+      name: "刺臂健身餐(延安西路店)代采周五",
+    },
   },
   {
-    id:"281269464",
-    chineseName:"盐烤青花鱼海苔碎菌烤碗套餐",
-    englishName:"(Salt-grilled mackerel and seaweed minced mushroom bowl set)",
-    restaurant:{
-      id:"8d6a29",
-      name:"刺臂健身餐(延安西路店)代采周五"
-    }
-  }
+    id: "281269464",
+    chineseName: "盐烤青花鱼海苔碎菌烤碗套餐",
+    englishName: "(Salt-grilled mackerel and seaweed minced mushroom bowl set)",
+    restaurant: {
+      id: "8d6a29",
+      name: "刺臂健身餐(延安西路店)代采周五",
+    },
+  },
 ];
 
 const FridayAfternoonTea: Dish[] = [
@@ -484,8 +492,8 @@ const FridayAfternoonTea: Dish[] = [
     englishName: "280g shredded chicken with olives",
     restaurant: {
       id: "unknown",
-      name: "廣蓮申"
-    }
+      name: "廣蓮申",
+    },
   },
   {
     id: "281269745",
@@ -493,8 +501,8 @@ const FridayAfternoonTea: Dish[] = [
     englishName: "250g coconut pastry",
     restaurant: {
       id: "unknown",
-      name: "廣蓮申"
-    }
+      name: "廣蓮申",
+    },
   },
   {
     id: "281269746",
@@ -502,8 +510,8 @@ const FridayAfternoonTea: Dish[] = [
     englishName: "Yellow Swan Meal egg bag 115g",
     restaurant: {
       id: "unknown",
-      name: "廣蓮申"
-    }
+      name: "廣蓮申",
+    },
   },
   {
     id: "281269747",
@@ -511,8 +519,8 @@ const FridayAfternoonTea: Dish[] = [
     englishName: "Wagyu Soda Stick 155g",
     restaurant: {
       id: "unknown",
-      name: "廣蓮申"
-    }
+      name: "廣蓮申",
+    },
   },
   {
     id: "281269748",
@@ -520,24 +528,385 @@ const FridayAfternoonTea: Dish[] = [
     englishName: "Super concentrated sour cheese 115g",
     restaurant: {
       id: "unknown",
-      name: "廣蓮申"
-    }
-  }
+      name: "廣蓮申",
+    },
+  },
 ];
 
-export const humanAIMealPlan:MealPlan ={
-  dateList: [{
-    weekDay:WeekDay.Wednesday,
-    breakfast:WednesdayBreakfast,
-    lunch: WednesdayLunch
-  },{
-    weekDay:WeekDay.Thursday,
-    breakfast:ThursdayBreakfast,
-    lunch: ThursdayLunch
-  },{
-    weekDay:WeekDay.Friday,
-    breakfast:FridayBreakfast,
-    lunch: FridayLunch,
-    afternoonTea:FridayAfternoonTea
-  },]
-}
+const MondayBreakfast: Dish[] = [
+  {
+    id: "281269684",
+    chineseName: "菜包1 & 白煮蛋1",
+    englishName: "Cabbage Bun 1 & Boiled Egg 1",
+    restaurant: {
+      id: "fe78e5",
+      name: "老盛兴汤包馆(虹古路店)周一",
+    },
+  },
+  {
+    id: "281269685",
+    chineseName: "单档汤 & 烧卖1",
+    englishName: "Single stall Soup & Shaomai 1",
+    restaurant: {
+      id: "fe78e5",
+      name: "老盛兴汤包馆(虹古路店)周一",
+    },
+  },
+  {
+    id: "281269686",
+    chineseName: "白煮蛋1 & 油条1",
+    englishName: "Boiled egg 1 & churros 1",
+    restaurant: {
+      id: "fe78e5",
+      name: "老盛兴汤包馆(虹古路店)周一",
+    },
+  },
+];
+
+const MondayLunch: Dish[] = [
+  {
+    id: "281268903",
+    chineseName: "土豆炖牛肉&虾仁滑蛋套餐",
+    englishName: "Braised beef with potatoes & Shrimp and egg set",
+    restaurant: {
+      id: "95c8ac",
+      name: "蜀都湘菜馆周一",
+    },
+  },
+  {
+    id: "281268904",
+    chineseName: "油爆大虾&小炒鸡块套餐",
+    englishName: "Prawns & small fried chicken set",
+    restaurant: {
+      id: "95c8ac",
+      name: "蜀都湘菜馆周一",
+    },
+  },
+  {
+    id: "281268905",
+    chineseName: "飘香辣子鸡&川香腊肉套餐",
+    englishName: "Spicy Chicken & Sichuan Cured Meat set",
+    restaurant: {
+      id: "95c8ac",
+      name: "蜀都湘菜馆周一",
+    },
+  },
+  {
+    id: "281268906",
+    chineseName: "老坛酱香肉&干锅鸭套餐",
+    englishName: "Laotan Sauce Pork & Dry pot duck set",
+    restaurant: {
+      id: "95c8ac",
+      name: "蜀都湘菜馆周一",
+    },
+  },
+  {
+    id: "281268907",
+    chineseName: "全素/刀豆土豆&番茄炒蛋套餐",
+    englishName: "Vegetarian/knife beans and Potatoes & Tomato Scrambled Egg Set",
+    restaurant: {
+      id: "95c8ac",
+      name: "蜀都湘菜馆周一",
+    },
+  },
+  {
+    id: "281269341",
+    chineseName: "原切牛排海苔碎菌烤碗套餐",
+    englishName: "Raw cut steak and seaweed grilling bowl set",
+    restaurant: {
+      id: "6225db",
+      name: "刺臂健身餐(延安西路店)代采周一",
+    },
+  },
+  {
+    id: "281269343",
+    chineseName: "香酥鸡腿肉紫薯卷烤蔬碗套餐",
+    englishName: "Crispy chicken leg meat purple potato roll roast vegetable bowl set",
+    restaurant: {
+      id: "6225db",
+      name: "刺臂健身餐(延安西路店)代采周一",
+    },
+  },
+  {
+    id: "281269344",
+    chineseName: "盐烤鲭花鱼菌烤碗盐烤鲭花鱼套餐",
+    englishName: "Salt-grilled mackerel Mushroom Grill bowl Salt-grilled mackerel set",
+    restaurant: {
+      id: "6225db",
+      name: "刺臂健身餐(延安西路店)代采周一",
+    },
+  },
+  {
+    id: "281269345",
+    chineseName: "川拌手撕鸡海苔荞麦面套餐",
+    englishName: "Sichuan shredded chicken and seaweed soba noodles set",
+    restaurant: {
+      id: "6225db",
+      name: "刺臂健身餐(延安西路店)代采周一",
+    },
+  },
+  {
+    id: "281269346",
+    chineseName: "全素/碳水时蔬拼盘套餐",
+    englishName: "Vegetarian/carbonated seasonal vegetable platter",
+    restaurant: {
+      id: "6225db",
+      name: "刺臂健身餐(延安西路店)代采周一",
+    },
+  },
+  {
+    id: "281268930",
+    chineseName:
+      "A麻辣微辣/鸡翅单人餐/娃娃菜50g&土豆6条&莴笋8片&花菜6朵&藕片3片&嫩牛肉3条午餐肉4条&鱼豆腐2个&鸡翅1只&培根3片&香菇5片&米饭套餐",
+    englishName:
+      "A Spicy and slightly spicy/Chicken wings single meal/Baby Cabbage 50g& 6 potatoes & 8 slices Lettuce & 6 cauliflower & 3 slices lotus root slices & 3 set",
+    restaurant: {
+      id: "c4a9dc",
+      name: "椒锅锅(光启城店)周一",
+    },
+  },
+  {
+    id: "281268931",
+    chineseName:
+      "A麻辣微辣/牛蛙单人餐/娃娃菜50g&土豆6条&莴笋8片&花菜6朵&藕片3片&牛蛙1只&鸡腿肉4条&午餐肉4条&香菇5片&米饭套餐",
+    englishName: "A Spicy and slightly spicy/bullfrog single meal/Baby Cabbage 50g& 6 potatoes & 8 set",
+    restaurant: {
+      id: "c4a9dc",
+      name: "椒锅锅(光启城店)周一",
+    },
+  },
+  {
+    id: "281268932",
+    chineseName:
+      "B顺德不辣/鸡翅单人餐/娃娃菜50g&土豆6条&莴笋8片&花菜6朵&藕片3片&嫩牛肉3条午餐肉4条&鱼豆腐2个&鸡翅1只&培根3片&香菇5片&米饭套餐",
+    englishName:
+      "B Shunde non-spicy/Chicken wings Single meal/Baby Cabbage 50g& 6 potatoes & 8 slices Lettuce & 6 cauliflower & 3 slices lotus root slices & 3 tender beef & 4 set",
+    restaurant: {
+      id: "c4a9dc",
+      name: "椒锅锅(光启城店)周一",
+    },
+  },
+  {
+    id: "281268933",
+    chineseName:
+      "B顺德不辣/牛蛙单人餐/娃娃菜50g&土豆6条&莴笋8片&花菜6朵&藕片3片&牛蛙1只&鸡腿肉4条&午餐肉4条&香菇5片&米饭套餐",
+    englishName: "B Shunde non-spicy/bullfrog single meal/Baby Cabbage 50g& 6 potatoes & 8 slices Celtuce set",
+    restaurant: {
+      id: "c4a9dc",
+      name: "椒锅锅(光启城店)周一",
+    },
+  },
+];
+
+const TuesdayBreakfast: Dish[] = [
+  {
+    id: "281269714",
+    chineseName: "花式热狗110g",
+    englishName: "Fancy hot dog 110g",
+    restaurant: {
+      id: "ad144c",
+      name: "85℃(上海广元店)周二",
+    },
+  },
+  {
+    id: "281269715",
+    chineseName: "北海道初雪2入",
+    englishName: "Hokkaido first snow 2 in",
+    restaurant: {
+      id: "ad144c",
+      name: "85℃(上海广元店)周二",
+    },
+  },
+  {
+    id: "281269716",
+    chineseName: "酱烧鸡腿可颂/不要色拉酱/110g",
+    englishName: "Braised chicken croissants in soy sauce",
+    restaurant: {
+      id: "ad144c",
+      name: "85℃(上海广元店)周二",
+    },
+  },
+  {
+    id: "281269717",
+    chineseName: "黄金金枪鱼110g",
+    englishName: "Golden Tuna 110g",
+    restaurant: {
+      id: "ad144c",
+      name: "85℃(上海广元店)周二",
+    },
+  },
+];
+
+const TuesdayLunch: Dish[] = [
+  {
+    id: "281269619",
+    chineseName: "麻辣牛肉拼香酥鸭套餐",
+    englishName: "Spicy beef and crispy duck set",
+    restaurant: {
+      id: "6fc0ae",
+      name: "未我吃(中山北一路店)周二",
+    },
+  },
+  {
+    id: "281269620",
+    chineseName: "黄豆炖猪蹄椒麻手撕鸡套餐",
+    englishName: "Stewed pork trotter with beans, pepper and sesame and shredded chicken set",
+    restaurant: {
+      id: "6fc0ae",
+      name: "未我吃(中山北一路店)周二",
+    },
+  },
+  {
+    id: "281269621",
+    chineseName: "鲍鱼红烧肉拼馋嘴牛蛙套餐",
+    englishName: "Braised meat with abalone and bullfrog set",
+    restaurant: {
+      id: "6fc0ae",
+      name: "未我吃(中山北一路店)周二",
+    },
+  },
+  {
+    id: "281269622",
+    chineseName: "干锅香辣虾拼黄焖排骨套餐",
+    englishName: "Braised sparerib set with dried spicy shrimp",
+    restaurant: {
+      id: "6fc0ae",
+      name: "未我吃(中山北一路店)周二",
+    },
+  },
+  {
+    id: "281269623",
+    chineseName: "全素/西芹炒腰果&山药炒木耳套餐",
+    englishName: "Veggie/Celery fried cashew & Yam Fried Fungus set",
+    restaurant: {
+      id: "6fc0ae",
+      name: "未我吃(中山北一路店)周二",
+    },
+  },
+  {
+    id: "281269670",
+    chineseName: "日光番茄上脑牛肉健康碗&云南烤鱼套餐",
+    englishName: "Sun Tomato on brain Beef Health Bowl & Yunnan Grilled Fish Set",
+    restaurant: {
+      id: "166a86",
+      name: "FitBee(徐家汇店)周二",
+    },
+  },
+  {
+    id: "281269671",
+    chineseName: "活力香草鸡肉卷&烤南瓜&云南烤鱼套餐",
+    englishName: "Vibrant herb Chicken Roll & Roasted Pumpkin & Yunnan Grilled Fish Set",
+    restaurant: {
+      id: "166a86",
+      name: "FitBee(徐家汇店)周二",
+    },
+  },
+  {
+    id: "281269672",
+    chineseName: "三文鱼炒蛋健康碗&云南烤鱼套餐",
+    englishName: "Salmon Scrambled Egg Health Bowl & Yunnan Grilled Fish Set",
+    restaurant: {
+      id: "166a86",
+      name: "FitBee(徐家汇店)周二",
+    },
+  },
+  {
+    id: "281269673",
+    chineseName: "贵州酸汤牛肉配豆腐蔬菜碗&云南烤鱼套餐",
+    englishName: "Guizhou sour beef soup with tofu vegetable bowl & Yunnan Grilled fish Set",
+    restaurant: {
+      id: "166a86",
+      name: "FitBee(徐家汇店)周二",
+    },
+  },
+  {
+    id: "281269674",
+    chineseName: "九层塔炒鸡自选健康碗&云南烤鱼套餐",
+    englishName: "Optional Health bowl of nine-layer fried Chicken & Yunnan Grilled Fish Set",
+    restaurant: {
+      id: "166a86",
+      name: "FitBee(徐家汇店)周二",
+    },
+  },
+  {
+    id: "281269675",
+    chineseName: "全素/Super light389羽衣甘蓝色拉&香煎豆腐套餐",
+    englishName: "Vegan /Super light389 Kale Salad & Pan-Fried Tofu Set",
+    restaurant: {
+      id: "166a86",
+      name: "FitBee(徐家汇店)周二",
+    },
+  },
+
+  {
+    id: "281269631",
+    chineseName: "深井烧鹅三拼烧腊饭/烧鹅&豉油鸡 &卤牛腱100g&辅菜100克&五常大米180g套餐",
+    englishName:
+      "Deep well Roast Goose three fried rice/Roast goose & Soy sauce Chicken & Spiced Beef Tendon 100g& side dishes 100g& Wuchang Rice 180g set",
+    restaurant: {
+      id: "e73160",
+      name: "忘川李烧腊餐厅(田林路店)周二",
+    },
+  },
+  {
+    id: "281269632",
+    chineseName: "隆江猪脚三拼烧腊饭/猪脚&豉油鸡&卤牛腱100g&辅菜100克&五常大米180g套餐",
+    englishName:
+      "Longjiang Pig's Foot three fried rice/Pig's Foot & Soy Sauce Chicken & Spiced Beef Tendon 100g& Side dishes 100g& Wuchang Rice 180g set",
+    restaurant: {
+      id: "e73160",
+      name: "忘川李烧腊餐厅(田林路店)周二",
+    },
+  },
+  {
+    id: "281269633",
+    chineseName: "卤水肥肠三拼烧腊饭/肥肠&豉油鸡&卤牛腱100g&辅菜100克&五常大米180g套餐",
+    englishName:
+      "Marinated Pork sausage three fried rice/Pork sausage & Soy sauce Chicken & spiced beef tendon 100g& side dishes 100g& Wuchang Rice 180g set",
+    restaurant: {
+      id: "e73160",
+      name: "忘川李烧腊餐厅(田林路店)周二",
+    },
+  },
+  {
+    id: "281269634",
+    chineseName: "明炉烧鸭三拼烧腊饭/烧鸭&豉油鸡&卤牛腱100g&100克&五常大米180g套餐",
+    englishName:
+      "Three pieces of fried rice/Roasted Duck & Soy Sauce Chicken & Spiced Beef Tendon 100g& 100g& Wuchang Rice 180g set",
+    restaurant: {
+      id: "e73160",
+      name: "忘川李烧腊餐厅(田林路店)周二",
+    },
+  },
+];
+
+export const humanAIMealPlan: MealPlan = {
+  dateList: [
+    {
+      weekDay: WeekDay.Monday,
+      breakfast: MondayBreakfast,
+      lunch: MondayLunch,
+    },
+    {
+      weekDay: WeekDay.Tuesday,
+      breakfast: TuesdayBreakfast,
+      lunch: TuesdayLunch,
+    },
+    {
+      weekDay: WeekDay.Wednesday,
+      breakfast: WednesdayBreakfast,
+      lunch: WednesdayLunch,
+    },
+    {
+      weekDay: WeekDay.Thursday,
+      breakfast: ThursdayBreakfast,
+      lunch: ThursdayLunch,
+    },
+    {
+      weekDay: WeekDay.Friday,
+      breakfast: FridayBreakfast,
+      lunch: FridayLunch,
+      afternoonTea: FridayAfternoonTea,
+    },
+  ],
+};
