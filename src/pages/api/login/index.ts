@@ -31,6 +31,9 @@ async function getCookies(username: string, password: string): Promise<string> {
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const cookies = await getCookies(req.body.username, req.body.password);
-  res.status(200).json({ cookie: cookies });
+  const {method} = req;
+  if (method === "POST") {  
+    const cookies = await getCookies(req.body.username, req.body.password);
+    res.status(200).json({ cookie: cookies });
+  }
 }

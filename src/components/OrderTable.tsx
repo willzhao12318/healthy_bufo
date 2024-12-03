@@ -35,7 +35,6 @@ export default function OrderTable() {
       acc[time].push(order.tab);
       return acc;
     }, {} as Record<string, OrderTab[]>);
-    console.log(res);
     return res;
   }, [rawData]);
 
