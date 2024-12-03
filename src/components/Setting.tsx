@@ -63,13 +63,25 @@ export default function SettingForm({ initialValues }: SettingFormProps) {
       autoComplete="off"
       form={form}
     >
-      <Form.Item<configStoreProps> label={t("username")} name="username" rules={[{ message: t("usernameWarning") }]}>
-        <Input prefix={<UserOutlined />} placeholder="Username" />
-      </Form.Item>
+      {process.env.NODE_ENV === "development" && (
+        <>
+          <Form.Item<configStoreProps>
+            label={t("username")}
+            name="username"
+            rules={[{ message: t("usernameWarning") }]}
+          >
+            <Input prefix={<UserOutlined />} placeholder="Username" />
+          </Form.Item>
 
-      <Form.Item<configStoreProps> label={t("password")} name="password" rules={[{ message: t("passwordWarning") }]}>
-        <Input.Password prefix={<LockOutlined />} type="password" placeholder="Password" />
-      </Form.Item>
+          <Form.Item<configStoreProps>
+            label={t("password")}
+            name="password"
+            rules={[{ message: t("passwordWarning") }]}
+          >
+            <Input.Password prefix={<LockOutlined />} type="password" placeholder="Password" />
+          </Form.Item>
+        </>
+      )}
       <Form.Item<configStoreProps> label={t("cookie")} name="cookie">
         <Input prefix={<LockOutlined />} placeholder={t("cookie")} />
       </Form.Item>

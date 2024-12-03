@@ -16,7 +16,6 @@ export default function OrderTable() {
       return {};
     }
     const res = rawData
-      .filter((order) => ["2024-12-04", "2024-12-05", "2024-12-06"].includes(order.time))
       .reduce((acc, order) => {
         const { time } = order;
         if (!acc[time]) {
