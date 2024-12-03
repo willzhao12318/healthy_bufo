@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import useSWRMutation, { SWRMutationResponse } from "swr/mutation";
+import useSWR, { SWRResponse } from "swr";
 import {
   AddOrderRequest,
   AddOrderResponse,
@@ -16,7 +17,6 @@ import {
 } from "@/utils/type";
 import axios from "axios";
 import { useConfigStore } from "@/hooks/configStore";
-import { mutate, SWRResponse } from "swr/_internal";
 
 export function useAddOrder(): SWRMutationResponse<AddOrderResponse, any, AddOrderRequest> {
   const { cookie } = useConfigStore();
@@ -35,9 +35,9 @@ export async function login(username: string, password: string): Promise<LoginRe
   return response.data;
 }
 
-export function useListOrder(targetDate: string): SWRResponse<ListOrderedResponse, any, any> {
-  const key = `/api/get_available_tab?currDate=${targetDate}`;
-  const listOrder = async (key: string, arg: ListOrderedRequest) => {
+export function useListOrder(targetDate: string): SWRResponse<Order[]> {
+  const key = `/api/tab/?currDate=${targetDate}`;
+  const listOrder = async (key: string) => {
     const response = await axios.get(key);
     const orders: Order[] = response.data?.dateList?.flatmap((oneDateItem: DateItem) => {
       const date = oneDateItem.date;
