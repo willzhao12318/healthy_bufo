@@ -21,11 +21,12 @@
     "iron-session": "^8.0.4",
     "next": "14.2.18",
     "openai": "^4.73.1",
+    "puppeteer": "^23.9.0",
     "react": "^18",
     "react-dom": "^18",
     "react-i18next": "^15.1.3",
     "react-responsive": "^10.0.0",
-    "swr": "^2.2.5",
+    "swr": "^2.1.5",
     "zustand": "^5.0.1"
   },
   "devDependencies": {

@@ -1,25 +1,29 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import useSWRMutation, {SWRMutationResponse} from "swr/mutation";
-import { AddOrderRequest, AddOrderResponse } from "@/utils/type";
+import { AddOrderRequest, AddOrderResponse, LoginResponse } from "@/utils/type";
 import axios from "axios";
-import {mutate} from "swr";
+import { useConfigStore } from "@/hooks/configStore";
 
 export function useAddOrder(): SWRMutationResponse<
   AddOrderResponse,
   any,
-  any, 
-  any
+  AddOrderRequest
 > {
+  const { cookie } = useConfigStore();
   const addOrder = async (
-    _key: string,
+    _: string,
     {arg}: {arg: AddOrderRequest}
   ) => {
-    const addOrderUrl = `/api/add_orders`;
-    const response = await axios.post(addOrderUrl, arg);
-    mutate(key => typeof key === "string" && key.startsWith(addOrderUrl));
+    const addOrderUrl = "/api/order";
+    const response = await axios.post(addOrderUrl, {...arg, context: {cookies: cookie}});
     return response.data;
   };
 
   return useSWRMutation("noop", addOrder);
 }
 
+export async function login(username: string, password: string): Promise<LoginResponse> {
+  const loginUrl = "/api/login";
+  const response = await axios.post(loginUrl, {username, password}, {timeout: 10000});
+  return response.data;
+}

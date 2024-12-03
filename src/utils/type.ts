@@ -46,6 +46,10 @@ export enum HttpMethods {
   DELETE = "DELETE",
 }
 
+type context = {
+  readonly cookies: string;
+}
+
 export type AddOrderResponse = {
   readonly status: number;
 }
@@ -53,5 +57,15 @@ export type AddOrderResponse = {
 export type AddOrderRequest = {
   readonly tabUid: string, 
   readonly targetTime: string, 
-  readonly dishId: string
+  readonly dishId: string,
+  readonly context?: context
+}
+
+export type LoginRequest = {
+  readonly username: string;
+  readonly password: string;
+}
+
+export type LoginResponse = {
+  readonly cookie: string;
 }
