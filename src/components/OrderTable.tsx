@@ -4,6 +4,7 @@ import { compareTabType } from "@/utils/utils";
 import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useGetOrders } from "@/client/controller";
+import Image from "next/image";
 
 export default function OrderTable() {
   const { t, i18n } = useTranslation();
@@ -50,7 +51,15 @@ export default function OrderTable() {
             <Row gutter={16}>
               {tabs.sort(compareTabType).map((tab) => (
                 <Col span={8} key={tab.id}>
-                  <Card hoverable size="small" style={{ width: "300px" }} onClick={showModal}>
+                  <Card
+                    hoverable
+                    size="small"
+                    cover={
+                      <Image src={`/static/dishes/${tab.orderedDish?.id}.png`} alt="bufo" width={300} height={300} />
+                    }
+                    style={{ width: "300px" }}
+                    onClick={showModal}
+                  >
                     <Card.Meta
                       title={i18n.language === "zh" ? tab.orderedDish?.chineseName : tab.orderedDish?.englishName}
                       description={t(tab.type)}
