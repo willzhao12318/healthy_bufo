@@ -7,11 +7,13 @@ import {FireOutlined, GiftOutlined, UserOutlined} from "@ant-design/icons";
 import {type GetProp, Layout, Space, Spin, theme} from "antd";
 import { useTranslation } from "react-i18next";
 import { Content } from "antd/es/layout/layout";
-import categorize from "@/client/endpoints/request_categorization";
-import {analyze, AnalyzeMenuItem} from "../pages/api/analyze_menu";
+import categorize from "../client/endpoints/request_categorization";
 import {t} from "i18next";
+import {MessageInfo} from "@ant-design/x/es/useXChat";
+import analyze from "../client/endpoints/request_analyze";
+import {RoleType} from "@ant-design/x/es/bubble/BubbleList";
 
-const roles = {
+const roles: Record<string, RoleType> = {
   ai: {
     placement: 'start',
     avatar: {
@@ -65,9 +67,10 @@ export default function ChatBot() {
         onSuccess("Please tell me what you need");
         return;
       }
-      const newMessage = {
-        id: Date.now(), // 使用当前时间戳作为唯一 ID
-        status: 'loading', // 状态为 'loading'
+      const newMessage: MessageInfo<string> = {
+        id: Date.now(),
+        message: "",
+        status: 'loading',
       };
       setMessages(prevMessages => [...prevMessages, newMessage]);
 
@@ -77,7 +80,7 @@ export default function ChatBot() {
         console.log(result);
         if(result.category === 2) {
           const response = await analyze(message);
-          const analyzeResult = response.meals as AnalyzeMenuItem[];
+          const analyzeResult = response.analyzeResult;
           if (analyzeResult.length === 0) {
             setMessages(prevMessages => prevMessages.slice(0, -1));
             onSuccess(t("noAnalysisResult"));
