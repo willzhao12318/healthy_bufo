@@ -1,18 +1,18 @@
 import bufo from "@/assets/bufo.gif";
-import { Bubble, Prompts, Sender, Welcome, useXAgent, useXChat } from "@ant-design/x";
+import {Bubble, Prompts, Sender, useXAgent, useXChat, Welcome} from "@ant-design/x";
 import React, {useEffect} from "react";
 import Image from "next/image";
 
 import {FireOutlined, GiftOutlined, UserOutlined} from "@ant-design/icons";
 import {type GetProp, Layout, Space, Spin, theme} from "antd";
-import { useTranslation } from "react-i18next";
-import { Content } from "antd/es/layout/layout";
+import {useTranslation} from "react-i18next";
+import {Content} from "antd/es/layout/layout";
 import {t} from "i18next";
 import {MessageInfo} from "@ant-design/x/es/useXChat";
 import analyze from "../client/endpoints/request_analyze";
 import {RoleType} from "@ant-design/x/es/bubble/BubbleList";
 import categorize from "@/client/endpoints/request_categorization";
-import {Category} from "@/utils/type";
+import {Category, RecommendResult} from "@/utils/type";
 import {recommend} from "@/pages/api/recommend";
 import {humanAIMealPlan} from "@/utils/mockData";
 
@@ -62,6 +62,13 @@ export default function ChatBot() {
     token: { boxShadow, colorBgContainer, colorPrimary, sizeMS },
   } = theme.useToken();
   const [content, setContent] = React.useState("");
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [recommendedDish,setRecommendedDish] = React.useState<RecommendResult>({
+    afternoonTea: [],
+    breakfast: [],
+    lunch: []
+  });
+
 
   // ==================== Runtime ====================
   const [agent] = useXAgent({
@@ -79,7 +86,13 @@ export default function ChatBot() {
 
       try {
         const result = await categorize(message);
+        console.log(result);
         switch (result.category) {
+          case Category.CategoryRequestOrder:
+            setMessages(prevMessages => prevMessages.slice(0, -1));
+            //todo: make api call to order dishes
+            onSuccess(t("orderDishes"));
+            break;
           case Category.CategoryMaliciousInput:
             setMessages(prevMessages => prevMessages.slice(0, -1));
             onSuccess(t("invalidCategory"));
@@ -95,6 +108,7 @@ export default function ChatBot() {
               onSuccess(t("noRecommendResult"));
               break;
             }
+            setRecommendedDish(recommendResult);
             const breakfastList =  (recommendResult.breakfast.length > 0) ? recommendResult.breakfast.map(
               mealInfo=>`
             <div>
@@ -206,6 +220,10 @@ export default function ChatBot() {
                 key: "recommend_dishes",
                 description: t("recommendDishes"),
               },
+              {
+                key:"order_dishes",
+                description: t("orderDishes")
+              }
             ],
           },
         ]}
@@ -252,6 +270,11 @@ export default function ChatBot() {
             {
               key: "analyze_dishes",
               description: t("analyzeDishes"),
+              icon: <GiftOutlined style={{ color: colorPrimary }} />,
+            },
+            {
+              key: "request_order",
+              description: t("orderDishes"),
               icon: <GiftOutlined style={{ color: colorPrimary }} />,
             },
           ]}
