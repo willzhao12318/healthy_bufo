@@ -14,7 +14,7 @@ function cookiesToString(cookies: Cookie[]): string {
 }
 
 async function getCookies(username: string, password: string): Promise<string> {
-  const browser = await puppeteer.launch({headless: false});
+  const browser = await puppeteer.launch();
   const page = await browser.newPage();
   await page.goto("https://www.meican.com/auth/signin/mailPassword");
   await page.setViewport({ width: 375, height: 667 });
