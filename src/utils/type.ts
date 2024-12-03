@@ -139,6 +139,28 @@ export type LoginResponse = {
 
 export type GetTabResponse = {
   readonly tab: Tab[]
+  readonly dateList: CalendarData[]
+};
+
+export type CalendarItem = {
+  targetTime: number;
+  title: string;
+  userTab: {
+    uniqueId: string;
+  };
+  status: string;
+};
+
+export type CalendarData = {
+  date: string;
+  calendarItemList: CalendarItem[];
+};
+
+export type TabInfoForOrder = {
+  tabId: string;
+  tabType: string;
+  targetTime: number;
+  weekDay: WeekDay;
 };
 
 export function splitDishName(fullName: string): { chineseName: string; englishName: string } {

@@ -109,13 +109,14 @@ export function useGetTab(): SWRResponse<
   any
 > {
   const { cookie } = useConfigStore();
+  const getTabUrlKey = "/api/tab/uniquekey";
   const getTabUrl = "/api/tab";
 
   const fetcher = async () => {
     const result = await axios.post(getTabUrl, {context: {cookies: cookie}});
     return result.data;
   };
-  return useSWR(getTabUrl, fetcher, {});
+  return useSWR(getTabUrlKey, fetcher, {});
 }
 
 export function splitDishName(fullName: string): { chineseName: string; englishName: string } {

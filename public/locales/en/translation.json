@@ -48,5 +48,8 @@
   "afternoonTea": "Afternoon Tea",
   "cookie": "Cookie",
   "addCookie": "Add Cookie",
-  "orderDishes": "Order the Recommended Dishes For me"
+  "orderDishes": "Order the Recommended Dishes For me",
+  "noRecommendation": "Bufo says: Bufo has no recommended dish to order",
+  "alreadyOrdered": "Bufo says: You already ordered for every day this week, bufo cannot order more for you",
+  "dishOrdered": "Bufo says：I'm ordering for you now, come back later 💡"
 }
