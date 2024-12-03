@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import useSWR, {SWRResponse, mutate} from "swr";
+import useSWR, {SWRResponse} from "swr";
 import useSWRMutation, {SWRMutationResponse} from "swr/mutation";
 import { AddOrderRequest, AddOrderResponse, GetTabResponse, LoginResponse } from "@/utils/type";
 import axios from "axios";
