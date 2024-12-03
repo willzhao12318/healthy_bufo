@@ -16,15 +16,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       const resp = await axios.post("https://meican.com/preorder/api/v2.1/orders/add", formData, {
         headers: {
-          cookie: context.cookies,
-          "Content-Type": "application/x-www-form-urlencoded",
-          "Accept": "application/json",
+          cookie: context.cookie
         },
       });
       return res.status(200).json(resp.data);
     } catch (error) {
       console.error("Add order failure", error);
-      return res.status(500).json(resp.data);
+      return res.status(500).json({ message: "Add order failed" });
     }
   }
 }
