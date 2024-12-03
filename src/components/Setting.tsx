@@ -37,9 +37,9 @@ export default function SettingForm({ initialValues }: SettingFormProps) {
 
   const { trigger: addOrder } = useAddOrder();
   const req: AddOrderRequest = {
-    tabUid: "eb8b0840-ef36-4d9b-a243-57ebb2a8c9ec",
+    tabUid: "2f4b4930-aacb-4e04-9b8b-9d659e3736f3",
     targetTime: "2024-12-05 00:30",
-    dishId: "281269730",
+    dishId: "281269727",
   };
 
   const onFinish = useCallback(
