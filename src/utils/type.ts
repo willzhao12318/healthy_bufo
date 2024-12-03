@@ -45,3 +45,13 @@ export enum HttpMethods {
   PUT = "PUT",
   DELETE = "DELETE",
 }
+
+export type AddOrderResponse = {
+  readonly status: number;
+}
+
+export type AddOrderRequest = {
+  readonly tabUid: string, 
+  readonly targetTime: string, 
+  readonly dishId: string
+}
