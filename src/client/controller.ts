@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import useSWR, {SWRResponse, mutate} from "swr";
 import useSWRMutation, {SWRMutationResponse} from "swr/mutation";
-import { AddOrderRequest, AddOrderResponse, LoginResponse } from "@/utils/type";
+import { AddOrderRequest, AddOrderResponse, GetTabResponse, LoginResponse } from "@/utils/type";
 import axios from "axios";
 import { useConfigStore } from "@/hooks/configStore";
 
@@ -26,4 +27,19 @@ export async function login(username: string, password: string): Promise<LoginRe
   const loginUrl = "/api/login";
   const response = await axios.post(loginUrl, {username, password}, {timeout: 10000});
   return response.data;
+}
+
+export function useGetTab(): SWRResponse<
+  GetTabResponse,
+  any,
+  any
+> {
+  const { cookie } = useConfigStore();
+  const getTabUrl = "/api/tab";
+
+  const fetcher = async () => {
+    const result = await axios.post(getTabUrl, {context: {cookies: cookie}});
+    return result.data;
+  };
+  return useSWR(getTabUrl, fetcher, {});
 }
