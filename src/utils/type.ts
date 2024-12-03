@@ -23,7 +23,7 @@ export type Tab = {
 };
 
 export type Dish = {
-  readonly id: string;
+  readonly id?: string;
   readonly chineseName: string;
   readonly englishName: string;
   readonly restaurant: Restaurant;
@@ -36,7 +36,6 @@ export type Restaurant = {
 export type OrderTab = Omit<Tab, "dishes">;
 
 export type Order = {
-  readonly id: string;
   readonly time: string;
   readonly tab: OrderTab;
 };
@@ -140,3 +139,18 @@ export type LoginResponse = {
 export type GetTabResponse = {
   readonly tab: Tab[]
 };
+
+export function splitDishName(fullName: string): { chineseName: string; englishName: string } {
+  const match = fullName.match(/(.+?)\((.+?)\)/);
+  if (match) {
+    return {
+      chineseName: match[1].trim(),
+      englishName: match[2].trim()
+    };
+  }
+  // 如果没有匹配到英文名，则整个字符串作为中文名
+  return {
+    chineseName: fullName.trim(),
+    englishName: ''
+  };
+}

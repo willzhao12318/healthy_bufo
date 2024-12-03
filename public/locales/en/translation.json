@@ -42,5 +42,8 @@
   "carbohydrate": "Carbohydrate",
   "healthScore": "Health Score",
   "healthTips": "Health Tips",
-  "calories": "Calories"
+  "calories": "Calories",
+  "breakfast": "Breakfast",
+  "lunch": "Lunch",
+  "afternoonTea": "Afternoon Tea"
 }

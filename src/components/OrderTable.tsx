@@ -1,84 +1,9 @@
-import { Order, OrderTab, TabType } from "@/utils/type";
-import dish from "@/assets/dish.jpg";
+import { OrderTab } from "@/utils/type";
 import { Card, Col, Modal, Row, Space } from "antd";
 import { compareTabType } from "@/utils/utils";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-
-const mockData: Order[] = [
-  {
-    id: "1",
-    time: "2024-12-02",
-    tab: {
-      id: "1",
-      type: TabType.Breakfast,
-      orderedDish: {
-        id: "1",
-        chineseName: "测试",
-        englishName: "test",
-        restaurant: {
-          id: "1",
-          name: "test",
-        },
-      },
-      status: "pending",
-    },
-  },
-  {
-    id: "2",
-    time: "2024-12-02",
-    tab: {
-      id: "2",
-      type: TabType.Lunch,
-      orderedDish: {
-        id: "2",
-        chineseName: "测试2",
-        englishName: "test2",
-        restaurant: {
-          id: "2",
-          name: "test2",
-        },
-      },
-      status: "pending",
-    },
-  },
-  {
-    id: "3",
-    time: "2024-12-02",
-    tab: {
-      id: "3",
-      type: TabType.AfternoonTea,
-      orderedDish: {
-        id: "3",
-        chineseName: "测试3",
-        englishName: "test3",
-        restaurant: {
-          id: "3",
-          name: "test3",
-        },
-      },
-      status: "pending",
-    },
-  },
-  {
-    id: "4",
-    time: "2024-12-03",
-    tab: {
-      id: "4",
-      type: TabType.Breakfast,
-      orderedDish: {
-        id: "4",
-        chineseName: "测试4",
-        englishName: "test4",
-        restaurant: {
-          id: "4",
-          name: "test4",
-        },
-      },
-      status: "pending",
-    },
-  },
-];
+import { useGetOrders } from "@/client/controller";
 
 export default function OrderTable() {
   const { t, i18n } = useTranslation();
@@ -96,35 +21,40 @@ export default function OrderTable() {
     setIsModalOpen(false);
   };
 
-  const data = mockData.reduce((acc, order) => {
-    const { time } = order;
-    if (!acc[time]) {
-      acc[time] = [];
+  const { data: rawData } = useGetOrders();
+
+  const data = useMemo(() => {
+    if (!rawData) {
+      return {};
     }
-    acc[time].push(order.tab);
-    return acc;
-  }, {} as Record<string, OrderTab[]>);
+    const res = rawData.reduce((acc, order) => {
+      const { time } = order;
+      if (!acc[time]) {
+        acc[time] = [];
+      }
+      acc[time].push(order.tab);
+      return acc;
+    }, {} as Record<string, OrderTab[]>);
+    console.log(res);
+    return res;
+  }, [rawData]);
 
   return (
     <>
-      <Space direction="vertical" size="middle" style={{ width: "100%", alignItems: "center" }}>
+      <Space
+        direction="vertical"
+        size="middle"
+        style={{ width: "100%", height: "100%", alignItems: "flex-start", overflowY: "scroll" }}
+      >
         {Object.entries(data).map(([time, tabs]) => (
-          <Card size="small" title={time} style={{ maxWidth: "600px" }} key={time}>
+          <Card size="small" title={time} style={{ maxWidth: "900px" }} key={time}>
             <Row gutter={16}>
               {tabs.sort(compareTabType).map((tab) => (
                 <Col span={8} key={tab.id}>
-                  <Card
-                    hoverable
-                    size="small"
-                    // eslint-disable-next-line @next/next/no-img-element
-                    cover={<img src={dish.src} alt="dish" />}
-                    onClick={showModal}
-                  >
+                  <Card hoverable size="small" style={{ width: "300px" }} onClick={showModal}>
                     <Card.Meta
-                      title={tab.type}
-                      description={
-                        i18n.language === "zh-CN" ? tab.orderedDish?.chineseName : tab.orderedDish?.englishName
-                      }
+                      title={i18n.language === "zh" ? tab.orderedDish?.chineseName : tab.orderedDish?.englishName}
+                      description={t(tab.type)}
                     />
                   </Card>
                 </Col>

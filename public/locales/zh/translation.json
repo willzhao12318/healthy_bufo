@@ -43,5 +43,8 @@
   "healthScore": "健康指数",
   "healthTips": "健康小贴士",
   "calories": "卡路里",
-  "bufoSlogan": "蛙蛙格言 🐸"
+  "bufoSlogan": "蛙蛙格言 🐸",
+  "lunch": "午餐",
+  "afternoonTea": "下午茶",
+  "breakfast": "早餐"
 }
