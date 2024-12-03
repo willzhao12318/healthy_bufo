@@ -13,6 +13,7 @@ export type SettingFormProps = {
 };
 
 export default function SettingForm({ initialValues }: SettingFormProps) {
+  const [form] = Form.useForm();
   const { t, i18n } = useTranslation();
   const [isLogin, setIsLogin] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 767 });
@@ -45,29 +46,31 @@ export default function SettingForm({ initialValues }: SettingFormProps) {
   const onFinish = useCallback(
     async (values: configStoreProps) => {
       setIsLogin(true);
-      if (values.cookie !== undefined) {
-        setCookie(values.cookie);
-      } else {
-        await login(values.username, values.password)
-          .then((response) => {
-            setUsername(values.username);
-            setPassword(values.password);
-            setCookie(response.cookie);
-          })
-          .catch((error) => {
-            errorNotification(error.message);
-          })
-          .finally(() => {
-            setIsLogin(false);
-          });
-      }
-      setIsLogin(false);
+      await login(values.username, values.password)
+        .then((response) => {
+          setUsername(values.username);
+          setPassword(values.password);
+          setCookie(response.cookie);
+        })
+        .catch((error) => {
+          errorNotification(error.message);
+        })
+        .finally(() => {
+          setIsLogin(false);
+        });
     },
     [errorNotification, setCookie, setPassword, setUsername]
   );
 
   return (
-    <Form layout={"vertical"} name="validateOnly" initialValues={initialValues} onFinish={onFinish} autoComplete="off">
+    <Form
+      layout={"vertical"}
+      name="validateOnly"
+      initialValues={initialValues}
+      onFinish={onFinish}
+      autoComplete="off"
+      form={form}
+    >
       <Form.Item<configStoreProps> label={t("username")} name="username" rules={[{ message: t("usernameWarning") }]}>
         <Input prefix={<UserOutlined />} placeholder="Username" />
       </Form.Item>
@@ -105,6 +108,15 @@ export default function SettingForm({ initialValues }: SettingFormProps) {
               />
             </>
           )}
+          <Button
+            type="primary"
+            htmlType="submit"
+            onClick={() => {
+              setCookie(form.getFieldValue("cookie"));
+            }}
+          >
+            {t("addCookie")}
+          </Button>
           <Tooltip title={cookie === undefined ? t("saveConfigDescription") : t("renewLoginDescription")}>
             <Button type="primary" htmlType="submit" loading={isLogin}>
               {cookie === undefined ? t("save") : t("renewLogin")}
