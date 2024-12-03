@@ -22,5 +22,19 @@
   "noAnalysisResult": "蛙蛙说：没有找到相关信息，✊学习",
   "invalidCategory": "蛙蛙说：我有点头痛，现在不能解答你这个问题",
   "error": "蛙蛙说: 我的脑袋出问题了，等会再试试吧",
-  "working": "蛙蛙说: 我正在努力工作中，别打扰我，请稍等..."
+  "working": "蛙蛙说: 我正在努力工作中，别打扰我，请稍等...",
+  "noRecommendResult": "蛙蛙说：看起来都太好吃了，好难抉择呀，我再想想",
+  "noAfternoonTeaOptions": "没有下午茶能推荐呀",
+  "afternoonTeaRecommend": "美味下午茶",
+  "noLunchOptions": "没有午餐能推荐呀",
+  "lunchRecommend": "美味午餐",
+  "noBreakfastOptions": "没有早餐能推荐呀",
+  "breakfastRecommend": "美味早餐",
+  "monday": "周一",
+  "tuesday": "周二",
+  "wednesday": "周三",
+  "thursday": "周四",
+  "friday": "周五",
+  "saturday": "周六",
+  "sunday": "周日"
 }
