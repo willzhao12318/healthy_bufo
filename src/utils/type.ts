@@ -46,6 +46,7 @@ export enum Category {
   CategoryRequestNutritionAnalyze,
   CategoryUnrelated,
   CategoryMaliciousInput,
+  CategoryRequestOrder
 }
 
 export type Recommendation = {

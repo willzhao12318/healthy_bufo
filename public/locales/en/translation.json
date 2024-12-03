@@ -47,5 +47,6 @@
   "lunch": "Lunch",
   "afternoonTea": "Afternoon Tea",
   "cookie": "Cookie",
-  "addCookie": "Add Cookie"
+  "addCookie": "Add Cookie",
+  "orderDishes": "Order the Recommended Dishes For me"
 }
