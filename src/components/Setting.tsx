@@ -100,12 +100,6 @@ export default function SettingForm({ initialValues }: SettingFormProps) {
                   setTheme(newTheme);
                 }}
               />
-              <Button
-                icon={<PlusCircleOutlined />}
-                onClick={() => {
-                  addOrder(req);
-                }}
-              />
             </>
           )}
           <Button
