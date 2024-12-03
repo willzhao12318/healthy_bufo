@@ -19,8 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           cookie: context.cookie
         },
       });
-      
-      return res.status(200).json(resp.status);
+      return res.status(200).json(resp.data);
     } catch (error) {
       console.error("Add order failure", error);
       return res.status(500).json({ message: "Add order failed" });
