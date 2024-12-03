@@ -82,11 +82,11 @@ export default function ChatBot() {
         switch (result.category) {
           case Category.CategoryMaliciousInput:
             setMessages(prevMessages => prevMessages.slice(0, -1));
-            onSuccess(t("invalidCategory"));
+            onSuccess(result.text || t("invalidCategory"));
             break;
           case Category.CategoryUnrelated:
             setMessages(prevMessages => prevMessages.slice(0, -1));
-            onSuccess(t("invalidCategory"));
+            onSuccess(result.text || t("invalidCategory"));
             break;
           case Category.CategoryRequestMenuRecommendation:
             const recommendResult = await recommend({userInput:message,mealPlan:humanAIMealPlan});
