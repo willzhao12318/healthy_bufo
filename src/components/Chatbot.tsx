@@ -3,11 +3,10 @@ import { Bubble, Prompts, Sender, Welcome, useXAgent, useXChat } from "@ant-desi
 import React, {useEffect} from "react";
 import Image from "next/image";
 
-import {FireOutlined, GiftOutlined, UserOutlined} from "@ant-design/icons";
-import {type GetProp, Layout, Space, Spin, theme} from "antd";
+import {DeleteOutlined, FireOutlined, GiftOutlined, UserOutlined} from "@ant-design/icons";
+import {Button, type GetProp, Layout, Space, Spin, theme} from "antd";
 import { useTranslation } from "react-i18next";
 import { Content } from "antd/es/layout/layout";
-import {t} from "i18next";
 import {MessageInfo} from "@ant-design/x/es/useXChat";
 import analyze from "../client/endpoints/request_analyze";
 import {RoleType} from "@ant-design/x/es/bubble/BubbleList";
@@ -15,6 +14,8 @@ import categorize from "@/client/endpoints/request_categorization";
 import {Category} from "@/utils/type";
 import {recommend} from "@/pages/api/recommend";
 import {humanAIMealPlan} from "@/utils/mockData";
+import i18n, {t} from "i18next";
+import {useGetOrder} from "../client/controller";
 
 const roles: Record<string, RoleType> = {
   ai: {
@@ -62,6 +63,7 @@ export default function ChatBot() {
     token: { boxShadow, colorBgContainer, colorPrimary, sizeMS },
   } = theme.useToken();
   const [content, setContent] = React.useState("");
+  const { trigger: getOrder } = useGetOrder();
 
   // ==================== Runtime ====================
   const [agent] = useXAgent({
@@ -70,6 +72,11 @@ export default function ChatBot() {
         onSuccess("Please tell me what you need");
         return;
       }
+      if (message === t("analyzeDishes")) {
+        const requestOrder = await getOrder("");
+        message = JSON.stringify(requestOrder);
+      }
+
       const newMessage: MessageInfo<string> = {
         id: Date.now(),
         message: "",
@@ -116,7 +123,7 @@ export default function ChatBot() {
             onSuccess(recommendStr);
             break;
           case Category.CategoryRequestNutritionAnalyze:
-            const response = await analyze(message);
+            const response = await analyze(message, i18n.language);
             const analyzeResult = response.analyzeResult;
             if (analyzeResult.length === 0) {
               setMessages(prevMessages => prevMessages.slice(0, -1));
@@ -124,14 +131,15 @@ export default function ChatBot() {
             }
             const htmlString = analyzeResult.map(item => `
             <div>
+            <b>☀️${item.date}</b><br/>
             <b>${item.name}</b><br/>
-            <p>蛋白质(Protein): ${item.protein}g</p>
-            <p>脂肪(Fat): ${item.fat}g</p>
-            <p>碳水(Carbohydrate): ${item.carbohydrate}g</p>
-            <p>健康指数(Health Score): ${item.healthIndex}</p>
-            <p>健康分析(Health Tips): ${item.healthAnalysis}</p>
-            <p>卡路里(Calories): ${item.calories}</p>
-            <p>蛙蛙格言(Bufo Slogan): ${item.bufoSlogan}</p>
+            <p>${t("protein")}: ${item.protein}g</p>
+            <p>${t("fat")}: ${item.fat}g</p>
+            <p>${t("carbohydrate")}: ${item.carbohydrate}g</p>
+            <p>${t("healthScore")}: ${item.healthIndex}</p>
+            <p>${t("healthTips")}: ${item.healthAnalysis}</p>
+            <p>${t("calories")}: ${item.calories}</p>
+            <p>${t("bufoSlogan")}: ${item.bufoSlogan}</p>
             </div>`).join("");
           setMessages(prevMessages => prevMessages.slice(0, -1));
           onSuccess(htmlString);
@@ -258,11 +266,17 @@ export default function ChatBot() {
           onItemClick={onPromptsItemClick}
         />
         <Sender
-          value={content}
-          onSubmit={onSubmit}
-          onChange={setContent}
-          loading={agent.isRequesting()}
-          style={{ boxShadow: boxShadow }}
+            value={content}
+            onSubmit={onSubmit}
+            onChange={setContent}
+            loading={agent.isRequesting()}
+            style={{ boxShadow: boxShadow }}
+        />
+        <Button onClick={() => {
+           localStorage.removeItem('chatMessages');
+           setMessages([])}
+        } icon={<DeleteOutlined />}
+        style={{alignSelf: 'end'}}
         />
       </Content>
     </Layout>

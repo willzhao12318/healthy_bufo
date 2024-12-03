@@ -36,7 +36,11 @@
   "thursday": "Thursday",
   "friday": "Friday",
   "saturday": "Saturday",
-  "sunday": "Sunday"
-
-
+  "sunday": "Sunday",
+  "protein": "Protein",
+  "fat": "Fat",
+  "carbohydrate": "Carbohydrate",
+  "healthScore": "Health Score",
+  "healthTips": "Health Tips",
+  "calories": "Calories"
 }
