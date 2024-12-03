@@ -66,7 +66,7 @@ export default function SettingForm({ initialValues }: SettingFormProps) {
       <Form.Item<configStoreProps>
         label={t("username")}
         name="username"
-        rules={[{ required: true, message: t("usernameWarning") }]}
+        rules={[{ message: t("usernameWarning") }]}
       >
         <Input prefix={<UserOutlined />} placeholder="Username" />
       </Form.Item>
@@ -74,9 +74,15 @@ export default function SettingForm({ initialValues }: SettingFormProps) {
       <Form.Item<configStoreProps>
         label={t("password")}
         name="password"
-        rules={[{ required: true, message: t("passwordWarning") }]}
+        rules={[{ message: t("passwordWarning") }]}
       >
         <Input.Password prefix={<LockOutlined />} type="password" placeholder="Password" />
+      </Form.Item>
+      <Form.Item<configStoreProps>
+        label={t("cookie")}
+        name="cookie"
+      >
+        <Input prefix={<LockOutlined />} placeholder={t("cookie")} />
       </Form.Item>
       <Form.Item>
         <Flex gap={sizeMS} align="center" justify="flex-end">
