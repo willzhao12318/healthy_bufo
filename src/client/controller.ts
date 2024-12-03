@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import useSWR, {SWRResponse} from "swr";
 import useSWRMutation, {SWRMutationResponse} from "swr/mutation";
-import { AddOrderRequest, AddOrderResponse, GetTabResponse, LoginResponse } from "@/utils/type";
+import { AddOrderRequest, AddOrderResponse, GetTabResponse, LoginResponse, Order, TabType } from "@/utils/type";
 import axios from "axios";
 import { useConfigStore } from "@/hooks/configStore";
+import { CalendarResponse } from "@/utils/tab_meican_type";
 
 export function useAddOrder(): SWRMutationResponse<
   AddOrderResponse,
@@ -53,9 +54,53 @@ export function useGetOrder(): SWRMutationResponse<any, any, any> {
 }
 
 export async function login(username: string, password: string): Promise<LoginResponse> {
-  const loginUrl = "/api/login";
+  const loginUrl = "/api/meican";
   const response = await axios.post(loginUrl, {username, password}, {timeout: 10000});
   return response.data;
+}
+
+export function useGetOrders(): SWRResponse<
+  Order[],
+  any,
+  any
+> {
+  const { cookie } = useConfigStore();
+  const getTabUrl = "/api/tab";
+
+  const fetcher = async () => {
+    const result = await axios.post(getTabUrl, {context: {cookies: cookie}});
+    const data: CalendarResponse = result.data;
+    const res: Order[] = []
+    data.dateList.forEach((dateItem) => {
+      const date = dateItem.date;
+      for (const tab of dateItem.calendarItemList) {
+        if (tab.corpOrderUser === undefined || tab.corpOrderUser === null) {
+          continue;
+        }
+        const dish = tab.corpOrderUser?.restaurantItemList[0].dishItemList[0].dish;
+        const {chineseName, englishName} = splitDishName(dish?.name ?? "");
+        res.push({
+          time: date,
+          tab: {
+            type: tab.title.includes("早餐") ? TabType.Breakfast : tab.title.includes("下午茶") ? TabType.AfternoonTea : TabType.Lunch,
+            orderedDish: {
+              id: dish?.id?.toString(),
+              chineseName: chineseName,
+              englishName: englishName,
+              restaurant: {
+                id: tab.corpOrderUser?.restaurantItemList[0].uniqueId ?? "",
+                name: "",
+              },
+            },
+            status: tab.status,
+            id: tab.targetTime.toString(),
+          },
+        });
+      }
+    });
+    return res;
+  };
+  return useSWR(getTabUrl, fetcher, {});
 }
 
 export function useGetTab(): SWRResponse<
@@ -71,4 +116,18 @@ export function useGetTab(): SWRResponse<
     return result.data;
   };
   return useSWR(getTabUrl, fetcher, {});
+}
+
+export function splitDishName(fullName: string): { chineseName: string; englishName: string } {
+  const match = fullName.match(/(.+?)\((.+?)\)/);
+  if (match) {
+    return {
+      chineseName: match[1].trim(),
+      englishName: match[2].trim()
+    };
+  }
+  return {
+    chineseName: fullName.trim(),
+    englishName: ''
+  };
 }

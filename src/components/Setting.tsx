@@ -44,11 +44,9 @@ export default function SettingForm({ initialValues }: SettingFormProps) {
 
   const onFinish = useCallback(
     async (values: configStoreProps) => {
-      console.log(cookie);
       setIsLogin(true);
       await login(values.username, values.password)
         .then((response) => {
-          console.log(response);
           setUsername(values.username);
           setPassword(values.password);
           setCookie(response.cookie);
@@ -60,7 +58,7 @@ export default function SettingForm({ initialValues }: SettingFormProps) {
           setIsLogin(false);
         });
     },
-    [cookie, errorNotification, setCookie, setPassword, setUsername]
+    [errorNotification, setCookie, setPassword, setUsername]
   );
 
   return (
