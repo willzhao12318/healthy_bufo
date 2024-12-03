@@ -95,7 +95,7 @@ export type DayMealPlan = {
   weekDay: WeekDay;
   breakfast: Dish[];
   lunch: Dish[];
-  afternoonTea: Dish[];
+  afternoonTea?: Dish[];
 };
 
 export type PreviousRecommendationDish = Dish & {

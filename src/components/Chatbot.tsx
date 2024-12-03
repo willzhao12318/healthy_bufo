@@ -12,8 +12,9 @@ import {MessageInfo} from "@ant-design/x/es/useXChat";
 import analyze from "../client/endpoints/request_analyze";
 import {RoleType} from "@ant-design/x/es/bubble/BubbleList";
 import categorize from "@/client/endpoints/request_categorization";
-import {Category, MealPlan, WeekDay} from "@/utils/type";
+import {Category} from "@/utils/type";
 import {recommend} from "@/pages/api/recommend";
+import {humanAIMealPlan} from "@/utils/mockData";
 
 const roles: Record<string, RoleType> = {
   ai: {
@@ -55,166 +56,6 @@ const roles: Record<string, RoleType> = {
   },
 };
 
-const mockMealPlan: MealPlan = {
-  dateList: [
-    {
-      weekDay: WeekDay.Monday,
-      breakfast: [
-        {
-          id: "BSK001",
-          chineseName: "煎饼",
-          englishName: "Pancakes",
-          restaurant: {
-            id: "RST001",
-            name: "Sunny Side Cafe"
-          }
-        },
-        {
-          id: "BSK002",
-          chineseName: "油条",
-          englishName: "Churro",
-          restaurant: {
-            id: "RST002",
-            name: "Rainy Side Cafe"
-          }
-        }
-      ],
-      lunch: [
-        {
-          id: "LCH001",
-          chineseName: "藜麦沙拉",
-          englishName: "Quinoa Salad",
-          restaurant: {
-            id: "RST003",
-            name: "Green Bowl"
-          }
-        }
-      ],
-      afternoonTea: [
-        {
-          id: "AT001",
-          chineseName: "果酱司康",
-          englishName: "Scones with Jam",
-          restaurant: {
-            id: "RST004",
-            name: "Tea Time"
-          }
-        }
-      ]
-    },
-    {
-      weekDay: WeekDay.Tuesday,
-      breakfast: [
-        {
-          id: "BSK003",
-          chineseName: "牛油果吐司",
-          englishName: "Avocado Toast",
-          restaurant: {
-            id: "RST005",
-            name: "Morning Brew"
-          }
-        }
-      ],
-      lunch: [
-        {
-          id: "LCH002",
-          chineseName: "",
-          englishName: "Spaghetti Carbonara",
-          restaurant: {
-            id: "RST006",
-            name: "Pasta Palace"
-          }
-        }
-      ],
-      afternoonTea: [
-        {
-          id: "AT002",
-          chineseName: "",
-          englishName: "Chocolate Cake",
-          restaurant: {
-            id: "RST007",
-            name: "Sweet Treats"
-          }
-        }
-      ]
-    },
-    {
-      weekDay: WeekDay.Wednesday,
-      breakfast: [
-        {
-          id: "BSK004",
-          chineseName: "健康碗",
-          englishName: "Smoothie Bowl",
-          restaurant:{
-            id:"RST008",
-            name:"Healthy Bites"
-          }
-        }
-      ],
-      lunch:[
-        {
-          id:"LCH003",
-          chineseName:"芝士汉堡",
-          englishName:"Cheeseburger",
-          restaurant:{
-            id:"RST009",
-            name:"The Burger Joint"
-          }
-        }
-      ],
-      afternoonTea:[
-        {
-          id:"AT003",
-          chineseName:"水果挞",
-          englishName:"Fruit Tart",
-          restaurant:{
-            id:"RST010",
-            name:"Cafe Delight"
-          }
-        }
-      ]
-    }
-  ],
-  previousRecommendation:{
-    breakfast:[
-      {
-        weekDay: WeekDay.Monday,
-        id:"BSK001",
-        chineseName:"煎饼",
-        englishName:"Pancakes",
-        restaurant:{
-          id:"RST001",
-          name:"Sunny Side Cafe"
-        }
-      }
-    ],
-    lunch:[
-      {
-        weekDay: WeekDay.Tuesday,
-        id:"LCH004",
-        chineseName:"",
-        englishName:"Tacos",
-        restaurant:{
-          id:"RST011",
-          name:"Taco Town"
-        }
-      }
-    ],
-    afternoonTea:[
-      {
-        weekDay: WeekDay.Wednesday,
-        id:"AT004",
-        chineseName:"",
-        englishName:"Croissant",
-        restaurant:{
-          id:'RST012',
-          name:'Pastry Place'
-        }
-      }
-    ]
-  }
-};
-
 export default function ChatBot() {
   const { t } = useTranslation();
   const {
@@ -248,7 +89,7 @@ export default function ChatBot() {
             onSuccess(t("invalidCategory"));
             break;
           case Category.CategoryRequestMenuRecommendation:
-            const recommendResult = await recommend({userInput:message,mealPlan:mockMealPlan});
+            const recommendResult = await recommend({userInput:message,mealPlan:humanAIMealPlan});
             if (!recommendResult) {
               setMessages(prevMessages => prevMessages.slice(0, -1));
               onSuccess(t("noRecommendResult"));
