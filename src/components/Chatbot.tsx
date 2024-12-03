@@ -3,8 +3,8 @@ import { Bubble, Prompts, Sender, Welcome, useXAgent, useXChat } from "@ant-desi
 import React, {useEffect} from "react";
 import Image from "next/image";
 
-import {DeleteOutlined, FireOutlined, GiftOutlined, UserOutlined} from "@ant-design/icons";
-import {Button, type GetProp, Layout, Space, Spin, theme} from "antd";
+import {FireOutlined, GiftOutlined, UserOutlined} from "@ant-design/icons";
+import {type GetProp, Layout, Space, Spin, theme} from "antd";
 import { useTranslation } from "react-i18next";
 import { Content } from "antd/es/layout/layout";
 import {MessageInfo} from "@ant-design/x/es/useXChat";
@@ -271,12 +271,6 @@ export default function ChatBot() {
             onChange={setContent}
             loading={agent.isRequesting()}
             style={{ boxShadow: boxShadow }}
-        />
-        <Button onClick={() => {
-           localStorage.removeItem('chatMessages');
-           setMessages([])}
-        } icon={<DeleteOutlined />}
-        style={{alignSelf: 'end'}}
         />
       </Content>
     </Layout>

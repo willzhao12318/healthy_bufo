@@ -1,10 +1,9 @@
 import { configStoreProps, useConfigStore } from "@/hooks/configStore";
-import { BulbOutlined, LockOutlined, PlusCircleOutlined, TranslationOutlined, UserOutlined } from "@ant-design/icons";
+import { BulbOutlined, LockOutlined, TranslationOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Flex, Form, Input, Tooltip, notification, theme } from "antd";
 import { useTranslation } from "react-i18next";
 import { useMediaQuery } from "react-responsive";
-import { login, useAddOrder } from "@/client/controller";
-import { AddOrderRequest } from "@/utils/type";
+import { login } from "@/client/controller";
 import { useCallback, useState } from "react";
 import { NotificationPlacement } from "antd/es/notification/interface";
 
@@ -35,13 +34,6 @@ export default function SettingForm({ initialValues }: SettingFormProps) {
     },
     [api]
   );
-
-  const { trigger: addOrder } = useAddOrder();
-  const req: AddOrderRequest = {
-    tabUid: "2f4b4930-aacb-4e04-9b8b-9d659e3736f3",
-    targetTime: "2024-12-05 00:30",
-    dishId: "281269727",
-  };
 
   const onFinish = useCallback(
     async (values: configStoreProps) => {
@@ -98,12 +90,6 @@ export default function SettingForm({ initialValues }: SettingFormProps) {
                 onClick={() => {
                   const newTheme = config.theme === "light" ? "dark" : "light";
                   setTheme(newTheme);
-                }}
-              />
-              <Button
-                icon={<PlusCircleOutlined />}
-                onClick={() => {
-                  addOrder(req);
                 }}
               />
             </>
