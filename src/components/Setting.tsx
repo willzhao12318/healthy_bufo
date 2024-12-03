@@ -110,7 +110,7 @@ export default function SettingForm({ initialValues }: SettingFormProps) {
           )}
           <Button
             type="primary"
-            htmlType="submit"
+            htmlType="button"
             onClick={() => {
               setCookie(form.getFieldValue("cookie"));
             }}
