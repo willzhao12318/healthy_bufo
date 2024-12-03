@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const { method } = req;
-  if (method === "GET") {
+  if (method === "POST") {
     const {context} = req.body;
     const today = new Date();
     const url = get_calender_items_url(today);
@@ -15,8 +15,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       },
     });
     return res.status(200).json(resp.data);
-  } else if (method === "POST") {
-    res.status(200).json({ message: "add tab" });
   }
 }
 

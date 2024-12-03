@@ -136,3 +136,7 @@ export type LoginRequest = {
 export type LoginResponse = {
   readonly cookie: string;
 };
+
+export type GetTabResponse = {
+  readonly tab: Tab[]
+};
