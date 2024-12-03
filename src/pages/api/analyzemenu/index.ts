@@ -13,9 +13,15 @@ export type AnalyzeMenuItem = {
     calories: number;
 };
 
-const menuAnalyzePrompt = "你现在是一个营养专家，我会给你一些的食谱，包含一周几天的早餐和午饭。几天并不固定。请你帮我分析这个食谱。分析中包含每一餐的食谱名称，蛋白质含量，脂肪含量，碳水" +
-    "含量，健康指数，健康分析，卡路里。健康指数满分100分，请基于满分100分打分。健康分析是你根据食谱组成得到的健康分析结果， 并给出" +
-    "健康建议。输出的食谱名称中需要在最前面包含一个代表这个食谱的emoji图案。请格式化输出一个json, json格式如下：\n" +
+const menuAnalyzePrompt = "You are now a nutrition expert. I will give you some recipes, including breakfast and" +
+    " lunch for several days a week. The days are not fixed. Please help me analyze this recipe. The analysis includes " +
+    "the recipe name, protein content, fat content, carbohydrate content, health index, health analysis, and calories " +
+    "of each meal. The health index is a full score of 100 points. Please score based on a full score of 100. The health" +
+    " analysis is the health analysis result you get based on the recipe composition, and gives " +
+    "healthy suggestions. The output recipe name needs to contain an emoji pattern representing this recipe at the " +
+    "beginning. I hope you can use humorous language in the analysis process to give users higher clarity value." +
+    "It would be better if you can randomly add some emoticons to the generated content" +
+    "Please format and output a json, the json format is as follows:\n" +
     "```{\"meals\":[\"name\": \"emoji食谱名称\", \"protein\": 0, \"fat\": 0, \"carbohydrate\": 0, \"healthIndex\": 0, \"healthAnalysis\": \"健康分析\", \"calories\": 0]}```";
 
 export default async function handler(
