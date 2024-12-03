@@ -2,18 +2,20 @@
 import useSWRMutation, {SWRMutationResponse} from "swr/mutation";
 import { AddOrderRequest, AddOrderResponse, LoginResponse } from "@/utils/type";
 import axios from "axios";
+import { useConfigStore } from "@/hooks/configStore";
 
 export function useAddOrder(): SWRMutationResponse<
   AddOrderResponse,
   any,
   AddOrderRequest
 > {
+  const { cookie } = useConfigStore();
   const addOrder = async (
     _: string,
     {arg}: {arg: AddOrderRequest}
   ) => {
-    const addOrderUrl = "/api/add_orders";
-    const response = await axios.post(addOrderUrl, arg);
+    const addOrderUrl = "/api/order";
+    const response = await axios.post(addOrderUrl, {...arg, context: {cookies: cookie}});
     return response.data;
   };
 
