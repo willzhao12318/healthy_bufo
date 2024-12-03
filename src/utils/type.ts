@@ -14,24 +14,24 @@ export enum WeekDay {
   Sunday = "sunday",
 }
 
-export type Tab  = {
+export type Tab = {
   readonly id: string;
   readonly dishes: Dish[];
   readonly orderedDish?: Dish;
   readonly status: string;
   readonly type: TabType;
-}
+};
 
 export type Dish = {
   readonly id: string;
   readonly chineseName: string;
   readonly englishName: string;
   readonly restaurant: Restaurant;
-}
+};
 export type Restaurant = {
   readonly id: string;
   readonly name: string;
-}
+};
 
 export type OrderTab = Omit<Tab, "dishes">;
 
@@ -39,7 +39,7 @@ export type Order = {
   readonly id: string;
   readonly time: string;
   readonly tab: OrderTab;
-}
+};
 
 // Define an enum for the categories
 export enum Category {
@@ -51,18 +51,18 @@ export enum Category {
 
 export type Recommendation = {
   recommendationsPerDay: RecommendationPerDay[];
-}
+};
 
 export type RecommendationPerDay = {
   workDay: WeekDay;
   recommendations: MenuOptions[];
-}
+};
 
 export type MenuOptions = {
   restaurant: Restaurant;
-  dish: Dish,
+  dish: Dish;
   tabType: TabType;
-}
+};
 
 export enum HttpMethods {
   GET = "GET",
@@ -72,24 +72,24 @@ export enum HttpMethods {
 }
 
 export type RecommendInput = {
-  userInput: string,
-  mealPlan: MealPlan,
-}
+  userInput: string;
+  mealPlan: MealPlan;
+};
 
 export type RecommendResult = {
-  breakfast:MealInfo[],
-  lunch: MealInfo[],
-  afternoonTea: MealInfo[],
-}
+  breakfast: MealInfo[];
+  lunch: MealInfo[];
+  afternoonTea: MealInfo[];
+};
 
 export type MealInfo = {
-  weekDay: WeekDay,
-  restaurantName: string,
-  restaurantId: string,
-  dishName: string,
-  dishId: string,
-  emoji: string,
-}
+  weekDay: WeekDay;
+  restaurantName: string;
+  restaurantId: string;
+  dishName: string;
+  dishId: string;
+  emoji: string;
+};
 
 export type DayMealPlan = {
   weekDay: WeekDay;
@@ -115,24 +115,24 @@ export type MealPlan = {
 
 type context = {
   readonly cookies: string;
-}
+};
 
 export type AddOrderResponse = {
   readonly status: number;
-}
+};
 
 export type AddOrderRequest = {
-  readonly tabUid: string,
-  readonly targetTime: string,
-  readonly dishId: string,
-  readonly context?: context
-}
+  readonly tabUid: string;
+  readonly targetTime: string;
+  readonly dishId: string;
+  readonly context?: context;
+};
 
 export type LoginRequest = {
   readonly username: string;
   readonly password: string;
-}
+};
 
 export type LoginResponse = {
   readonly cookie: string;
-}
+};
