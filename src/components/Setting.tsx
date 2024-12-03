@@ -3,6 +3,8 @@ import { BulbOutlined, LockOutlined, TranslationOutlined, UserOutlined } from "@
 import { Button, Flex, Form, Input, Tooltip, theme } from "antd";
 import { useTranslation } from "react-i18next";
 import { useMediaQuery } from "react-responsive";
+import { useAddOrder } from "@/client/controller";
+import { AddOrderRequest } from "@/utils/type";
 
 export type SettingFormProps = {
   initialValues: configStoreProps;
@@ -13,6 +15,8 @@ export default function SettingForm({ initialValues }: SettingFormProps) {
     console.log(values);
   };
 
+  const {trigger: addOrder} = useAddOrder();
+
   const { t, i18n } = useTranslation();
   const isMobile = useMediaQuery({ maxWidth: 767 });
   const { getConfig, setLocale, setTheme } = useConfigStore();
@@ -20,6 +24,11 @@ export default function SettingForm({ initialValues }: SettingFormProps) {
     token: { sizeMS },
   } = theme.useToken();
   const config = getConfig();
+  const req: AddOrderRequest = {
+    tabUid: "eb8b0840-ef36-4d9b-a243-57ebb2a8c9ec", 
+    targetTime: "2024-12-05 00:30", 
+    dishId: "281269730"
+  }
 
   return (
     <Form layout={"vertical"} initialValues={initialValues} onFinish={onFinish} autoComplete="off">
@@ -60,7 +69,11 @@ export default function SettingForm({ initialValues }: SettingFormProps) {
             </>
           )}
           <Tooltip title="test connection with meican">
-            <Button type="default" htmlType="button">
+            <Button type="default" htmlType="button"
+              onClick={() => {
+                addOrder(req);
+              }}
+            >
               {t("testConnection")}
             </Button>
           </Tooltip>
