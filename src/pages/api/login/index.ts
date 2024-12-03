@@ -22,7 +22,8 @@ async function getCookies(username: string, password: string): Promise<string> {
   const pwd = await page.waitForSelector('input[name="password"]');
   await email?.type(username);
   await pwd?.type(password);
-  await page.click('button[type="submit"]');
+  const loginButton = await page.waitForSelector('button[type="submit"]');
+  await loginButton?.click();
   await page.waitForNavigation();
   const cookies = await page.cookies();
   await browser.close();

@@ -55,3 +55,12 @@ export type AddOrderRequest = {
   readonly targetTime: string, 
   readonly dishId: string
 }
+
+export type LoginRequest = {
+  readonly username: string;
+  readonly password: string;
+}
+
+export type LoginResponse = {
+  readonly cookie: string;
+}

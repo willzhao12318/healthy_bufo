@@ -1,37 +1,70 @@
 import { configStoreProps, useConfigStore } from "@/hooks/configStore";
-import { BulbOutlined, LockOutlined, TranslationOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Flex, Form, Input, Tooltip, theme } from "antd";
+import { BulbOutlined, LockOutlined, PlusCircleOutlined, TranslationOutlined, UserOutlined } from "@ant-design/icons";
+import { Button, Flex, Form, Input, Tooltip, notification, theme } from "antd";
 import { useTranslation } from "react-i18next";
 import { useMediaQuery } from "react-responsive";
-import { useAddOrder } from "@/client/controller";
+import { login, useAddOrder } from "@/client/controller";
 import { AddOrderRequest } from "@/utils/type";
+import { useCallback, useState } from "react";
+import { NotificationPlacement } from "antd/es/notification/interface";
 
 export type SettingFormProps = {
   initialValues: configStoreProps;
 };
 
 export default function SettingForm({ initialValues }: SettingFormProps) {
-  const onFinish = (values: configStoreProps) => {
-    console.log(values);
-  };
-
-  const {trigger: addOrder} = useAddOrder();
-
   const { t, i18n } = useTranslation();
+  const [isLogin, setIsLogin] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: 767 });
-  const { getConfig, setLocale, setTheme } = useConfigStore();
+  const { getConfig, setLocale, setTheme, setCookie, cookie, setUsername, setPassword } = useConfigStore();
+  const config = getConfig();
   const {
     token: { sizeMS },
   } = theme.useToken();
-  const config = getConfig();
+
+  const [api] = notification.useNotification();
+
+  const errorNotification = useCallback(
+    (message: string, placement: NotificationPlacement = "top") => {
+      api.error({
+        message: message,
+        placement: placement,
+        showProgress: true,
+      });
+    },
+    [api]
+  );
+
+  const { trigger: addOrder } = useAddOrder();
   const req: AddOrderRequest = {
-    tabUid: "eb8b0840-ef36-4d9b-a243-57ebb2a8c9ec", 
-    targetTime: "2024-12-05 00:30", 
-    dishId: "281269730"
-  }
+    tabUid: "eb8b0840-ef36-4d9b-a243-57ebb2a8c9ec",
+    targetTime: "2024-12-05 00:30",
+    dishId: "281269730",
+  };
+
+  const onFinish = useCallback(
+    async (values: configStoreProps) => {
+      console.log(cookie);
+      setIsLogin(true);
+      await login(values.username, values.password)
+        .then((response) => {
+          console.log(response);
+          setUsername(values.username);
+          setPassword(values.password);
+          setCookie(response.cookie);
+        })
+        .catch((error) => {
+          errorNotification(error.message);
+        })
+        .finally(() => {
+          setIsLogin(false);
+        });
+    },
+    [cookie, errorNotification, setCookie, setPassword, setUsername]
+  );
 
   return (
-    <Form layout={"vertical"} initialValues={initialValues} onFinish={onFinish} autoComplete="off">
+    <Form layout={"vertical"} name="validateOnly" initialValues={initialValues} onFinish={onFinish} autoComplete="off">
       <Form.Item<configStoreProps>
         label={t("username")}
         name="username"
@@ -45,7 +78,7 @@ export default function SettingForm({ initialValues }: SettingFormProps) {
         name="password"
         rules={[{ required: true, message: t("passwordWarning") }]}
       >
-        <Input prefix={<LockOutlined />} placeholder="Password" />
+        <Input.Password prefix={<LockOutlined />} type="password" placeholder="Password" />
       </Form.Item>
       <Form.Item>
         <Flex gap={sizeMS} align="center" justify="flex-end">
@@ -66,20 +99,17 @@ export default function SettingForm({ initialValues }: SettingFormProps) {
                   setTheme(newTheme);
                 }}
               />
+              <Button
+                icon={<PlusCircleOutlined />}
+                onClick={() => {
+                  addOrder(req);
+                }}
+              />
             </>
           )}
-          <Tooltip title="test connection with meican">
-            <Button type="default" htmlType="button"
-              onClick={() => {
-                addOrder(req);
-              }}
-            >
-              {t("testConnection")}
-            </Button>
-          </Tooltip>
-          <Tooltip title="save your config locally">
-            <Button type="primary" htmlType="submit">
-              {t("save")}
+          <Tooltip title={cookie === undefined ? t("saveConfigDescription") : t("renewLoginDescription")}>
+            <Button type="primary" htmlType="submit" loading={isLogin}>
+              {cookie === undefined ? t("save") : t("renewLogin")}
             </Button>
           </Tooltip>
         </Flex>
