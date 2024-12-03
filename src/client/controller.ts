@@ -54,7 +54,7 @@ export function useGetOrder(): SWRMutationResponse<any, any, any> {
 }
 
 export async function login(username: string, password: string): Promise<LoginResponse> {
-  const loginUrl = "/api/login";
+  const loginUrl = "/api/meican";
   const response = await axios.post(loginUrl, {username, password}, {timeout: 10000});
   return response.data;
 }
